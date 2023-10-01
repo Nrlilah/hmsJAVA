@@ -1,44 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%-- <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Welcome Page</title>
-</head>
-<body>
-	<%
-	String name = (String) session.getAttribute("name");
-	%>
-	<%
-	String name1 = (String) request.getAttribute("name");
-	%>
-	<h2>Login Successfully</h2>
-	<h2>
-		Hello
-		<%
-	if (name1 == null)
-		out.println(name);
-	else
-		out.println(name1);
-	%>!
-	</h2>
-	<form action="/hms/Register" method="get">
-		<pre>
-		<input type="submit" value="User List">
-	</pre>
-	</form>
-	<a href="logout.jsp">Logout</a>
-</body>
-</html>
-
- --%>
-
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.hms.beans.Patient"%>
-<%
-ArrayList<Patient> ul = (ArrayList<Patient>) session.getAttribute("PatientData");
-%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -114,10 +78,10 @@ ArrayList<Patient> ul = (ArrayList<Patient>) session.getAttribute("PatientData")
 
 				<li class="nav-item dropdown pe-3"><a
 					class="nav-link nav-profile d-flex align-items-center pe-0"
-					href="#" data-bs-toggle="dropdown"> <img
+					href="#" data-bs-toggle="dropdown"> <!-- <img
 						src="assets/img/profile-img.jpg" alt="Profile"
-						class="rounded-circle"> <span
-						class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+						class="rounded-circle"> --> <span
+						class="d-none d-md-block dropdown-toggle ps-2"><%=session.getAttribute("name")%></span>
 				</a> <!-- End Profile Iamge Icon -->
 
 					<ul
@@ -166,11 +130,12 @@ ArrayList<Patient> ul = (ArrayList<Patient>) session.getAttribute("PatientData")
 					<i class="bi bi-card-list active"></i> <span>Patient
 						Registration</span>
 			</a></li>
-			<li class="nav-item"><a class="nav-link collapsed" href="index.html">
-					<i class="bi bi-card-list"></i> <span>Patient Medication</span>
+			<li class="nav-item"><a class="nav-link collapsed"
+				href="index.html"> <i class="bi bi-card-list"></i> <span>Patient
+						Medication</span>
 			</a></li>
-			<li class="nav-item"><a class="nav-link collapsed" href="index.html">
-					<i class="bi bi-calendar"></i> <span>Scheduling</span>
+			<li class="nav-item"><a class="nav-link collapsed"
+				href="index.html"> <i class="bi bi-calendar"></i> <span>Scheduling</span>
 			</a></li>
 			<!-- End Profile Page Nav -->
 			<!-- End Dashboard Nav -->
@@ -198,7 +163,15 @@ ArrayList<Patient> ul = (ArrayList<Patient>) session.getAttribute("PatientData")
 				<!-- Left side columns -->
 				<div class="col-lg-12">
 					<div class="row">
+						<%
+						int r = Integer.parseInt(session.getAttribute("red").toString());
+						int g = Integer.parseInt(session.getAttribute("green").toString());
+						int b = Integer.parseInt(session.getAttribute("blue").toString());
 
+						double pr = (r * 100) / (r + g + b);
+						double pg = (g * 100) / (r + g + b);
+						double pb = (b * 100) / (r + g + b);
+						%>
 						<!-- Red Zone Card-->
 						<div class="col-xxl-4 col-md-6">
 							<div class="card info-card customers-card">
@@ -214,9 +187,9 @@ ArrayList<Patient> ul = (ArrayList<Patient>) session.getAttribute("PatientData")
 											<i class="bi bi-activity"></i>
 										</div>
 										<div class="ps-3">
-											<h6>145</h6>
-											<span class="text-success small pt-1 fw-bold">12%</span> <span
-												class="text-muted small pt-2 ps-1">increase</span>
+											<h6><%=r%></h6>
+											<span class="text-danger small pt-1 fw-bold"> <%=pr%>%</span>
+											<span class="text-muted small pt-2 ps-1">out of <%=r+g+b%> patient(s).</span>
 
 										</div>
 									</div>
@@ -241,9 +214,9 @@ ArrayList<Patient> ul = (ArrayList<Patient>) session.getAttribute("PatientData")
 											<i class="bi bi-bag-heart-fill"></i>
 										</div>
 										<div class="ps-3">
-											<h6>$3,264</h6>
-											<span class="text-success small pt-1 fw-bold">8%</span> <span
-												class="text-muted small pt-2 ps-1">increase</span>
+											<h6><%=session.getAttribute("green")%></h6>
+											<span class="text-danger small pt-1 fw-bold"><%=pg%>%</span> <span
+												class="text-muted small pt-2 ps-1">out of <%=r+g+b%> patient(s).</span>
 
 										</div>
 									</div>
@@ -269,9 +242,9 @@ ArrayList<Patient> ul = (ArrayList<Patient>) session.getAttribute("PatientData")
 											<i class="bi bi-calendar2-x-fill"></i>
 										</div>
 										<div class="ps-3">
-											<h6>1244</h6>
-											<span class="text-danger small pt-1 fw-bold">12%</span> <span
-												class="text-muted small pt-2 ps-1">decrease</span>
+											<h6><%=session.getAttribute("blue")%></h6>
+											<span class="text-danger small pt-1 fw-bold"><%=pb%>%</span> <span
+												class="text-muted small pt-2 ps-1">out of <%=r+g+b%> patient(s).</span>
 
 										</div>
 									</div>
@@ -291,12 +264,11 @@ ArrayList<Patient> ul = (ArrayList<Patient>) session.getAttribute("PatientData")
 										class="bi bi-three-dots"></i></a>
 									<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
 										<li class="dropdown-header text-start">
-											<h6>Filter</h6>
+											<h6>Sort</h6>
 										</li>
 
-										<li><a class="dropdown-item" href="#">Today</a></li>
-										<li><a class="dropdown-item" href="#">This Month</a></li>
-										<li><a class="dropdown-item" href="#">This Year</a></li>
+										<li><a class="dropdown-item" href="#">Ascending</a></li>
+										<li><a class="dropdown-item" href="#">Descending</a></li>
 									</ul>
 								</div>
 
@@ -308,23 +280,34 @@ ArrayList<Patient> ul = (ArrayList<Patient>) session.getAttribute("PatientData")
 									<table class="table table-borderless datatable">
 										<thead>
 											<tr>
-												<th scope="col">#</th>
-												<th scope="col">Customer</th>
-												<th scope="col">Product</th>
-												<th scope="col">Price</th>
-												<th scope="col">Status</th>
+												<th scope="col">Identification No.</th>
+												<th scope="col">Name</th>
+												<th scope="col">Gender</th>
+												<th scope="col"></th>
+												<th scope="col">Health Status</th>
 											</tr>
 										</thead>
 										<tbody>
 											<%
-											for (User u : ul) {
+											ArrayList<Patient> ul = (ArrayList<Patient>) session.getAttribute("PatientData");
+											for (Patient u : ul) {
 											%>
 											<tr>
-												<th scope="row"><a href="#">#2457</a></th>
+												<td><%=u.getIc()%></td>
 												<td><%=u.getName()%></td>
-												<td><%=u.getPassword()%></td>
-												<td><%=u.getEmail()%></td>
-												<td><span class="badge bg-success">Red Zone</span></td>
+												<td><%=u.getGender()%></td>
+												<th scope="row"><a href="#">More Detail</a></th>
+												<%
+												if (u.getStatus() == 1) {
+												%>
+												<td><span class="badge bg-danger">Red Zone</span></td>
+												<%
+												} else if (u.getStatus() == 2) {
+												%>
+												<td><span class="badge bg-success">Green Zone</span></td>
+												<%
+												}
+												%>
 											</tr>
 											<%
 											}
