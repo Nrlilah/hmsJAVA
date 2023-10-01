@@ -1,15 +1,17 @@
 package com.hms.beans;
 
+import java.util.Date;
+
 public class Patient {
 	private String name;
 	private String ic;
 	private String gender;
 	private String phonenumber;
 	private String natioality;
-	private String dateofbirth;
+	private Date dateofbirth;
 	private String address;
 	private String appointmentDate;
-	private String status;
+	private int status;
 
 	public String getName() {
 		return name;
@@ -51,11 +53,11 @@ public class Patient {
 		this.natioality = natioality;
 	}
 
-	public String getDateofbirth() {
+	public Date getDateofbirth() {
 		return dateofbirth;
 	}
 
-	public void setDateofbirth(String dateofbirth) {
+	public void setDateofbirth(Date dateofbirth) {
 		this.dateofbirth = dateofbirth;
 	}
 
@@ -75,14 +77,11 @@ public class Patient {
 		this.appointmentDate = appointmentDate;
 	}
 
-	public String getStatus() {
+	public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
-
-	
-
 }

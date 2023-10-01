@@ -1,7 +1,7 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.hms.Beans.User"%>
+<%@page import="com.hms.beans.User"%>
 <%
 ArrayList<User> ul = (ArrayList<User>) request.getAttribute("UserData");
 %>
@@ -36,4 +36,4 @@ ArrayList<User> ul = (ArrayList<User>) request.getAttribute("UserData");
 		%>
 	</table>
 </body>
-</html> --%>
+</html>
