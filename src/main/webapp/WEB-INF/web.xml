@@ -27,6 +27,10 @@
   	<display-name>AddAccount</display-name>
   	<description></description>
   	<servlet-class>com.hms.controller.AddAccount</servlet-class>
+  	<servlet-name>AddPatient</servlet-name>
+  	<display-name>AddPatient</display-name>
+  	<description></description>
+  	<servlet-class>com.hms.controller.AddPatient</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>Register</servlet-name>
@@ -43,5 +47,7 @@
   <servlet-mapping>
   	<servlet-name>AddAccount</servlet-name>
   	<url-pattern>/AddAccount</url-pattern>
+  	<servlet-name>AddPatient</servlet-name>
+  	<url-pattern>/AddPatient</url-pattern>
   </servlet-mapping>
 </web-app>
