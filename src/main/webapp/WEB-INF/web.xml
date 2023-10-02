@@ -23,6 +23,10 @@
   	<servlet-class>com.hms.controller.DatabaseConnection</servlet-class>
   </servlet>
   <servlet>
+  	<servlet-name>AddAccount</servlet-name>
+  	<display-name>AddAccount</display-name>
+  	<description></description>
+  	<servlet-class>com.hms.controller.AddAccount</servlet-class>
   	<servlet-name>AddPatient</servlet-name>
   	<display-name>AddPatient</display-name>
   	<description></description>
@@ -47,6 +51,8 @@
   	<url-pattern>/DatabaseConnection</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
+  	<servlet-name>AddAccount</servlet-name>
+  	<url-pattern>/AddAccount</url-pattern>
   	<servlet-name>AddPatient</servlet-name>
   	<url-pattern>/AddPatient</url-pattern>
   </servlet-mapping>
