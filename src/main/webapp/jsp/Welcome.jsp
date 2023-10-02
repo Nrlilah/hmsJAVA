@@ -47,7 +47,7 @@
 	<header id="header" class="header fixed-top d-flex align-items-center">
 
 		<div class="d-flex align-items-center justify-content-between">
-			<a href="index.html" class="logo d-flex align-items-center"> <img
+			<a href="Welcome.jsp" class="logo d-flex align-items-center"> <img
 				src="assets/img/logo.png" alt=""> <span
 				class="d-none d-lg-block">HMS</span>
 			</a>
@@ -126,16 +126,16 @@
 		<ul class="sidebar-nav" id="sidebar-nav">
 
 			<li class="nav-heading">Functions</li>
-			<li class="nav-item"><a class="nav-link " href="index.html">
+			<li class="nav-item"><a class="nav-link " href="Welcome.jsp">
 					<i class="bi bi-card-list active"></i> <span>Patient
 						Registration</span>
 			</a></li>
 			<li class="nav-item"><a class="nav-link collapsed"
-				href="index.html"> <i class="bi bi-card-list"></i> <span>Patient
+				href="Welcome.jsp"> <i class="bi bi-card-list"></i> <span>Patient
 						Medication</span>
 			</a></li>
 			<li class="nav-item"><a class="nav-link collapsed"
-				href="index.html"> <i class="bi bi-calendar"></i> <span>Scheduling</span>
+				href="Welcome.jsp"> <i class="bi bi-calendar"></i> <span>Scheduling</span>
 			</a></li>
 			<!-- End Profile Page Nav -->
 			<!-- End Dashboard Nav -->
