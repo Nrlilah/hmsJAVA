@@ -15,7 +15,7 @@
 			<h1>Profile</h1>
 			<nav>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+					<li class="breadcrumb-item"><a href="Welcome.jsp">Home</a></li>
 					<li class="breadcrumb-item">Users</li>
 					<li class="breadcrumb-item active">Profile</li>
 				</ol>
@@ -31,7 +31,7 @@
 						<div
 							class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-							<img src="assets/img/profile-img.jpg" alt="Profile"
+							<img src="../img/profile-img.jpg" alt="Profile"
 								class="rounded-circle">
 							<h2>Nur Hafizatul Izzah</h2>
 							<h3>Nurse</h3>
@@ -72,47 +72,48 @@
 
 									<div class="row">
 										<div class="col-lg-3 col-md-4 label ">Name</div>
-										<div class="col-lg-9 col-md-8"><%=session.getAttribute("name").toString() %></div>
-										 
+										<div class="col-lg-9 col-md-8"><%=session.getAttribute("name").toString()%></div>
+
 									</div>
-									
+
 									<div class="row">
 										<div class="col-lg-3 col-md-4 label">Email</div>
-										<div class="col-lg-9 col-md-8"><%=session.getAttribute("email").toString() %></div>
-										
+										<div class="col-lg-9 col-md-8"><%=session.getAttribute("email").toString()%></div>
+
 									</div>
 
 									<div class="row">
 										<div class="col-lg-3 col-md-4 label">Role</div>
-										<div class="col-lg-9 col-md-8"><%=session.getAttribute("role").toString() %></div>
+										<div class="col-lg-9 col-md-8"><%=session.getAttribute("role").toString()%></div>
 									</div>
 
 									<div class="row">
-										<div class="col-lg-3 col-md-4 label">Identification Card No.</div>
-										<div class="col-lg-9 col-md-8"><%=session.getAttribute("ic").toString() %></div>
+										<div class="col-lg-3 col-md-4 label">Identification Card
+											No.</div>
+										<div class="col-lg-9 col-md-8"><%=session.getAttribute("ic").toString()%></div>
 									</div>
 
 									<div class="row">
 										<div class="col-lg-3 col-md-4 label">Gender</div>
-										<div class="col-lg-9 col-md-8"><%=session.getAttribute("gender").toString() %></div>
+										<div class="col-lg-9 col-md-8"><%=session.getAttribute("gender").toString()%></div>
 									</div>
 
 									<div class="row">
 										<div class="col-lg-3 col-md-4 label">Phone</div>
-										<div class="col-lg-9 col-md-8"><%=session.getAttribute("phoneNum").toString() %></div>
+										<div class="col-lg-9 col-md-8"><%=session.getAttribute("phoneNum").toString()%></div>
 									</div>
 
 									<div class="row">
 										<div class="col-lg-3 col-md-4 label">Nationality</div>
-										<div class="col-lg-9 col-md-8"><%=session.getAttribute("nationality").toString() %></div>
+										<div class="col-lg-9 col-md-8"><%=session.getAttribute("nationality").toString()%></div>
 									</div>
 									<div class="row">
 										<div class="col-lg-3 col-md-4 label">Date of Birth</div>
-										<div class="col-lg-9 col-md-8"><%=session.getAttribute("dateOfBirth").toString() %></div>
+										<div class="col-lg-9 col-md-8"><%=session.getAttribute("dateOfBirth").toString()%></div>
 									</div>
 									<div class="row">
 										<div class="col-lg-3 col-md-4 label">Address</div>
-										<div class="col-lg-9 col-md-8"><%=session.getAttribute("address").toString() %></div>
+										<div class="col-lg-9 col-md-8"><%=session.getAttribute("address").toString()%></div>
 									</div>
 
 								</div>
@@ -126,7 +127,7 @@
 												class="col-md-4 col-lg-3 col-form-label">Profile
 												Image</label>
 											<div class="col-md-8 col-lg-9">
-												<img src="assets/img/profile-img.jpg" alt="Profile">
+												<img src="../img/profile-img.jpg" alt="Profile">
 												<div class="pt-2">
 													<a href="#" class="btn btn-primary btn-sm"
 														title="Upload new profile image"><i
@@ -142,21 +143,24 @@
 												class="col-md-4 col-lg-3 col-form-label">Full Name</label>
 											<div class="col-md-8 col-lg-9">
 												<input name="fullName" type="text" class="form-control"
-													id="fullName" value="<%=session.getAttribute("name").toString() %>">
+													id="fullName"
+													value="<%=session.getAttribute("name").toString()%>">
 											</div>
 										</div>
 										<div class="row mb-3">
 											<label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
 											<div class="col-md-8 col-lg-9">
 												<input name="email" type="email" class="form-control"
-													id="Email" value="<%=session.getAttribute("email").toString() %>">
+													id="Email"
+													value="<%=session.getAttribute("email").toString()%>">
 											</div>
 										</div>
 										<div class="row mb-3">
 											<label for="Role" class="col-md-4 col-lg-3 col-form-label">Role</label>
 											<div class="col-md-8 col-lg-9">
 												<input name="Role" type="text" class="form-control"
-													id="Role" value="<%=session.getAttribute("role").toString() %>">
+													id="Role"
+													value="<%=session.getAttribute("role").toString()%>">
 											</div>
 										</div>
 										<div class="row mb-3">
@@ -164,14 +168,15 @@
 												Card No.</label>
 											<div class="col-md-8 col-lg-9">
 												<input name="ic" type="text" class="form-control" id="ic"
-													value="<%=session.getAttribute("ic").toString() %>">
+													value="<%=session.getAttribute("ic").toString()%>">
 											</div>
 										</div>
 										<div class="row mb-3">
 											<label for="gender" class="col-md-4 col-lg-3 col-form-label">Gender</label>
 											<div class="col-md-8 col-lg-9">
 												<input name="gender" type="text" class="form-control"
-													id="gender" value="<%=session.getAttribute("gender").toString() %>">
+													id="gender"
+													value="<%=session.getAttribute("gender").toString()%>">
 											</div>
 										</div>
 
@@ -179,7 +184,8 @@
 											<label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
 											<div class="col-md-8 col-lg-9">
 												<input name="phone" type="text" class="form-control"
-													id="Phone" value="<%=session.getAttribute("phoneNum").toString() %>">
+													id="Phone"
+													value="<%=session.getAttribute("phoneNum").toString()%>">
 											</div>
 										</div>
 										<div class="row mb-3">
@@ -187,7 +193,8 @@
 												class="col-md-4 col-lg-3 col-form-label">Nationality</label>
 											<div class="col-md-8 col-lg-9">
 												<input name="nationality" type="text" class="form-control"
-													id="nationality" value="<%=session.getAttribute("nationality").toString() %>">
+													id="nationality"
+													value="<%=session.getAttribute("nationality").toString()%>">
 											</div>
 										</div>
 										<div class="row mb-3">
@@ -196,7 +203,8 @@
 												Birth"</label>
 											<div class="col-md-8 col-lg-9">
 												<input name="dateOfBirth" type="text" class="form-control"
-													id="dateOfBirth" value="<%=session.getAttribute("dateOfBirth").toString() %>">
+													id="dateOfBirth"
+													value="<%=session.getAttribute("dateOfBirth").toString()%>">
 											</div>
 										</div>
 										<div class="row mb-3">
@@ -204,7 +212,7 @@
 											<div class="col-md-8 col-lg-9">
 												<input name="address" type="text" class="form-control"
 													id="Address"
-													value="<%=session.getAttribute("address").toString() %>">
+													value="<%=session.getAttribute("address").toString()%>">
 											</div>
 										</div>
 
@@ -275,37 +283,11 @@
 	<!-- End #main -->
 
 	<!-- ======= Footer ======= -->
-	<footer id="footer" class="footer">
-		<div class="copyright">
-			&copy; Copyright <strong><span>Group 4</span></strong>. All Rights
-			Reserved
-		</div>
-		<div class="credits">
-			<!-- All the links in the footer should remain intact. -->
-			<!-- You can delete the links only if you purchased the pro version. -->
-			<!-- Licensing information: https://bootstrapmade.com/license/ -->
-			<!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-			Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-		</div>
-	</footer>
-	<!-- End Footer -->
-
+	<%@ include file="Footer.jsp"%>
 	<a href="#"
 		class="back-to-top d-flex align-items-center justify-content-center"><i
 		class="bi bi-arrow-up-short"></i></a>
-
-	<!-- Vendor JS Files -->
-	<script src="../vendor/apexcharts/apexcharts.min.js"></script>
-	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="../vendor/chart.js/chart.umd.js"></script>
-	<script src="../vendor/echarts/echarts.min.js"></script>
-	<script src="../vendor/quill/quill.min.js"></script>
-	<script src="../vendor/simple-datatables/simple-datatables.js"></script>
-	<script src="../vendor/tinymce/tinymce.min.js"></script>
-	<script src="../vendor/php-email-form/validate.js"></script>
-
-	<!-- Template Main JS File -->
-	<script src="assets/js/main.js"></script>
+	<%@ include file="ScriptResources.jsp"%>
 
 </body>
 

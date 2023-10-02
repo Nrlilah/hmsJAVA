@@ -14,11 +14,11 @@
 	<main id="main" class="main">
 
 		<div class="pagetitle">
-			<h1>Dashboard</h1>
+			<h1>Patient Registration</h1>
 			<nav>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-					<li class="breadcrumb-item active">Dashboard</li>
+					<li class="breadcrumb-item"><a href="Welcome.jsp">Home</a></li>
+					<li class="breadcrumb-item active">Patient Registration</li>
 				</ol>
 			</nav>
 		</div>
@@ -328,9 +328,8 @@
 										<td><%=u.getIc()%></td>
 										<td><%=u.getName()%></td>
 										<td><%=u.getGender()%></td>
-										<th scope="row"><a href=""
-											data-bs-toggle="modal" data-bs-target="#addPatientModal">More
-												Detail</a></th>
+										<th scope="row"><a href="" data-bs-toggle="modal"
+											data-bs-target="#addPatientModal">More Detail</a></th>
 										<%
 										if (u.getStatus() == 1) {
 										%>
@@ -493,6 +492,19 @@
 		class="back-to-top d-flex align-items-center justify-content-center"><i
 		class="bi bi-arrow-up-short"></i></a>
 	<%@ include file="ScriptResources.jsp"%>
+	<script>
+		// Get the modal element
+		const modal = document.getElementById('addPatientModal');
+
+		// Add an event listener to the modal to clear the fields when it is shown
+		modal.addEventListener('shown.bs.modal', function() {
+			// Clear the fields in the modal
+			document.querySelectorAll('#addPatientModal input').forEach(
+					function(input) {
+						input.value = '';
+					});
+		});
+	</script>
 </body>
 
 </html>

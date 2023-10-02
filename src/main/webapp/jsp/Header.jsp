@@ -6,6 +6,7 @@
 				src="assets/img/logo.png" alt=""> <span
 				class="d-none d-lg-block">HMS</span>
 			</a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
 		</div>
 		<!-- End Logo -->
 
@@ -60,7 +61,7 @@
 							<hr class="dropdown-divider">
 						</li>
 
-						<li><a href="logout.jsp"
+						<li><a href="Login.jsp"
 							class="dropdown-item d-flex align-items-center" href="#"> <i
 								class="bi bi-box-arrow-right"></i> <span>Sign Out</span>
 						</a></li>
