@@ -2,148 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.hms.beans.Patient"%>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-<title>Dashboard - NiceAdmin Bootstrap Template</title>
-<meta content="" name="description">
-<meta content="" name="keywords">
-
-<!-- Favicons -->
-<link href="assets/img/favicon.png" rel="icon">
-<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-<!-- Google Fonts -->
-<link href="https://fonts.gstatic.com" rel="preconnect">
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-	rel="stylesheet">
-
-<!-- Vendor CSS Files -->
-<link href="assets/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
-	rel="stylesheet">
-<link href="assets/vendor/boxicons/css/boxicons.min.css"
-	rel="stylesheet">
-<link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
-<link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-<link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-<link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-
-<!-- Template Main CSS File -->
-<link href="../css/style.css" rel="stylesheet">
-
+<%@ include file="HeadResources.jsp"%>
 </head>
-
 <body>
-
-	<!-- ======= Header ======= -->
-	<header id="header" class="header fixed-top d-flex align-items-center">
-
-		<div class="d-flex align-items-center justify-content-between">
-			<a href="index.html" class="logo d-flex align-items-center"> <img
-				src="assets/img/logo.png" alt=""> <span
-				class="d-none d-lg-block">HMS</span>
-			</a>
-		</div>
-		<!-- End Logo -->
-
-		<div class="search-bar">
-			<form class="search-form d-flex align-items-center" method="POST"
-				action="#">
-				<input type="text" name="query" placeholder="Search"
-					title="Enter search keyword">
-				<button type="submit" title="Search">
-					<i class="bi bi-search"></i>
-				</button>
-			</form>
-		</div>
-		<!-- End Search Bar -->
-
-		<nav class="header-nav ms-auto">
-			<ul class="d-flex align-items-center">
-
-				<li class="nav-item d-block d-lg-none"><a
-					class="nav-link nav-icon search-bar-toggle " href="#"> <i
-						class="bi bi-search"></i>
-				</a></li>
-				<!-- End Search Icon-->
-
-
-				<li class="nav-item dropdown pe-3"><a
-					class="nav-link nav-profile d-flex align-items-center pe-0"
-					href="#" data-bs-toggle="dropdown"> <!-- <img
-						src="assets/img/profile-img.jpg" alt="Profile"
-						class="rounded-circle"> --> <span
-						class="d-none d-md-block dropdown-toggle ps-2"><%=session.getAttribute("name")%></span>
-				</a> <!-- End Profile Iamge Icon -->
-
-					<ul
-						class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-						<li class="dropdown-header">
-							<h6>Kevin Anderson</h6> <span>Web Designer</span>
-						</li>
-						<li>
-							<hr class="dropdown-divider">
-						</li>
-
-
-						<li><a class="dropdown-item d-flex align-items-center"
-							href="users-profile.html"> <i class="bi bi-gear"></i> <span>Account
-									Settings</span>
-						</a></li>
-						<li>
-							<hr class="dropdown-divider">
-						</li>
-						<li>
-							<hr class="dropdown-divider">
-						</li>
-
-						<li><a href="logout.jsp"
-							class="dropdown-item d-flex align-items-center" href="#"> <i
-								class="bi bi-box-arrow-right"></i> <span>Sign Out</span>
-						</a></li>
-
-					</ul> <!-- End Profile Dropdown Items --></li>
-				<!-- End Profile Nav -->
-
-			</ul>
-		</nav>
-		<!-- End Icons Navigation -->
-
-	</header>
-	<!-- End Header -->
-
-	<!-- ======= Sidebar ======= -->
-	<aside id="sidebar" class="sidebar">
-
-		<ul class="sidebar-nav" id="sidebar-nav">
-
-			<li class="nav-heading">Functions</li>
-			<li class="nav-item"><a class="nav-link " href="index.html">
-					<i class="bi bi-card-list active"></i> <span>Patient
-						Registration</span>
-			</a></li>
-			<li class="nav-item"><a class="nav-link collapsed"
-				href="index.html"> <i class="bi bi-card-list"></i> <span>Patient
-						Medication</span>
-			</a></li>
-			<li class="nav-item"><a class="nav-link collapsed"
-				href="index.html"> <i class="bi bi-calendar"></i> <span>Scheduling</span>
-			</a></li>
-			<!-- End Profile Page Nav -->
-			<!-- End Dashboard Nav -->
-		</ul>
-
-	</aside>
-	<!-- End Sidebar-->
-
+	<%@ include file="Header.jsp"%>
+	<%@ include file="SideNav.jsp"%>
 	<main id="main" class="main">
 
 		<div class="pagetitle">
@@ -275,10 +141,10 @@
 
 
 										<button type="button" class="btn btn-primary"
-											data-bs-toggle="modal" data-bs-target="#myModal">
+											data-bs-toggle="modal" data-bs-target="#addPatientModal">
 											Add</button>
 
-										<div class="modal" id="myModal">
+										<div class="modal" id="addPatientModal">
 											<div class="modal-dialog modal-dialog-centered modal-lg">
 												<div class="modal-content">
 													<!-- Modal header -->
@@ -289,8 +155,8 @@
 													</div>
 
 													<!-- Modal body -->
-													<div class="modal-body">
-														<form action="/hms/AddPatient" method="post">
+													<form action="/hms/AddPatient" method="post">
+														<div class="modal-body">
 															<div class="form-group row">
 																<label for="email" class="col-sm-2 col-form-label">Name</label>
 																<div class="col-sm-10">
@@ -397,29 +263,17 @@
 																				</div>
 																			</div>
 																	</fieldset>
-																	<div class="form-group row">
-																		<div class="col-sm-10">
-																			<button type="button" class="btn btn-secondary"
-																				data-bs-dismiss="modal">Close</button>
-																			<button type="submit" class="btn btn-primary">Save
-																				changes</button>
-																		</div>
-																	</div>
-														</form>
-													</div>
+																</div>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-secondary"
+																		data-bs-dismiss="modal">Close</button>
+																	<button type="submit" class="btn btn-primary">Save
+																		changes</button>
+																</div>
+													</form>
 												</div>
 											</div>
 										</div>
-										<script>
-											// Get the input element
-											var datetimeLocal = document
-													.getElementById('datetime-local');
-
-											// Set the value of the input element to the current date and time
-											datetimeLocal.value = new Date()
-													.toISOString().substring(0,
-															16);
-										</script>
 									</div>
 								</div>
 							</div>
@@ -429,208 +283,215 @@
 					<!-- End Add Patient Card -->
 				</div>
 				<!-- End Left side columns -->
-				
 
 
-					<!-- Recent Sales -->
-					<div class="col-12">
-						<div class="card recent-sales overflow-auto">
 
-							<div class="filter">
-								<a class="icon" href="#" data-bs-toggle="dropdown"><i
-									class="bi bi-three-dots"></i></a>
-								<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-									<li class="dropdown-header text-start">
-										<h6>Sort</h6>
-									</li>
+				<!-- Recent Sales -->
+				<div class="col-12">
+					<div class="card recent-sales overflow-auto">
 
-									<li><a class="dropdown-item" href="#">Ascending</a></li>
-									<li><a class="dropdown-item" href="#">Descending</a></li>
-								</ul>
-							</div>
+						<div class="filter">
+							<a class="icon" href="#" data-bs-toggle="dropdown"><i
+								class="bi bi-three-dots"></i></a>
+							<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+								<li class="dropdown-header text-start">
+									<h6>Sort</h6>
+								</li>
 
-							<div class="card-body">
-								<h5 class="card-title">
-									Patient <span>| Masterdata</span>
-								</h5>
+								<li><a class="dropdown-item" href="#">Ascending</a></li>
+								<li><a class="dropdown-item" href="#">Descending</a></li>
+							</ul>
+						</div>
 
-								<table class="table table-borderless datatable">
-									<thead>
-										<tr>
-											<th scope="col">Identification No.</th>
-											<th scope="col">Name</th>
-											<th scope="col">Gender</th>
-											<th scope="col"></th>
-											<th scope="col">Health Status</th>
-										</tr>
-									</thead>
-									<tbody>
+						<div class="card-body">
+							<h5 class="card-title">
+								Patient <span>| Masterdata</span>
+							</h5>
+							<table id="patientListTable"
+								class="table table-borderless datatable">
+								<thead>
+									<tr>
+										<th scope="col">Identification No.</th>
+										<th scope="col">Name</th>
+										<th scope="col">Gender</th>
+										<th scope="col"></th>
+										<th scope="col">Health Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<%
+									ArrayList<Patient> ul = (ArrayList<Patient>) session.getAttribute("PatientData");
+									for (Patient u : ul) {
+									%>
+									<tr>
+										<td><%=u.getIc()%></td>
+										<td><%=u.getName()%></td>
+										<td><%=u.getGender()%></td>
+										<th scope="row"><a href=""
+											data-bs-toggle="modal" data-bs-target="#addPatientModal">More
+												Detail</a></th>
 										<%
-										ArrayList<Patient> ul = (ArrayList<Patient>) session.getAttribute("PatientData");
-										for (Patient u : ul) {
+										if (u.getStatus() == 1) {
 										%>
-										<tr>
-											<td><%=u.getIc()%></td>
-											<td><%=u.getName()%></td>
-											<td><%=u.getGender()%></td>
-											<th scope="row"><a href="#">More Detail</a></th>
-											<%
-											if (u.getStatus() == 1) {
-											%>
-											<td><span class="badge bg-danger">Red Zone</span></td>
-											<%
-											} else if (u.getStatus() == 2) {
-											%>
-											<td><span class="badge bg-success">Green Zone</span></td>
-											<%
-											} else {
-											%>
-											<td><span class="badge bg-secondary">Discharged</span></td>
-											<%
-											}
-											}
-											%>
-										</tr>
-									</tbody>
-								</table>
+										<td><span class="badge bg-danger">Red Zone</span></td>
+										<%
+										} else if (u.getStatus() == 2) {
+										%>
+										<td><span class="badge bg-success">Green Zone</span></td>
+										<%
+										} else {
+										%>
+										<td><span class="badge bg-secondary">Discharged</span></td>
+										<%
+										}
+										}
+										%>
+									</tr>
+								</tbody>
+							</table>
+							<div class="modal" id="viewPatientModal">
+								<div class="modal-dialog modal-dialog-centered modal-lg">
+									<div class="modal-content">
+										<!-- Modal header -->
+										<div class="modal-header">
+											<h5 class="modal-title">Patient Detail</h5>
+											<button type="button" class="btn-close"
+												data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
 
+										<!-- Modal body -->
+										<form action="/hms/AddPatient" method="post">
+											<div class="modal-body">
+												<div class="form-group row">
+													<label for="email" class="col-sm-2 col-form-label">Name</label>
+													<div class="col-sm-10">
+														<input type="name" class="form-control" id="name"
+															name="name" placeholder="Name" required>
+													</div>
+												</div>
+												<div class="form-group row">
+													<label for="identificationcard"
+														class="col-sm-2 col-form-label">Identification
+														Card No.</label>
+													<div class="col-sm-10">
+														<input type="identifcationcard" class="form-control"
+															id="identificationcard" name="identificationcard"
+															placeholder="Identification Card" required>
+													</div>
+
+
+													<fieldset class="form-group">
+														<div class="row">
+															<legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+															<div class="col-sm-10">
+																<div class="form-check">
+																	<input class="form-check-input" type="radio"
+																		name="gender" id="gender1" value="Male" checked
+																		required> <label class="form-check-label"
+																		for="gridRadios1"> Male </label>
+																</div>
+																<div class="form-check">
+																	<input class="form-check-input" type="radio"
+																		name="gender" id="gender2" value="Female" required>
+																	<label class="form-check-label" for="gridRadios2">
+																		Female </label>
+																</div>
+															</div>
+													</fieldset>
+												</div>
+												<div class="form-group row">
+													<label for="phoneNum" class="col-sm-2 col-form-label">Phone
+														No.</label>
+													<div class="col-sm-10">
+														<input type="phonenumber" class="form-control"
+															id="phoneNum" name="phoneNum" placeholder="Phone No."
+															required>
+													</div>
+												</div>
+												<div class="form-group row">
+													<label for="nationality" class="col-sm-2 col-form-label">Nationality</label>
+													<div class="col-sm-10">
+														<input type="nationality" class="form-control"
+															id="nationality" name="nationality"
+															placeholder="Nationality" required>
+													</div>
+
+													<div class="form-group row">
+														<label for="dateOfBirth" class="col-sm-2 col-form-label">Date
+															of Birth</label>
+														<div class="col-sm-10">
+															<input type="date" class="form-control" id="date"
+																name="date" required>
+														</div>
+													</div>
+
+													<div class="form-group row">
+														<label for="inputAddress3" class="col-sm-2 col-form-label">Address</label>
+														<div class="col-sm-10">
+															<input type="text" class="form-control"
+																id="streetAddress" name="streetAddress"
+																placeholder="Street Address" required> <input
+																type="text" class="form-control" id="city" name="city"
+																placeholder="City" required> <input type="text"
+																class="form-control" id="state" name="state"
+																placeholder="State" required> <input type="text"
+																class="form-control" id="postcode" name="postcode"
+																placeholder="Postcode" required>
+														</div>
+
+														<div class="form-group row">
+															<label for="appointmentDate"
+																class="col-sm-2 col-form-label">Appointment Date</label>
+															<div class="col-sm-10">
+																<input type="datetime-local" class="form-control"
+																	id="datetime-local" name="appointmentDate" required>
+															</div>
+														</div>
+
+														<fieldset class="form-group">
+															<div class="row">
+																<legend class="col-form-label col-sm-2 pt-0">Status</legend>
+																<div class="col-sm-10">
+																	<div class="form-check">
+																		<input class="form-check-input" type="radio"
+																			name="status" id="status1" value="1" checked required>
+																		<label class="form-check-label" for="gridRadios1">
+																			Red Zone </label>
+																	</div>
+																	<div class="form-check">
+																		<input class="form-check-input" type="radio"
+																			name="status" id="status2" value="2" required>
+																		<label class="form-check-label" for="gridRadios2">
+																			Green Zone </label>
+																	</div>
+																</div>
+														</fieldset>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary"
+															data-bs-dismiss="modal">Close</button>
+														<button type="submit" class="btn btn-primary">Save
+															changes</button>
+													</div>
+										</form>
+									</div>
+								</div>
 							</div>
 
 						</div>
+
 					</div>
-					<!-- End Recent Sales -->
-
-					<!-- Top Selling -->
-					<div class="col-12">
-						<div class="card top-selling overflow-auto">
-
-							<div class="filter">
-								<a class="icon" href="#" data-bs-toggle="dropdown"><i
-									class="bi bi-three-dots"></i></a>
-								<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-									<li class="dropdown-header text-start">
-										<h6>Filter</h6>
-									</li>
-
-									<li><a class="dropdown-item" href="#">Today</a></li>
-									<li><a class="dropdown-item" href="#">This Month</a></li>
-									<li><a class="dropdown-item" href="#">This Year</a></li>
-								</ul>
-							</div>
-
-							<div class="card-body pb-0">
-								<h5 class="card-title">
-									Top Selling <span>| Today</span>
-								</h5>
-
-								<table class="table table-borderless">
-									<thead>
-										<tr>
-											<th scope="col">Preview</th>
-											<th scope="col">Product</th>
-											<th scope="col">Price</th>
-											<th scope="col">Sold</th>
-											<th scope="col">Revenue</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<th scope="row"><a href="#"><img
-													src="assets/img/product-1.jpg" alt=""></a></th>
-											<td><a href="#" class="text-primary fw-bold">Ut
-													inventore ipsa voluptas nulla</a></td>
-											<td>$64</td>
-											<td class="fw-bold">124</td>
-											<td>$5,828</td>
-										</tr>
-										<tr>
-											<th scope="row"><a href="#"><img
-													src="assets/img/product-2.jpg" alt=""></a></th>
-											<td><a href="#" class="text-primary fw-bold">Exercitationem
-													similique doloremque</a></td>
-											<td>$46</td>
-											<td class="fw-bold">98</td>
-											<td>$4,508</td>
-										</tr>
-										<tr>
-											<th scope="row"><a href="#"><img
-													src="assets/img/product-3.jpg" alt=""></a></th>
-											<td><a href="#" class="text-primary fw-bold">Doloribus
-													nisi exercitationem</a></td>
-											<td>$59</td>
-											<td class="fw-bold">74</td>
-											<td>$4,366</td>
-										</tr>
-										<tr>
-											<th scope="row"><a href="#"><img
-													src="assets/img/product-4.jpg" alt=""></a></th>
-											<td><a href="#" class="text-primary fw-bold">Officiis
-													quaerat sint rerum error</a></td>
-											<td>$32</td>
-											<td class="fw-bold">63</td>
-											<td>$2,016</td>
-										</tr>
-										<tr>
-											<th scope="row"><a href="#"><img
-													src="assets/img/product-5.jpg" alt=""></a></th>
-											<td><a href="#" class="text-primary fw-bold">Sit
-													unde debitis delectus repellendus</a></td>
-											<td>$79</td>
-											<td class="fw-bold">41</td>
-											<td>$3,239</td>
-										</tr>
-									</tbody>
-								</table>
-
-							</div>
-
-						</div>
-					</div>
-					<!-- End Top Selling -->
-				
+				</div>
+				<!-- End Recent Sales -->
 			</div>
 		</section>
-
-
-
-
-
 	</main>
 	<!-- End #main -->
-
-	<!-- ======= Footer ======= -->
-	<footer id="footer" class="footer">
-		<div class="copyright">
-			&copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights
-			Reserved
-		</div>
-		<div class="credits">
-			<!-- All the links in the footer should remain intact. -->
-			<!-- You can delete the links only if you purchased the pro version. -->
-			<!-- Licensing information: https://bootstrapmade.com/license/ -->
-			<!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-			Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-		</div>
-	</footer>
-	<!-- End Footer -->
-
+	<%@ include file="Footer.jsp"%>
 	<a href="#"
 		class="back-to-top d-flex align-items-center justify-content-center"><i
 		class="bi bi-arrow-up-short"></i></a>
-
-	<!-- Vendor JS Files -->
-	<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-	<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="assets/vendor/chart.js/chart.umd.js"></script>
-	<script src="assets/vendor/echarts/echarts.min.js"></script>
-	<script src="assets/vendor/quill/quill.min.js"></script>
-	<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-	<script src="assets/vendor/tinymce/tinymce.min.js"></script>
-	<script src="assets/vendor/php-email-form/validate.js"></script>
-
-	<!-- Template Main JS File -->
-	<script src="assets/js/main.js"></script>
-
+	<%@ include file="ScriptResources.jsp"%>
 </body>
 
 </html>
