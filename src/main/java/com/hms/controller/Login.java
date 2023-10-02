@@ -62,7 +62,14 @@ public class Login extends HttpServlet {
 			if (rs.next()) {
 				session.setAttribute("email", rs.getString("email"));
 				session.setAttribute("name", rs.getString("name"));
+				session.setAttribute("password", rs.getString("password"));
 				session.setAttribute("role", rs.getString("role"));
+				session.setAttribute("ic", rs.getString("ic"));
+				session.setAttribute("gender", rs.getString("gender"));
+				session.setAttribute("phoneNum", rs.getString("phonenumber"));
+				session.setAttribute("nationality", rs.getString("nationality"));
+				session.setAttribute("dateOfBirth", rs.getString("dateofbirth"));
+				session.setAttribute("address", rs.getString("address"));
 				
 				ArrayList<Patient> patientlist = new ArrayList<Patient>();
 				PreparedStatement pst2 = con.prepareStatement("select * from patient");
