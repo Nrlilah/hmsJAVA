@@ -87,7 +87,7 @@
 					<ul
 						class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
 						<li class="dropdown-header">
-							<h6>Kevin Anderson</h6> <span>Web Designer</span>
+							<h6><%=session.getAttribute("name")%></h6> <span><%=session.getAttribute("role")%></span>
 						</li>
 						<li>
 							<hr class="dropdown-divider">
