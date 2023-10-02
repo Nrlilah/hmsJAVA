@@ -10,6 +10,7 @@
 <body>
 	<%@ include file="Header.jsp"%>
 	<%@ include file="SideNav.jsp"%>
+
 	<main id="main" class="main">
 
 		<div class="pagetitle">
