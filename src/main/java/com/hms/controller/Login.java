@@ -81,7 +81,7 @@ public class Login extends HttpServlet {
 				PreparedStatement pst4 = con.prepareStatement("select count(idPatient) as green from patient where status = 2");
 				ResultSet rs4 = pst4.executeQuery();
 				
-				PreparedStatement pst5 = con.prepareStatement("select count(idPatient) as blue from patient where status = 3");
+				PreparedStatement pst5 = con.prepareStatement("select count(idPatient) as blue from patient where status = 0");
 				ResultSet rs5 = pst5.executeQuery();
 				
 				

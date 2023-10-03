@@ -10,7 +10,7 @@
 <script src="../vendor/php-email-form/validate.js"></script>
 
 <!-- Template Main JS File -->
-<script src="../js/main.js"></script>
+<script src="../js/main2.js"></script>
 
 <!-- Original -->
 <script>
