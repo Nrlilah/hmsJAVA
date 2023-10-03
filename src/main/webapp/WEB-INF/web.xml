@@ -43,6 +43,20 @@
   	<display-name>ChangePassword</display-name>
   	<description></description>
   	<servlet-class>com.hms.controller.ChangePassword</servlet-class>
+  	<servlet-name>AddMedication</servlet-name>
+  	<display-name>AddMedication</display-name>
+  	<description></description>
+  	<servlet-class>com.hms.controller.AddMedication</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>AddPredicament</servlet-name>
+  	<display-name>AddPredicament</display-name>
+  	<description></description>
+  	<servlet-class>com.hms.controller.AddPredicament</servlet-class>
+  	<servlet-name>AssignMedication</servlet-name>
+  	<display-name>AssignMedication</display-name>
+  	<description></description>
+  	<servlet-class>com.hms.controller.AssignMedication</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>Register</servlet-name>
@@ -69,5 +83,13 @@
   <servlet-mapping>
   	<servlet-name>ChangePassword</servlet-name>
   	<url-pattern>/ChangePassword</url-pattern>
+  	<servlet-name>AddMedication</servlet-name>
+  	<url-pattern>/AddMedication</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AddPredicament</servlet-name>
+  	<url-pattern>/AddPredicament</url-pattern>
+  	<servlet-name>AssignMedication</servlet-name>
+  	<url-pattern>/AssignMedication</url-pattern>
   </servlet-mapping>
 </web-app>
