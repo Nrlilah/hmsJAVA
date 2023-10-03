@@ -38,6 +38,18 @@
   	<description></description>
   	<servlet-class>com.hms.controller.Profile</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>AddMedication</servlet-name>
+  	<display-name>AddMedication</display-name>
+  	<description></description>
+  	<servlet-class>com.hms.controller.AddMedication</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>AddPredicament</servlet-name>
+  	<display-name>AddPredicament</display-name>
+  	<description></description>
+  	<servlet-class>com.hms.controller.AddPredicament</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>Register</servlet-name>
   	<url-pattern>/Register</url-pattern>
@@ -59,5 +71,13 @@
   <servlet-mapping>
   	<servlet-name>Profile</servlet-name>
   	<url-pattern>/Profile</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AddMedication</servlet-name>
+  	<url-pattern>/AddMedication</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AddPredicament</servlet-name>
+  	<url-pattern>/AddPredicament</url-pattern>
   </servlet-mapping>
 </web-app>

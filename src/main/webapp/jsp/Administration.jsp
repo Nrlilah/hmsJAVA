@@ -33,7 +33,7 @@
 				<div class="col-lg-12">
 					<div class="row">
 
-						<!-- Modal Button Card-->
+						<!-- Add Account Modal Button Card-->
 						<div class="col-xxl-4 col-md-6">
 							<div class="card info-card customers-card">
 
@@ -43,8 +43,8 @@
 									</h5>
 
 									<button type="button" class="btn btn-primary"
-										data-bs-toggle="modal" data-bs-target="#myModal">ADD
-										ACCOUNT</button>
+										data-bs-toggle="modal" data-bs-target="#myModal">Add
+										Account</button>
 
 									<div class="modal" id="myModal">
 										<div class="modal-dialog modal-dialog-centered modal-lg">
@@ -205,7 +205,115 @@
 
 							</div>
 						</div>
-						<!-- End Modal Button Card -->
+						<!-- End Add Account Modal Button Card -->
+						
+						
+						<!-- Medication Modal Button Card-->
+						<div class="col-xxl-4 col-md-6">
+							<div class="card info-card customers-card">
+
+								<div class="card-body">
+									<h5 class="card-title">
+										<span></span>
+									</h5>
+
+									<button type="button" class="btn btn-primary"
+										data-bs-toggle="modal" data-bs-target="#medicationModal">Add
+										Medication</button>
+
+									<div class="modal" id="medicationModal">
+										<div class="modal-dialog modal-dialog-centered modal-lg">
+											<div class="modal-content">
+												<!-- Modal header -->
+												<div class="modal-header">
+													<h5 class="modal-title">Medication List Form</h5>
+													<button type="button" class="btn-close"
+														data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+
+												<!-- Modal body -->
+												<div class="modal-body">
+													<form method="post" action="/hms/AddMedication">
+														<div class="form-group row">
+															<label for="inputNameMedication" class="col-sm-2 col-form-label">Medication Name</label>
+															<div class="col-sm-10">
+																<input type="text" class="form-control" id="inputName3"
+																	name="medicationItem" placeholder="Medication Name">
+															</div>
+														</div>
+
+														<div class="form-group row">
+															<div class="col-sm-10">
+																<button type="button" class="btn btn-secondary"
+																	data-bs-dismiss="modal">Close</button>
+																<button type="submit" class="btn btn-primary">Save
+																	changes</button>
+															</div>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<!-- End Medication Modal Button Card -->
+						
+						
+						<!-- Predicament Modal Button Card-->
+						<div class="col-xxl-4 col-md-6">
+							<div class="card info-card customers-card">
+
+								<div class="card-body">
+									<h5 class="card-title">
+										<span></span>
+									</h5>
+
+									<button type="button" class="btn btn-primary"
+										data-bs-toggle="modal" data-bs-target="#predicamentModal">Add
+										Predicament</button>
+
+									<div class="modal" id="predicamentModal">
+										<div class="modal-dialog modal-dialog-centered modal-lg">
+											<div class="modal-content">
+												<!-- Modal header -->
+												<div class="modal-header">
+													<h5 class="modal-title">Predicament List Form</h5>
+													<button type="button" class="btn-close"
+														data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+
+												<!-- Modal body -->
+												<div class="modal-body">
+													<form method="post" action="/hms/AddMedication">
+														<div class="form-group row">
+															<label for="inputNameMedication" class="col-sm-2 col-form-label"> Name</label>
+															<div class="col-sm-10">
+																<input type="text" class="form-control" id="inputName3"
+																	name="predicament_name" placeholder="Predicament Name">
+															</div>
+														</div>
+
+														<div class="form-group row">
+															<div class="col-sm-10">
+																<button type="button" class="btn btn-secondary"
+																	data-bs-dismiss="modal">Close</button>
+																<button type="submit" class="btn btn-primary">Save
+																	changes</button>
+															</div>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<!-- End Predicament Modal Button Card -->
 
 
 						<!-- Recent Sales -->
