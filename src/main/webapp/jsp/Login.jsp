@@ -58,23 +58,6 @@
 
 	<!-- ======= Hero Section ======= -->
 	<section id="hero" class="hero d-flex align-items-center">
-		<!-- <div class="container">
-			<div class="row">
-				<div class="col-xl-4">
-					<h2 data-aos="fade-up">Hospital Management System</h2>
-					<form action="/hms/Login" method="post">
-						<div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-						<input type="text" name="email" placeholder="Enter Email">
-						<input type="text" name="password" placeholder="Enter Password">
-							<input class="btn-get-started" type="submit" value="login">
-						</div>
-						<blockquote data-aos="fade-up" data-aos-delay="100">
-							<p>Forget your password?</p>
-						</blockquote>
-					</form>
-				</div>
-			</div>
-		</div> -->
 		<div class="container">
 			<div class="row">
 				<div class="col-xl-4">
