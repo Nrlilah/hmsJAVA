@@ -56,21 +56,35 @@ public class Login extends HttpServlet {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DatabaseConnection.getConnection();
-			PreparedStatement pst = con
-					.prepareStatement("select * from user where email='" + email + "' and password='" + password + "'");
+			PreparedStatement pst = con.prepareStatement("SELECT * FROM user WHERE email = ? AND password = ?");
+			pst.setString(1, email);
+			pst.setString(2, password);
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
-				session.setAttribute("email", rs.getString("email"));
-				session.setAttribute("name", rs.getString("name"));
-				session.setAttribute("password", rs.getString("password"));
-				session.setAttribute("role", rs.getString("role"));
-				session.setAttribute("ic", rs.getString("ic"));
-				session.setAttribute("gender", rs.getString("gender"));
-				session.setAttribute("phoneNum", rs.getString("phonenumber"));
-				session.setAttribute("nationality", rs.getString("nationality"));
-				session.setAttribute("dateOfBirth", rs.getString("dateofbirth"));
-				session.setAttribute("address", rs.getString("address"));
-				
+				String USERemail = rs.getString("email");
+				String USERname = rs.getString("name");
+				String USERpassword = rs.getString("password");
+				String USERrole = rs.getString("role");
+				String USERic = rs.getString("ic");
+				String USERgender = rs.getString("gender");
+				String USERphoneNum = rs.getString("phonenumber");
+				String USERnationality = rs.getString("nationality");
+				String USERdateOfBirth = rs.getString("dateofbirth");
+				String USERaddress = rs.getString("address");
+				String USERaccessLevel = rs.getString("accessLevel");
+
+				session.setAttribute("USERemail", USERemail);
+				session.setAttribute("USERname", USERname);
+				session.setAttribute("USERpassword", USERpassword);
+				session.setAttribute("USERrole", USERrole);
+				session.setAttribute("USERic", USERic);
+				session.setAttribute("USERgender", USERgender);
+				session.setAttribute("USERphoneNum", USERphoneNum);
+				session.setAttribute("USERnationality", USERnationality);
+				session.setAttribute("USERdateOfBirth", USERdateOfBirth);
+				session.setAttribute("USERaddress", USERaddress);
+				session.setAttribute("USERaccessLevel", USERaccessLevel);
+
 				ArrayList<Patient> patientlist = new ArrayList<Patient>();
 				PreparedStatement pst2 = con.prepareStatement("select * from patient");
 				ResultSet rs2 = pst2.executeQuery();
@@ -83,8 +97,6 @@ public class Login extends HttpServlet {
 				
 				PreparedStatement pst5 = con.prepareStatement("select count(idPatient) as blue from patient where status = 0");
 				ResultSet rs5 = pst5.executeQuery();
-				
-				
 				
 				if (rs3.next()) {
 					session.setAttribute("red", rs3.getString("red"));
@@ -103,8 +115,19 @@ public class Login extends HttpServlet {
 					patient.setStatus(Integer.parseInt(rs2.getString("status")));
 					patientlist.add(patient);
 				}
-				System.out.print(patientlist);
 				session.setAttribute("PatientData", patientlist);
+				
+				rs.close();
+				rs2.close();
+				rs3.close();
+				rs4.close();
+				rs5.close();
+				
+				pst.close();
+				pst2.close();
+				pst3.close();
+				pst4.close();
+				pst5.close();
 				response.sendRedirect("jsp/Welcome.jsp");
 			} 
 			else {
