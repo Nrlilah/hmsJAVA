@@ -1,2 +1,4 @@
 /target/
 src/main/java/com/hms/controller/DatabaseConnection.java
+target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+target/m2e-wtp/web-resources/META-INF/maven/com/hms/pom.properties
