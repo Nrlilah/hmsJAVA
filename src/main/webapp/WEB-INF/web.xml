@@ -38,6 +38,12 @@
   	<description></description>
   	<servlet-class>com.hms.controller.Profile</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ChangePassword</servlet-name>
+  	<display-name>ChangePassword</display-name>
+  	<description></description>
+  	<servlet-class>com.hms.controller.ChangePassword</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>Register</servlet-name>
   	<url-pattern>/Register</url-pattern>
@@ -59,5 +65,9 @@
   <servlet-mapping>
   	<servlet-name>Profile</servlet-name>
   	<url-pattern>/Profile</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ChangePassword</servlet-name>
+  	<url-pattern>/ChangePassword</url-pattern>
   </servlet-mapping>
 </web-app>

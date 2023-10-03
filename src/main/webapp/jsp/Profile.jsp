@@ -33,8 +33,8 @@
 
 							<img src="../img/profile-img.jpg" alt="Profile"
 								class="rounded-circle">
-							<h2>Nur Hafizatul Izzah</h2>
-							<h3>Nurse</h3>
+							<h2><%=session.getAttribute("name")%></h2>
+							<h3><%=session.getAttribute("role")%></h3>
 						</div>
 					</div>
 
@@ -121,7 +121,7 @@
 								<div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
 									<!-- Profile Edit Form -->
-									<form>
+									<form action="/hms/Profile" method="post">
 										<div class="row mb-3">
 											<label for="profileImage"
 												class="col-md-4 col-lg-3 col-form-label">Profile
@@ -158,8 +158,8 @@
 										<div class="row mb-3">
 											<label for="Role" class="col-md-4 col-lg-3 col-form-label">Role</label>
 											<div class="col-md-8 col-lg-9">
-												<input name="Role" type="text" class="form-control"
-													id="Role"
+												<input name="role" type="text" class="form-control"
+													id="Role" disabled
 													value="<%=session.getAttribute("role").toString()%>">
 											</div>
 										</div>
@@ -168,7 +168,7 @@
 												Card No.</label>
 											<div class="col-md-8 col-lg-9">
 												<input name="ic" type="text" class="form-control" id="ic"
-													value="<%=session.getAttribute("ic").toString()%>">
+													disabled value="<%=session.getAttribute("ic").toString()%>">
 											</div>
 										</div>
 										<div class="row mb-3">
@@ -177,6 +177,7 @@
 												<input name="gender" type="text" class="form-control"
 													id="gender"
 													value="<%=session.getAttribute("gender").toString()%>">
+
 											</div>
 										</div>
 
@@ -200,10 +201,10 @@
 										<div class="row mb-3">
 											<label for="dateOfBirth"
 												class="col-md-4 col-lg-3 col-form-label">Date of
-												Birth"</label>
+												Birth</label>
 											<div class="col-md-8 col-lg-9">
 												<input name="dateOfBirth" type="text" class="form-control"
-													id="dateOfBirth"
+													id="dateOfBirth" disabled
 													value="<%=session.getAttribute("dateOfBirth").toString()%>">
 											</div>
 										</div>
@@ -228,7 +229,7 @@
 
 								<div class="tab-pane fade pt-3" id="profile-change-password">
 									<!-- Change Password Form -->
-									<form>
+									<form action="/hms/ChangePassword" method="post">
 
 										<div class="row mb-3">
 											<label for="currentPassword"
