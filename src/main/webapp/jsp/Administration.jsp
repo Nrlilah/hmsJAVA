@@ -30,7 +30,7 @@
 			<div class="row">
 
 				<!-- Left side columns -->
-				<div class="col-lg-12">
+				<div class="col-lg-8">
 					<div class="row">
 
 						<!-- Add Account Modal Button Card-->
@@ -85,8 +85,6 @@
 															</div>
 
 														</div>
-
-
 
 														<div class="form-group row">
 															<label for="inputIC3" class="col-sm-2 col-form-label">Identification
@@ -206,8 +204,8 @@
 							</div>
 						</div>
 						<!-- End Add Account Modal Button Card -->
-						
-						
+
+
 						<!-- Medication Modal Button Card-->
 						<div class="col-xxl-4 col-md-6">
 							<div class="card info-card customers-card">
@@ -235,7 +233,8 @@
 												<div class="modal-body">
 													<form method="post" action="/hms/AddMedication">
 														<div class="form-group row">
-															<label for="inputNameMedication" class="col-sm-2 col-form-label">Medication Name</label>
+															<label for="inputNameMedication"
+																class="col-sm-2 col-form-label">Medication Name</label>
 															<div class="col-sm-10">
 																<input type="text" class="form-control" id="inputName3"
 																	name="medicationItem" placeholder="Medication Name">
@@ -260,8 +259,8 @@
 							</div>
 						</div>
 						<!-- End Medication Modal Button Card -->
-						
-						
+
+
 						<!-- Predicament Modal Button Card-->
 						<div class="col-xxl-4 col-md-6">
 							<div class="card info-card customers-card">
@@ -287,11 +286,12 @@
 
 												<!-- Modal body -->
 												<div class="modal-body">
-													<form method="post" action="/hms/AddMedication">
+													<form method="post" action="/hms/AddPredicament">
 														<div class="form-group row">
-															<label for="inputNameMedication" class="col-sm-2 col-form-label"> Name</label>
+															<label for="inputNameMedication"
+																class="col-sm-2 col-form-label">Predicament Name</label>
 															<div class="col-sm-10">
-																<input type="text" class="form-control" id="inputName3"
+																<input type="text" class="form-control" id="predicament_name"
 																	name="predicament_name" placeholder="Predicament Name">
 															</div>
 														</div>
@@ -382,97 +382,115 @@
 						</div>
 						<!-- End Recent Sales -->
 
-						<!-- Top Selling -->
-						<div class="col-12">
-							<div class="card top-selling overflow-auto">
 
-								<div class="filter">
-									<a class="icon" href="#" data-bs-toggle="dropdown"><i
-										class="bi bi-three-dots"></i></a>
-									<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-										<li class="dropdown-header text-start">
-											<h6>Filter</h6>
-										</li>
-
-										<li><a class="dropdown-item" href="#">Today</a></li>
-										<li><a class="dropdown-item" href="#">This Month</a></li>
-										<li><a class="dropdown-item" href="#">This Year</a></li>
-									</ul>
-								</div>
-
-								<div class="card-body pb-0">
-									<h5 class="card-title">
-										Top Selling <span>| Today</span>
-									</h5>
-
-									<table class="table table-borderless">
-										<thead>
-											<tr>
-												<th scope="col">Preview</th>
-												<th scope="col">Product</th>
-												<th scope="col">Price</th>
-												<th scope="col">Sold</th>
-												<th scope="col">Revenue</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<th scope="row"><a href="#"><img
-														src="assets/img/product-1.jpg" alt=""></a></th>
-												<td><a href="#" class="text-primary fw-bold">Ut
-														inventore ipsa voluptas nulla</a></td>
-												<td>$64</td>
-												<td class="fw-bold">124</td>
-												<td>$5,828</td>
-											</tr>
-											<tr>
-												<th scope="row"><a href="#"><img
-														src="assets/img/product-2.jpg" alt=""></a></th>
-												<td><a href="#" class="text-primary fw-bold">Exercitationem
-														similique doloremque</a></td>
-												<td>$46</td>
-												<td class="fw-bold">98</td>
-												<td>$4,508</td>
-											</tr>
-											<tr>
-												<th scope="row"><a href="#"><img
-														src="assets/img/product-3.jpg" alt=""></a></th>
-												<td><a href="#" class="text-primary fw-bold">Doloribus
-														nisi exercitationem</a></td>
-												<td>$59</td>
-												<td class="fw-bold">74</td>
-												<td>$4,366</td>
-											</tr>
-											<tr>
-												<th scope="row"><a href="#"><img
-														src="assets/img/product-4.jpg" alt=""></a></th>
-												<td><a href="#" class="text-primary fw-bold">Officiis
-														quaerat sint rerum error</a></td>
-												<td>$32</td>
-												<td class="fw-bold">63</td>
-												<td>$2,016</td>
-											</tr>
-											<tr>
-												<th scope="row"><a href="#"><img
-														src="assets/img/product-5.jpg" alt=""></a></th>
-												<td><a href="#" class="text-primary fw-bold">Sit
-														unde debitis delectus repellendus</a></td>
-												<td>$79</td>
-												<td class="fw-bold">41</td>
-												<td>$3,239</td>
-											</tr>
-										</tbody>
-									</table>
-
-								</div>
-
-							</div>
-						</div>
-						<!-- End Top Selling -->
 
 					</div>
 				</div>
 				<!-- End Left side columns -->
+
+				<!-- Right side columns -->
+				<div class="col-lg-4">
+
+					<!-- Medication List -->
+					<div class="card">
+						
+						<div class="card-body">
+							<h5 class="card-title">
+								Medication List <span>| Index</span>
+							</h5>
+
+							<div class="medicationlist">
+
+								<table class="table table-borderless datatable">
+									<thead>
+										<tr>
+										    <th scope="col">ID</th>
+											<th scope="col">Medication</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr>
+											<td>1</td>
+											<td>Acetaminophen</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>Aspirin</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>Diazepam</td>
+										</tr>
+										<tr>
+											<td>4</td>
+											<td>Doxycycline</td>
+										</tr>
+										<tr>
+											<td>5</td>
+											<td>Amitriptyline</td>
+										</tr>
+
+									</tbody>
+								</table>
+
+							</div>
+
+						</div>
+					</div>
+					<!-- End Medication List -->
+					
+					<!-- Predicament List -->
+					<div class="card">
+						
+						<div class="card-body">
+							<h5 class="card-title">
+								Predicament List <span>| Index</span>
+							</h5>
+
+							<div class="predicamentlist">
+
+								<table class="table table-borderless datatable">
+									<thead>
+										<tr>
+										    <th scope="col">ID</th>
+											<th scope="col">Predicament</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr>
+											<td>1</td>
+											<td>ACL Injury</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>Cerebral palsy</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>Appendicitis</td>
+										</tr>
+										<tr>
+											<td>4</td>
+											<td>Diarrhoea</td>
+										</tr>
+										<tr>
+											<td>5</td>
+											<td>Hepatitis B</td>
+										</tr>
+
+									</tbody>
+								</table>
+
+							</div>
+
+						</div>
+					</div>
+					<!-- End Predicament List -->
+
+				</div>
+				<!-- End Right side columns -->
 			</div>
 		</section>
 
