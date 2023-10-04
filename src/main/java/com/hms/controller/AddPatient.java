@@ -67,8 +67,8 @@ public class AddPatient extends HttpServlet {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DatabaseConnection.getConnection();
 			Statement stat = con.createStatement();
-			stat.executeUpdate("insert into patient(name, ic, gender, phonenumber, nationality, dateofbirth, address, appointmentDate, status) values('" + name + "','" + identificationcard
-					+ "','" + gender + "','" + phoneNum + "','" + nationality + "','" + dateOfBirth +  "','" + address + "','" + appointmentDate + "','" + status + "')");
+			stat.executeUpdate("insert into patient(name, ic, gender, phonenumber, nationality, dateofbirth, address, appointmentDate, status, statusprogress) values('" + name + "','" + identificationcard
+					+ "','" + gender + "','" + phoneNum + "','" + nationality + "','" + dateOfBirth +  "','" + address + "','" + appointmentDate + "','" + status +"','Registered')");
 			ArrayList<Patient> patientlist = new ArrayList<Patient>();
 			PreparedStatement pst2 = con.prepareStatement("select * from patient");
 			ResultSet rs2 = pst2.executeQuery();
@@ -99,6 +99,7 @@ public class AddPatient extends HttpServlet {
 				patient.setName(rs2.getString("name"));
 				patient.setGender(rs2.getString("gender"));
 				patient.setStatus(Integer.parseInt(rs2.getString("status")));
+				patient.setStatusprogress(rs2.getString("statusprogress"));
 				patientlist.add(patient);
 			}
 			System.out.print(patientlist);
