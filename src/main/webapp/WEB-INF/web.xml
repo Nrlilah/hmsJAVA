@@ -64,6 +64,12 @@
   	<description></description>
   	<servlet-class>com.hms.controller.AssignMedication</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>PatientAssignation</servlet-name>
+  	<display-name>PatientAssignation</display-name>
+  	<description></description>
+  	<servlet-class>com.hms.controller.PatientAssignation</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>Register</servlet-name>
   	<url-pattern>/Register</url-pattern>
@@ -103,5 +109,9 @@
   <servlet-mapping>
   	<servlet-name>AssignMedication</servlet-name>
   	<url-pattern>/AssignMedication</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>PatientAssignation</servlet-name>
+  	<url-pattern>/PatientAssignation</url-pattern>
   </servlet-mapping>
 </web-app>
