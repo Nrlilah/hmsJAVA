@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.hms.beans.User;
 
 /**
  * Servlet implementation class AddAccount
@@ -45,6 +46,8 @@ public class AddAccount extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		ArrayList<User> userlist = new ArrayList<User>();
 		String name = request.getParameter("name").trim();
 		System.out.println(name);
 		String email = request.getParameter("email").trim();
@@ -57,22 +60,50 @@ public class AddAccount extends HttpServlet {
 		System.out.println(name + email + ic + gender);
 		String nationality = request.getParameter("nationality").trim();
 		String dateofbirth = request.getParameter("dateofbirth").trim();
-		String address = request.getParameter("streetAddress").trim() + ", " + request.getParameter("postcode").trim() + ", "
-				+ request.getParameter("city").trim() + ", " + request.getParameter("state").trim();
+		String address = request.getParameter("streetAddress").trim() + ", " + request.getParameter("postcode").trim()
+				+ ", " + request.getParameter("city").trim() + ", " + request.getParameter("state").trim();
 		String accesslevel = request.getParameter("accesslevel").trim();
+		String role = "";
+		if (accesslevel.equals("0")) {
+			role = "Administrator";
+		} else if (accesslevel.equals("2")) {
+			role = "Doctor";
+		} else {
+			role = "Nurse";
+		}
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DatabaseConnection.getConnection();
 			Statement stat = con.createStatement();
-			stat.executeUpdate("insert into user (name, email, password, ic, gender, phonenumber, nationality, dateofbirth, address, accesslevel) "
-					+ "values('" + name + "','" + email + "','" + password + "','" + ic + "','" + gender + "','" + phonenumber + "','" + nationality + "','" + dateofbirth +  "','" + address + "','" + accesslevel + "')");
+			stat.executeUpdate(
+					"insert into user (name, email, password, ic, gender, phonenumber, nationality, dateofbirth, address, accesslevel, role) "
+							+ "values('" + name + "','" + email + "','" + password + "','" + ic + "','" + gender + "','"
+							+ phonenumber + "','" + nationality + "','" + dateofbirth + "','" + address + "','"
+							+ accesslevel + "','" + role + "')");
 			
+			PreparedStatement pst6 = con.prepareStatement("select * from user");
+			ResultSet rs6 = pst6.executeQuery();
+			while (rs6.next()) {
+				User user = new User();
+				user.setId(Integer.parseInt(rs6.getString("id")));
+				user.setName(rs6.getString("name"));
+				user.setEmail(rs6.getString("email"));
+				user.setPassword(rs6.getString("password"));
+				user.setAccessLevel(Integer.parseInt(rs6.getString("accessLevel")));
+				user.setRole(rs6.getString("role"));
+				user.setIc(rs6.getString("ic"));
+				user.setGender(rs6.getString("gender"));
+				user.setPhonenumber(rs6.getString("phonenumber"));
+				user.setNationality(rs6.getString("nationality"));
+				user.setAddress(rs6.getString("address"));
+				userlist.add(user);
+			}
+			session.setAttribute("UserData", userlist);
+			rs6.close();
+			pst6.close();
 			response.sendRedirect("jsp/Administration.jsp");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
 }
-
-
-

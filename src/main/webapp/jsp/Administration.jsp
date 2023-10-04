@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.hms.beans.Patient"%>
+<%@page import="com.hms.beans.User"%>
+<%@page import="com.hms.beans.MedicationList"%>
+<%@page import="com.hms.beans.PredicamentList"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,40 +45,40 @@
 									</h5>
 
 									<button type="button" class="btn btn-primary"
-										data-bs-toggle="modal" data-bs-target="#myModal">Add
+										data-bs-toggle="modal" data-bs-target="#addAccountModal">Add
 										Account</button>
 
-									<div class="modal" id="myModal">
+									<div class="modal" id="addAccountModal">
 										<div class="modal-dialog modal-dialog-centered modal-lg">
 											<div class="modal-content">
-												<!-- Modal header -->
-												<div class="modal-header">
-													<h5 class="modal-title">Add Account Form</h5>
-													<button type="button" class="btn-close"
-														data-bs-dismiss="modal" aria-label="Close"></button>
-												</div>
+												<form action="/hms/AddAccount" method="post" class="mx-3">
+													<!-- Modal header -->
+													<div class="modal-header">
+														<h5 class="modal-title">Add Account Form</h5>
+														<button type="button" class="btn-close"
+															data-bs-dismiss="modal" aria-label="Close"></button>
+													</div>
 
-												<!-- Modal body -->
-												<div class="modal-body">
-													<form method="post" action="/hms/AddAccount">
+													<!-- Modal body -->
+													<div class="modal-body">
 														<div class="form-group row">
-															<label for="inputName3" class="col-sm-2 col-form-label">Name</label>
-															<div class="col-sm-10">
+															<label for="inputName3" class="col-sm-3 col-form-label">Name</label>
+															<div class="col-sm-9">
 																<input type="text" class="form-control" id="inputName3"
 																	name="name" placeholder="Name">
 															</div>
 														</div>
 														<div class="form-group row">
-															<label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-															<div class="col-sm-10">
+															<label for="inputEmail3" class="col-sm-3 col-form-label">Email</label>
+															<div class="col-sm-9">
 																<input type="email" class="form-control"
 																	id="inputEmail3" name="email" placeholder="Email">
 															</div>
 														</div>
 														<div class="form-group row">
 															<label for="inputPassword3"
-																class="col-sm-2 col-form-label">Password</label>
-															<div class="col-sm-10">
+																class="col-sm-3 col-form-label">Password</label>
+															<div class="col-sm-9">
 																<input type="password" class="form-control"
 																	id="inputPassword3" name="password">
 																<!-- An element to toggle between password visibility -->
@@ -87,38 +89,47 @@
 														</div>
 
 														<div class="form-group row">
-															<label for="inputIC3" class="col-sm-2 col-form-label">Identification
-																Card Number</label>
-															<div class="col-sm-10">
+															<label for="inputIC3" class="col-sm-3 col-form-label">Identification
+																Card No.</label>
+															<div class="col-sm-9">
 																<input type="text" class="form-control" id="inputIC3"
 																	name="ic" placeholder="IC Number">
 															</div>
 														</div>
-														<fieldset class="form-group">
+														<div class="form-group row">
+															<label for="gender" class="col-sm-3 col-form-label">Gender</label>
+															<div class="col-sm-9">
+																<select class="form-select" id="gender" name="gender"
+																	aria-label="Gender">
+																	<option value="Male">Male</option>
+																	<option value="Female">Female</option>
+																</select>
+															</div>
+														</div>
+														<!-- <fieldset class="form-group">
+															<legend class="col-form-label col-sm-3 pt-0">Gender</legend>
 															<div class="row">
-																<legend class="col-form-label col-sm-2 pt-0">Gender</legend>
-																<div class="col-sm-10">
+																<div class="col-sm-9">
 																	<div class="form-check">
 																		<input class="form-check-input" type="radio"
 																			id="gender1" name="gender" value="Male" checked>
-																		<label class="form-check-label" for="gridRadios1">
-																			Male </label>
+																		<label class="form-check-label" for="gridRadios1">Male
+																		</label>
 																	</div>
 																	<div class="form-check">
 																		<input class="form-check-input" type="radio"
 																			id="gender2" name="gender" value="Female"> <label
-																			class="form-check-label" for="gridRadios2">
-																			Female </label>
+																			class="form-check-label" for="gridRadios2">Female
+																		</label>
 																	</div>
-
 																</div>
 															</div>
-														</fieldset>
+														</fieldset> -->
 
 														<div class="form-group row">
-															<label for="inputdob3" class="col-sm-2 col-form-label">Date
+															<label for="inputdob3" class="col-sm-3 col-form-label">Date
 																of Birth</label>
-															<div class="col-sm-10">
+															<div class="col-sm-9">
 																<input type="date" class="form-control" id="date"
 																	name="dateofbirth">
 															</div>
@@ -127,8 +138,8 @@
 
 														<div class="form-group row">
 															<label for="inputphonenum"
-																class="col-sm-2 col-form-label">Phone Number</label>
-															<div class="col-sm-10">
+																class="col-sm-3 col-form-label">Phone Number</label>
+															<div class="col-sm-9">
 																<input type="text" class="form-control"
 																	id="inputphonenum" name="phonenumber"
 																	placeholder="Phone Number">
@@ -136,8 +147,8 @@
 														</div>
 														<div class="form-group row">
 															<label for="inputnationality"
-																class="col-sm-2 col-form-label">Nationality</label>
-															<div class="col-sm-10">
+																class="col-sm-3 col-form-label">Nationality</label>
+															<div class="col-sm-9">
 																<input type="text" class="form-control"
 																	id="inputnationality" name="nationality"
 																	placeholder="Nationality">
@@ -145,8 +156,8 @@
 														</div>
 														<div class="form-group row">
 															<label for="inputAddress3"
-																class="col-sm-2 col-form-label">Address</label>
-															<div class="col-sm-10">
+																class="col-sm-3 col-form-label">Address</label>
+															<div class="col-sm-9">
 																<input type="text" class="form-control"
 																	id="streetAddress" name="streetAddress"
 																	placeholder="Street Address" required> <input
@@ -158,12 +169,23 @@
 																	name="postcode" placeholder="Postcode" required>
 															</div>
 														</div>
-
-														<fieldset class="form-group">
+														<div class="form-group row">
+															<label for="accesslevel" class="col-sm-3 col-form-label">Access
+																Level</label>
+															<div class="col-sm-9">
+																<select class="form-select" id="accesslevel"
+																	name="accesslevel" aria-label="accesslevel">
+																	<option value="0">Administrator</option>
+																	<option value="2">Doctor</option>
+																	<option value="1">Nurse</option>
+																</select>
+															</div>
+														</div>
+														<!-- <fieldset class="form-group">
+															<legend class="col-form-label col-sm-3 pt-0">Access
+																Level</legend>
 															<div class="row">
-																<legend class="col-form-label col-sm-2 pt-0">Access
-																	Level</legend>
-																<div class="col-sm-10">
+																<div class="col-sm-9">
 																	<div class="form-check">
 																		<input class="form-check-input" type="radio"
 																			name="accesslevel" id="gridRadios1" value="0" checked>
@@ -184,18 +206,17 @@
 																	</div>
 																</div>
 															</div>
-														</fieldset>
+														</fieldset> -->
+													</div>
 
-														<div class="form-group row">
-															<div class="col-sm-10">
-																<button type="button" class="btn btn-secondary"
-																	data-bs-dismiss="modal">Close</button>
-																<button type="submit" class="btn btn-primary">Save
-																	changes</button>
-															</div>
-														</div>
-													</form>
-												</div>
+													<!-- Modal Footer -->
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary"
+															data-bs-dismiss="modal">Close</button>
+														<button type="submit" class="btn btn-primary">Save
+															changes</button>
+													</div>
+												</form>
 											</div>
 										</div>
 									</div>
@@ -216,41 +237,40 @@
 									</h5>
 
 									<button type="button" class="btn btn-primary"
-										data-bs-toggle="modal" data-bs-target="#medicationModal">Add
+										data-bs-toggle="modal" data-bs-target="#addMedicationModal">Add
 										Medication</button>
 
-									<div class="modal" id="medicationModal">
+									<div class="modal" id="addMedicationModal">
 										<div class="modal-dialog modal-dialog-centered modal-lg">
 											<div class="modal-content">
-												<!-- Modal header -->
-												<div class="modal-header">
-													<h5 class="modal-title">Medication List Form</h5>
-													<button type="button" class="btn-close"
-														data-bs-dismiss="modal" aria-label="Close"></button>
-												</div>
+												<form method="post" action="/hms/AddMedication">
+													<!-- Modal header -->
+													<div class="modal-header">
+														<h5 class="modal-title">Medication List Form</h5>
+														<button type="button" class="btn-close"
+															data-bs-dismiss="modal" aria-label="Close"></button>
+													</div>
 
-												<!-- Modal body -->
-												<div class="modal-body">
-													<form method="post" action="/hms/AddMedication">
+													<!-- Modal body -->
+													<div class="modal-body">
 														<div class="form-group row">
 															<label for="inputNameMedication"
-																class="col-sm-2 col-form-label">Medication Name</label>
-															<div class="col-sm-10">
+																class="col-sm-3 col-form-label">Medication Name</label>
+															<div class="col-sm-9">
 																<input type="text" class="form-control" id="inputName3"
 																	name="medicationItem" placeholder="Medication Name">
 															</div>
 														</div>
+													</div>
 
-														<div class="form-group row">
-															<div class="col-sm-10">
-																<button type="button" class="btn btn-secondary"
-																	data-bs-dismiss="modal">Close</button>
-																<button type="submit" class="btn btn-primary">Save
-																	changes</button>
-															</div>
-														</div>
-													</form>
-												</div>
+													<!-- Modal Footer -->
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary"
+															data-bs-dismiss="modal">Close</button>
+														<button type="submit" class="btn btn-primary">Save
+															changes</button>
+													</div>
+												</form>
 											</div>
 										</div>
 									</div>
@@ -271,41 +291,41 @@
 									</h5>
 
 									<button type="button" class="btn btn-primary"
-										data-bs-toggle="modal" data-bs-target="#predicamentModal">Add
+										data-bs-toggle="modal" data-bs-target="#addPredicamentModal">Add
 										Predicament</button>
 
-									<div class="modal" id="predicamentModal">
+									<div class="modal" id="addPredicamentModal">
 										<div class="modal-dialog modal-dialog-centered modal-lg">
 											<div class="modal-content">
-												<!-- Modal header -->
-												<div class="modal-header">
-													<h5 class="modal-title">Predicament List Form</h5>
-													<button type="button" class="btn-close"
-														data-bs-dismiss="modal" aria-label="Close"></button>
-												</div>
+												<form method="post" action="/hms/AddPredicament">
+													<!-- Modal header -->
+													<div class="modal-header">
+														<h5 class="modal-title">Predicament List Form</h5>
+														<button type="button" class="btn-close"
+															data-bs-dismiss="modal" aria-label="Close"></button>
+													</div>
 
-												<!-- Modal body -->
-												<div class="modal-body">
-													<form method="post" action="/hms/AddPredicament">
+													<!-- Modal body -->
+													<div class="modal-body">
 														<div class="form-group row">
 															<label for="inputNameMedication"
-																class="col-sm-2 col-form-label">Predicament Name</label>
-															<div class="col-sm-10">
-																<input type="text" class="form-control" id="predicament_name"
-																	name="predicament_name" placeholder="Predicament Name">
+																class="col-sm-3 col-form-label">Predicament Name</label>
+															<div class="col-sm-9">
+																<input type="text" class="form-control"
+																	id="predicament_name" name="predicament_name"
+																	placeholder="Predicament Name">
 															</div>
 														</div>
+													</div>
 
-														<div class="form-group row">
-															<div class="col-sm-10">
-																<button type="button" class="btn btn-secondary"
-																	data-bs-dismiss="modal">Close</button>
-																<button type="submit" class="btn btn-primary">Save
-																	changes</button>
-															</div>
-														</div>
-													</form>
-												</div>
+													<!-- Modal Footer -->
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary"
+															data-bs-dismiss="modal">Close</button>
+														<button type="submit" class="btn btn-primary">Save
+															changes</button>
+													</div>
+												</form>
 											</div>
 										</div>
 									</div>
@@ -316,7 +336,7 @@
 						<!-- End Predicament Modal Button Card -->
 
 
-						<!-- Recent Sales -->
+						<!-- User Masterdata -->
 						<div class="col-12">
 							<div class="card recent-sales overflow-auto">
 
@@ -335,40 +355,44 @@
 
 								<div class="card-body">
 									<h5 class="card-title">
-										Patient <span>| Masterdata</span>
+										User Account <span>| Masterdata</span>
 									</h5>
 
-									<table class="table table-borderless datatable">
+									<table id="userListTable"
+										class="table table-borderless datatable">
 										<thead>
 											<tr>
-												<th scope="col">Identification No.</th>
+												<th scope="col">ID.</th>
 												<th scope="col">Name</th>
 												<th scope="col">Gender</th>
+												<th scope="col">Role</th>
 												<th scope="col"></th>
-												<th scope="col">Health Status</th>
 											</tr>
 										</thead>
 										<tbody>
 											<%
-											ArrayList<Patient> ul = (ArrayList<Patient>) session.getAttribute("PatientData");
-											for (Patient u : ul) {
+											ArrayList<User> ul = (ArrayList<User>) session.getAttribute("UserData");
+											for (User u : ul) {
 											%>
 											<tr>
 												<td><%=u.getIc()%></td>
 												<td><%=u.getName()%></td>
 												<td><%=u.getGender()%></td>
-												<th scope="row"><a href="#">More Detail</a></th>
 												<%
-												if (u.getStatus() == 1) {
+												if (u.getAccessLevel() == 0) {
 												%>
-												<td><span class="badge bg-danger">Red Zone</span></td>
+												<td><span class="badge bg-primary"><%=u.getRole()%></span></td>
 												<%
-												} else if (u.getStatus() == 2) {
+												} else if (u.getAccessLevel() == 1) {
 												%>
-												<td><span class="badge bg-success">Green Zone</span></td>
+												<td><span class="badge bg-secondary"><%=u.getRole()%></span></td>
+												<%
+												} else {
+												%><td><span class="badge bg-info"><%=u.getRole()%></span></td>
 												<%
 												}
 												%>
+												<td scope="row"><a href="#">More Detail</a></td>
 											</tr>
 											<%
 											}
@@ -380,7 +404,7 @@
 
 							</div>
 						</div>
-						<!-- End Recent Sales -->
+						<!-- End User Masterdata -->
 
 
 
@@ -393,7 +417,7 @@
 
 					<!-- Medication List -->
 					<div class="card">
-						
+
 						<div class="card-body">
 							<h5 class="card-title">
 								Medication List <span>| Index</span>
@@ -401,36 +425,26 @@
 
 							<div class="medicationlist">
 
-								<table class="table table-borderless datatable">
+								<table id="medicationListTable"
+									class="table table-borderless datatable">
 									<thead>
 										<tr>
-										    <th scope="col">ID</th>
+											<th scope="col">ID</th>
 											<th scope="col">Medication</th>
 										</tr>
 									</thead>
 									<tbody>
-
+										<%
+										ArrayList<MedicationList> ml = (ArrayList<MedicationList>) session.getAttribute("MedicationListListData");
+										for (MedicationList m : ml) {
+										%>
 										<tr>
-											<td>1</td>
-											<td>Acetaminophen</td>
+											<td><%=m.getMedicationList_id()%></td>
+											<td><%=m.getMedicationItem()%></td>
 										</tr>
-										<tr>
-											<td>2</td>
-											<td>Aspirin</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>Diazepam</td>
-										</tr>
-										<tr>
-											<td>4</td>
-											<td>Doxycycline</td>
-										</tr>
-										<tr>
-											<td>5</td>
-											<td>Amitriptyline</td>
-										</tr>
-
+										<%
+										}
+										%>
 									</tbody>
 								</table>
 
@@ -439,10 +453,9 @@
 						</div>
 					</div>
 					<!-- End Medication List -->
-					
+
 					<!-- Predicament List -->
 					<div class="card">
-						
 						<div class="card-body">
 							<h5 class="card-title">
 								Predicament List <span>| Index</span>
@@ -450,41 +463,29 @@
 
 							<div class="predicamentlist">
 
-								<table class="table table-borderless datatable">
+								<table id="predicamentListTable"
+									class="table table-borderless datatable">
 									<thead>
 										<tr>
-										    <th scope="col">ID</th>
+											<th scope="col">ID</th>
 											<th scope="col">Predicament</th>
 										</tr>
 									</thead>
 									<tbody>
-
+										<%
+										ArrayList<PredicamentList> pl = (ArrayList<PredicamentList>) session.getAttribute("PredicamentListlListData");
+										for (PredicamentList p : pl) {
+										%>
 										<tr>
-											<td>1</td>
-											<td>ACL Injury</td>
+											<td><%=p.getPredicamentList_id()%></td>
+											<td><%=p.getPredicament_name()%></td>
 										</tr>
-										<tr>
-											<td>2</td>
-											<td>Cerebral palsy</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>Appendicitis</td>
-										</tr>
-										<tr>
-											<td>4</td>
-											<td>Diarrhoea</td>
-										</tr>
-										<tr>
-											<td>5</td>
-											<td>Hepatitis B</td>
-										</tr>
-
+										<%
+										}
+										%>
 									</tbody>
 								</table>
-
 							</div>
-
 						</div>
 					</div>
 					<!-- End Predicament List -->
@@ -515,6 +516,50 @@
 				x.type = "text";
 			} else {
 				x.type = "password";
+			}
+		}
+		function search() {
+			var input, filter, table, tr, td, i, txtValue;
+			input = document.getElementById("search-input");
+			filter = input.value.toUpperCase();
+			table = document.getElementById("userListTable");
+			tr = table.getElementsByTagName("tr");
+			for (i = 0; i < tr.length; i++) {
+				td = tr[i].getElementsByTagName("td")[1];
+				if (td) {
+					txtValue = td.textContent || td.innerText;
+					if (txtValue.toUpperCase().indexOf(filter) > -1) {
+						tr[i].style.display = "";
+					} else {
+						tr[i].style.display = "none";
+					}
+				}
+			}
+			table = document.getElementById("medicationListTable");
+			tr = table.getElementsByTagName("tr");
+			for (i = 0; i < tr.length; i++) {
+				td = tr[i].getElementsByTagName("td")[1];
+				if (td) {
+					txtValue = td.textContent || td.innerText;
+					if (txtValue.toUpperCase().indexOf(filter) > -1) {
+						tr[i].style.display = "";
+					} else {
+						tr[i].style.display = "none";
+					}
+				}
+			}
+			table = document.getElementById("predicamentListTable");
+			tr = table.getElementsByTagName("tr");
+			for (i = 0; i < tr.length; i++) {
+				td = tr[i].getElementsByTagName("td")[1];
+				if (td) {
+					txtValue = td.textContent || td.innerText;
+					if (txtValue.toUpperCase().indexOf(filter) > -1) {
+						tr[i].style.display = "";
+					} else {
+						tr[i].style.display = "none";
+					}
+				}
 			}
 		}
 	</script>

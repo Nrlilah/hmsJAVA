@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.hms.beans.Patient"%>
+<%@page import="com.hms.beans.MedicationList"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +15,7 @@
 	<main id="main" class="main">
 
 		<div class="pagetitle">
-			<h1>Patient Medication</h1>
+			<h1>Patient Medication <%=session.getAttribute("patientID")%></h1>
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="Welcome.jsp">Home</a></li>
@@ -34,16 +35,20 @@
 
 							<!-- General Form Elements -->
 							<form action="/hms/AssignMedication" method="post">
-								<form>
 									<div class="row mb-3">
 										<label class="col-sm-2 col-form-label">Item</label>
 										<div class="col-sm-10">
-											<select class="form-select" name="Item"
-												aria-label="Default select example">
-												<option selected>Select medicine</option>
-												<option value="1">batuk</option>
-												<option value="2">demam</option>
-												<option value="3">denggi</option>
+											<select class="form-select" name="medicationItem"
+												aria-label="medicationItem">
+												
+										<%
+										ArrayList<MedicationList> ml = (ArrayList<MedicationList>) session.getAttribute("MedicationListListData");
+										for (MedicationList m : ml) {
+										%>
+												<option><%=m.getMedicationItem()%></option>			
+										<%
+										}
+										%>
 											</select>
 										</div>
 									</div>
@@ -85,7 +90,7 @@
 										<label class="col-sm-2 col-form-label">Prescribe by</label>
 										<div class="col-sm-10">
 											<input type="text" class="form-control"
-												value="Read only / Disabled" disabled>
+												value="<%=session.getAttribute("USERname")%>" disabled>
 										</div>
 									</div>
 									<div class="row mb-3">
@@ -97,9 +102,7 @@
 									</div>
 
 								</form>
-								</table>
 								<!-- End General Form Elements -->
-							</form>
 						</div>
 
 					</div>
