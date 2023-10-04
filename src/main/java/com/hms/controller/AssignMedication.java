@@ -42,7 +42,7 @@ public class AssignMedication extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// HttpSession session = request.getSession();
-		System.out.println("AAAAAAAAAAAAA");
+		System.out.println("Ini medication");
 		String Item = request.getParameter("Item").trim();
 		String Dosage = request.getParameter("Dosage").trim();
 		String Frequency = request.getParameter("Frequency").trim();

@@ -47,7 +47,7 @@ public class AddPatient extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		System.out.println("AAAAAAAAAAAAA");
+		System.out.println("ini patient add");
 		String name = request.getParameter("name").trim();
 		String identificationcard = request.getParameter("identificationcard").trim();
 		String gender = request.getParameter("gender").trim();
