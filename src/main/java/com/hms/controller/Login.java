@@ -130,6 +130,7 @@ public class Login extends HttpServlet {
 					patient.setName(rs2.getString("name"));
 					patient.setGender(rs2.getString("gender"));
 					patient.setStatus(Integer.parseInt(rs2.getString("status")));
+					patient.setStatusprogress(rs2.getString("statusprogress"));
 					patientlist.add(patient);
 				}
 				while (rs6.next()) {

@@ -12,6 +12,15 @@ public class Patient {
 	private String address;
 	private String appointmentDate;
 	private int status;
+	private String statusprogress;
+
+	public String getStatusprogress() {
+		return statusprogress;
+	}
+
+	public void setStatusprogress(String statusprogress) {
+		this.statusprogress = statusprogress;
+	}
 
 	public String getName() {
 		return name;
