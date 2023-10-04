@@ -49,24 +49,22 @@ public class ChangePassword extends HttpServlet {
 		String password = request.getParameter("password").trim();
 		String newpassword = request.getParameter("newpassword").trim();
 		String renewpassword = request.getParameter("renewpassword").trim();
-		System.out.println("before if");
 		HttpSession session = request.getSession();
-		System.out.println("ok");
-		System.out.println(renewpassword + " ok");
+
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DatabaseConnection.getConnection();
 			PreparedStatement pst = con.prepareStatement(
-					"select password from user WHERE ic = '" + session.getAttribute("ic").toString() + "'");
+					"select password from user WHERE ic = '" + session.getAttribute("USERic").toString() + "'");
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
 				if (password.equals(rs.getString("password"))) {
 					if (newpassword.equals(renewpassword)) {
 						Statement stat = con.createStatement();
-						System.out.println("ok2");
+
 						stat.executeUpdate("update user SET password ='" + renewpassword + "'WHERE ic = '"
-								+ session.getAttribute("ic").toString() + "'");
-						System.out.println("ok3");
+								+ session.getAttribute("USERic").toString() + "'");
+
 					}
 				}
 			}

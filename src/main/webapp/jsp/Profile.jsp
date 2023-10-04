@@ -33,8 +33,8 @@
 
 							<img src="../img/profile-img.jpg" alt="Profile"
 								class="rounded-circle">
-							<h2><%=session.getAttribute("name")%></h2>
-							<h3><%=session.getAttribute("role")%></h3>
+							<h2><%=session.getAttribute("USERname")%></h2>
+							<h3><%=session.getAttribute("USERrole")%></h3>
 						</div>
 					</div>
 
@@ -72,48 +72,48 @@
 
 									<div class="row">
 										<div class="col-lg-3 col-md-4 label ">Name</div>
-										<div class="col-lg-9 col-md-8"><%=session.getAttribute("name").toString()%></div>
+										<div class="col-lg-9 col-md-8"><%=session.getAttribute("USERname").toString()%></div>
 
 									</div>
 
 									<div class="row">
 										<div class="col-lg-3 col-md-4 label">Email</div>
-										<div class="col-lg-9 col-md-8"><%=session.getAttribute("email").toString()%></div>
+										<div class="col-lg-9 col-md-8"><%=session.getAttribute("USERemail").toString()%></div>
 
 									</div>
 
 									<div class="row">
 										<div class="col-lg-3 col-md-4 label">Role</div>
-										<div class="col-lg-9 col-md-8"><%=session.getAttribute("role").toString()%></div>
+										<div class="col-lg-9 col-md-8"><%=session.getAttribute("USERrole").toString()%></div>
 									</div>
 
 									<div class="row">
 										<div class="col-lg-3 col-md-4 label">Identification Card
 											No.</div>
-										<div class="col-lg-9 col-md-8"><%=session.getAttribute("ic").toString()%></div>
+										<div class="col-lg-9 col-md-8"><%=session.getAttribute("USERic").toString()%></div>
 									</div>
 
 									<div class="row">
 										<div class="col-lg-3 col-md-4 label">Gender</div>
-										<div class="col-lg-9 col-md-8"><%=session.getAttribute("gender").toString()%></div>
+										<div class="col-lg-9 col-md-8"><%=session.getAttribute("USERgender").toString()%></div>
 									</div>
 
 									<div class="row">
 										<div class="col-lg-3 col-md-4 label">Phone</div>
-										<div class="col-lg-9 col-md-8"><%=session.getAttribute("phoneNum").toString()%></div>
+										<div class="col-lg-9 col-md-8"><%=session.getAttribute("USERphoneNum").toString()%></div>
 									</div>
 
 									<div class="row">
 										<div class="col-lg-3 col-md-4 label">Nationality</div>
-										<div class="col-lg-9 col-md-8"><%=session.getAttribute("nationality").toString()%></div>
+										<div class="col-lg-9 col-md-8"><%=session.getAttribute("USERnationality").toString()%></div>
 									</div>
 									<div class="row">
 										<div class="col-lg-3 col-md-4 label">Date of Birth</div>
-										<div class="col-lg-9 col-md-8"><%=session.getAttribute("dateOfBirth").toString()%></div>
+										<div class="col-lg-9 col-md-8"><%=session.getAttribute("USERdateOfBirth").toString()%></div>
 									</div>
 									<div class="row">
 										<div class="col-lg-3 col-md-4 label">Address</div>
-										<div class="col-lg-9 col-md-8"><%=session.getAttribute("address").toString()%></div>
+										<div class="col-lg-9 col-md-8"><%=session.getAttribute("USERaddress").toString()%></div>
 									</div>
 
 								</div>
@@ -144,23 +144,23 @@
 											<div class="col-md-8 col-lg-9">
 												<input name="fullName" type="text" class="form-control"
 													id="fullName"
-													value="<%=session.getAttribute("name").toString()%>">
+													value="<%=session.getAttribute("USERname").toString()%>">
 											</div>
 										</div>
 										<div class="row mb-3">
 											<label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
 											<div class="col-md-8 col-lg-9">
 												<input name="email" type="email" class="form-control"
-													id="Email"
-													value="<%=session.getAttribute("email").toString()%>">
+													id="email"
+													value="<%=session.getAttribute("USERemail").toString()%>">
 											</div>
 										</div>
 										<div class="row mb-3">
 											<label for="Role" class="col-md-4 col-lg-3 col-form-label">Role</label>
 											<div class="col-md-8 col-lg-9">
 												<input name="role" type="text" class="form-control"
-													id="Role" disabled
-													value="<%=session.getAttribute("role").toString()%>">
+													id="role" disabled
+													value="<%=session.getAttribute("USERrole").toString()%>">
 											</div>
 										</div>
 										<div class="row mb-3">
@@ -168,16 +168,27 @@
 												Card No.</label>
 											<div class="col-md-8 col-lg-9">
 												<input name="ic" type="text" class="form-control" id="ic"
-													disabled value="<%=session.getAttribute("ic").toString()%>">
+													value="<%=session.getAttribute("USERic").toString()%>">
 											</div>
 										</div>
 										<div class="row mb-3">
 											<label for="gender" class="col-md-4 col-lg-3 col-form-label">Gender</label>
 											<div class="col-md-8 col-lg-9">
-												<input name="gender" type="text" class="form-control"
-													id="gender"
-													value="<%=session.getAttribute("gender").toString()%>">
-
+												<select name="gender" class="form-select" aria-label="Gender">
+													<%
+													if (session.getAttribute("USERgender").toString().equals("Male")) {
+													%>
+													<option value="Male">Male</option>
+													<option value="Female">Female</option>
+													<%
+													} else {
+													%>
+													<option value="Female">Female</option>
+													<option value="Male">Male</option>
+													<%
+													}
+													%>
+												</select>
 											</div>
 										</div>
 
@@ -185,8 +196,8 @@
 											<label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
 											<div class="col-md-8 col-lg-9">
 												<input name="phone" type="text" class="form-control"
-													id="Phone"
-													value="<%=session.getAttribute("phoneNum").toString()%>">
+													id="phone"
+													value="<%=session.getAttribute("USERphoneNum").toString()%>">
 											</div>
 										</div>
 										<div class="row mb-3">
@@ -195,7 +206,7 @@
 											<div class="col-md-8 col-lg-9">
 												<input name="nationality" type="text" class="form-control"
 													id="nationality"
-													value="<%=session.getAttribute("nationality").toString()%>">
+													value="<%=session.getAttribute("USERnationality").toString()%>">
 											</div>
 										</div>
 										<div class="row mb-3">
@@ -205,15 +216,15 @@
 											<div class="col-md-8 col-lg-9">
 												<input name="dateOfBirth" type="text" class="form-control"
 													id="dateOfBirth" disabled
-													value="<%=session.getAttribute("dateOfBirth").toString()%>">
+													value="<%=session.getAttribute("USERdateOfBirth").toString()%>">
 											</div>
 										</div>
 										<div class="row mb-3">
 											<label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
 											<div class="col-md-8 col-lg-9">
 												<input name="address" type="text" class="form-control"
-													id="Address"
-													value="<%=session.getAttribute("address").toString()%>">
+													id="address"
+													value="<%=session.getAttribute("USERaddress").toString()%>">
 											</div>
 										</div>
 

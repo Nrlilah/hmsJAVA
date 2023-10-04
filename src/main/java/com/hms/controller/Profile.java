@@ -20,74 +20,104 @@ import com.hms.beans.Patient;
  */
 public class Profile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Profile() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
+	public Profile() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		String fullName = request.getParameter("name").trim();
+		String fullName = request.getParameter("fullName").trim();
+		System.out.println(fullName);
 		String email = request.getParameter("email").trim();
-		String role = request.getParameter("role").trim();
-		String ic = request.getParameter("ic").trim();
+		System.out.println(email);
 		String gender = request.getParameter("gender").trim();
-		String phone = request.getParameter("phonenumber").trim();
+		System.out.println(gender);
+		String phone = request.getParameter("phone").trim();
+		System.out.println(phone);
 		String nationality = request.getParameter("nationality").trim();
-		String dateOfBirth = request.getParameter("dateofbirth").trim();
+		System.out.println(nationality);
 		String address = request.getParameter("address").trim();
-
-		System.out
-				.println(fullName + email+ role+ ic + gender+ phone + nationality + dateOfBirth + address );
-
+		System.out.println(address);
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DatabaseConnection.getConnection();
-			PreparedStatement pst = con.prepareStatement(
-					"select id from user WHERE ic = '" + session.getAttribute("ic").toString() + "'");
+			PreparedStatement pst = con
+					.prepareStatement("select name,email,gender,phonenumber,nationality,address from user WHERE id = "
+							+ session.getAttribute("USERid"));
+			System.out.println(pst);
 			ResultSet rs = pst.executeQuery();
-			System.out.println(rs);
-			Statement stat = con.createStatement();
-			System.out.println("ok");
-			stat.executeUpdate("update into user(name,email,role, ic, gender, phonenumber, nationality, dateofbirth, address) "
-					+ "values('" + fullName + "','" + email+ "','" + role + ic
-					+ "','" + gender + "','" + phone + "','" + nationality + "','" + dateOfBirth +  "','" + address +  "')");
-//			ArrayList<User> userlist = new ArrayList<User>();
-//			PreparedStatement pst2 = con.prepareStatement("select * from patient");
-//			ResultSet rs2 = pst2.executeQuery();
-//			
-//	
-//			
-//			while (rs2.next()) {
-//				Patient patient = new Patient();
-//				patient.setIc(rs2.getString("ic"));
-//				patient.setName(rs2.getString("name"));
-//				patient.setGender(rs2.getString("gender"));
-//				patient.setStatus(Integer.parseInt(rs2.getString("status")));
-//				patientlist.add(patient);
-//			}
-//			System.out.print(patientlist);
-//			session.setAttribute("PatientData", patientlist);
+			if (rs.next()) {
+				System.out.println("ok3");
+				// if (!fullName.equals(rs.getString("name"))) {
+				System.out.println("ok4");
+				Statement stat = con.createStatement();
+
+//				stat.executeUpdate("update user SET name ='" + fullName + "', email= '" + email + "' WHERE id = "
+//						+ Integer.parseInt(session.getAttribute("USERid").toString()));
+
+				String sql = "update user SET name = ?, email = ?, gender = ?, phonenumber = ?, nationality = ?, address = ? WHERE id = ?";
+				PreparedStatement preparedStatement = con.prepareStatement(sql);
+				preparedStatement.setString(1, fullName); 
+				preparedStatement.setString(2, email);  
+				preparedStatement.setString(3, gender);  
+				preparedStatement.setString(4, phone);  
+				preparedStatement.setString(5, nationality);  
+				preparedStatement.setString(6, address); 
+				preparedStatement.setInt(7, Integer.parseInt(session.getAttribute("USERid").toString())); 
+
+				preparedStatement.executeUpdate();
+				System.out.println("ok5");
+
+				PreparedStatement pst2 = con.prepareStatement(
+						"select name,email,gender,phonenumber,nationality,address from user WHERE id = "
+								+ Integer.parseInt(session.getAttribute("USERid").toString()));
+				ResultSet rs2 = pst2.executeQuery();
+				if (rs2.next()) {
+					String USERemail = rs2.getString("email");
+					String USERname = rs2.getString("name");
+					String USERgender = rs2.getString("gender");
+					String USERphoneNum = rs2.getString("phonenumber");
+					String USERnationality = rs2.getString("nationality");
+					String USERaddress = rs2.getString("address");
+
+					session.setAttribute("USERemail", USERemail);
+					session.setAttribute("USERname", USERname);
+					session.setAttribute("USERgender", USERgender);
+					session.setAttribute("USERphoneNum", USERphoneNum);
+					session.setAttribute("USERnationality", USERnationality);
+					session.setAttribute("USERaddress", USERaddress);
+				}
+				rs2.close();
+				// }
+			}
+			System.out.println("ok6");
 			response.sendRedirect("jsp/Profile.jsp");
+
+			System.out.println("ok7");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-	}
 
+	}
 }

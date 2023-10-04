@@ -63,7 +63,7 @@ public class Login extends HttpServlet {
 			pst.setString(2, password);
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
-				int USERid = Integer.parseInt(rs.getString("id"));
+				int USERid = rs.getInt("id");
 				String USERemail = rs.getString("email");
 				String USERname = rs.getString("name");
 				String USERpassword = rs.getString("password");
