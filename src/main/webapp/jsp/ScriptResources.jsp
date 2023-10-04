@@ -15,8 +15,8 @@
 <!-- Original -->
 <script>
 	// Get the input element
-	var datetimeLocal = document.getElementById('datetime-local');
+	/* var datetimeLocal = document.getElementById('datetime-local');
 
 	// Set the value of the input element to the current date and time
-	datetimeLocal.value = new Date().toISOString().substring(0, 16);
+	datetimeLocal.value = new Date().toISOString().substring(0, 16); */
 </script>

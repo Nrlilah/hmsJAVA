@@ -1,7 +1,5 @@
 package com.hms.beans;
 
-import java.util.Date;
-
 public class MedicationList {
 	private int medicationList_id;
 	private String medicationItem;

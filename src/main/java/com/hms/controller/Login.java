@@ -63,6 +63,7 @@ public class Login extends HttpServlet {
 			pst.setString(2, password);
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
+				int USERid = Integer.parseInt(rs.getString("id"));
 				String USERemail = rs.getString("email");
 				String USERname = rs.getString("name");
 				String USERpassword = rs.getString("password");
@@ -75,6 +76,7 @@ public class Login extends HttpServlet {
 				String USERaddress = rs.getString("address");
 				String USERaccessLevel = rs.getString("accessLevel");
 
+				session.setAttribute("USERid", USERid);
 				session.setAttribute("USERemail", USERemail);
 				session.setAttribute("USERname", USERname);
 				session.setAttribute("USERpassword", USERpassword);
@@ -126,9 +128,15 @@ public class Login extends HttpServlet {
 				}
 				while (rs2.next()) {
 					Patient patient = new Patient();
-					patient.setIc(rs2.getString("ic"));
+					patient.setIdpatient(Integer.parseInt(rs2.getString("idpatient")));
 					patient.setName(rs2.getString("name"));
+					patient.setIc(rs2.getString("ic"));
 					patient.setGender(rs2.getString("gender"));
+					patient.setPhonenumber(rs2.getString("phonenumber"));
+					patient.setNationality(rs2.getString("nationality"));
+					patient.setDateofbirth(rs2.getString("dateofbirth"));
+					patient.setAddress(rs2.getString("address"));
+					patient.setAppointmentDate(rs2.getString("appointmentDate"));
 					patient.setStatus(Integer.parseInt(rs2.getString("status")));
 					patientlist.add(patient);
 				}

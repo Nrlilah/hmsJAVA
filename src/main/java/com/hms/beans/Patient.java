@@ -3,15 +3,24 @@ package com.hms.beans;
 import java.util.Date;
 
 public class Patient {
+	private int idpatient;
 	private String name;
 	private String ic;
 	private String gender;
 	private String phonenumber;
-	private String natioality;
-	private Date dateofbirth;
+	private String nationality;
+	private String dateofbirth;
 	private String address;
 	private String appointmentDate;
 	private int status;
+
+	public int getIdpatient() {
+		return idpatient;
+	}
+
+	public void setIdpatient(int idpatient) {
+		this.idpatient = idpatient;
+	}
 
 	public String getName() {
 		return name;
@@ -45,19 +54,19 @@ public class Patient {
 		this.phonenumber = phonenumber;
 	}
 
-	public String getNatioality() {
-		return natioality;
+	public String getNationality() {
+		return nationality;
 	}
 
-	public void setNatioality(String natioality) {
-		this.natioality = natioality;
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
 	}
 
-	public Date getDateofbirth() {
+	public String getDateofbirth() {
 		return dateofbirth;
 	}
 
-	public void setDateofbirth(Date dateofbirth) {
+	public void setDateofbirth(String dateofbirth) {
 		this.dateofbirth = dateofbirth;
 	}
 
