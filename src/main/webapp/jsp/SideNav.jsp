@@ -5,12 +5,12 @@
 		<%
 		if (session.getAttribute("USERaccessLevel").equals("0")) {
 		%>
-		<li class="nav-item"><a class="nav-link" id="registration-link"
-			href="Welcome.jsp"> <i class="bi bi-card-list"></i> <span>Patient
-					Registration</span>
+		<li class="nav-item"><a class="nav-link collapsed"
+			id="registration-link" href="Welcome.jsp"> <i
+				class="bi bi-card-list"></i> <span>Patient Registration</span>
 		</a></li>
 		<li class="nav-item"><a class="nav-link collapsed"
-			id="medication-link" href="PatientMedication.jsp"> <i
+			id="medication-link" href="Medication.jsp"> <i
 				class="bi bi-card-list"></i> <span>Patient Medication</span>
 		</a></li>
 		<li class="nav-item"><a class="nav-link collapsed"
@@ -25,7 +25,7 @@
 		} else if (session.getAttribute("USERaccessLevel").equals("2")) {
 		%>
 		<li class="nav-item"><a class="nav-link collapsed"
-			id="medication-link" href="PatientMedication.jsp"> <i
+			id="medication-link" href="Medication.jsp"> <i
 				class="bi bi-card-list"></i> <span>Patient Medication</span>
 		</a></li>
 		<li class="nav-item"><a class="nav-link collapsed"
@@ -35,9 +35,9 @@
 		<%
 		} else {
 		%>
-		<li class="nav-item"><a class="nav-link" id="registration-link"
-			href="Welcome.jsp"> <i class="bi bi-card-list"></i> <span>Patient
-					Registration</span>
+		<li class="nav-item"><a class="nav-link collapsed"
+			id="registration-link" href="Welcome.jsp"> <i
+				class="bi bi-card-list"></i> <span>Patient Registration</span>
 		</a></li>
 		<%
 		}
@@ -45,5 +45,6 @@
 	</ul>
 </aside>
 <script>
-	alert(session.getAttribute("USERaccessLevel"));
+	const sidebarNavUl = document.querySelector("#sidebar-nav");
+	sidebarNavUl.classList.remove("collapse");
 </script>

@@ -135,16 +135,14 @@
 
 								<div class="card-body">
 									<h5 class="card-title">
-										<span></span>
+										Patient <span>| Functionality</span>
 									</h5>
 
 									<div class="d-flex align-items-center">
-
-
 										<button type="button" class="btn btn-primary"
 											data-bs-toggle="modal" data-bs-target="#addPatientModal">
-											Add</button>
-
+											<i class="bi bi-collection"> Add Patient</i>
+										</button>
 										<div class="modal" id="addPatientModal">
 											<div class="modal-dialog modal-dialog-centered modal-lg">
 												<div class="modal-content">
@@ -159,118 +157,101 @@
 													<form action="/hms/AddPatient" method="post">
 														<div class="modal-body">
 															<div class="form-group row">
-																<label for="email" class="col-sm-2 col-form-label">Name</label>
-																<div class="col-sm-10">
-																	<input type="name" class="form-control" id="name"
+																<label for="email" class="col-sm-3 col-form-label">Name</label>
+																<div class="col-sm-9">
+																	<input type="text" class="form-control" id="name"
 																		name="name" placeholder="Name" required>
 																</div>
 															</div>
 															<div class="form-group row">
 																<label for="identificationcard"
-																	class="col-sm-2 col-form-label">Identification
+																	class="col-sm-3 col-form-label">Identification
 																	Card No.</label>
-																<div class="col-sm-10">
-																	<input type="identifcationcard" class="form-control"
+																<div class="col-sm-9">
+																	<input type="text" class="form-control"
 																		id="identificationcard" name="identificationcard"
 																		placeholder="Identification Card" required>
 																</div>
-
-
-																<fieldset class="form-group">
-																	<div class="row">
-																		<legend class="col-form-label col-sm-2 pt-0">Gender</legend>
-																		<div class="col-sm-10">
-																			<div class="form-check">
-																				<input class="form-check-input" type="radio"
-																					name="gender" id="gender1" value="Male" checked
-																					required> <label class="form-check-label"
-																					for="gridRadios1"> Male </label>
-																			</div>
-																			<div class="form-check">
-																				<input class="form-check-input" type="radio"
-																					name="gender" id="gender2" value="Female" required>
-																				<label class="form-check-label" for="gridRadios2">
-																					Female </label>
-																			</div>
-																		</div>
-																</fieldset>
 															</div>
 															<div class="form-group row">
-																<label for="phoneNum" class="col-sm-2 col-form-label">Phone
-																	No.</label>
-																<div class="col-sm-10">
-																	<input type="phonenumber" class="form-control"
-																		id="phoneNum" name="phoneNum" placeholder="Phone No."
-																		required>
+																<label for="gender" class="col-sm-3 col-form-label">Gender</label>
+																<div class="col-sm-9">
+																	<select class="form-select" id="gender" name="gender"
+																		aria-label="Gender">
+																		<option value="Male">Male</option>
+																		<option value="Female">Female</option>
+																	</select>
 																</div>
 															</div>
 															<div class="form-group row">
-																<label for="nationality" class="col-sm-2 col-form-label">Nationality</label>
-																<div class="col-sm-10">
-																	<input type="nationality" class="form-control"
+																<label for="phoneNum" class="col-sm-3 col-form-label">Phone
+																	No.</label>
+																<div class="col-sm-9">
+																	<input type="text" class="form-control" id="phoneNum"
+																		name="phoneNum" placeholder="Phone No." required>
+																</div>
+															</div>
+															<div class="form-group row">
+																<label for="nationality" class="col-sm-3 col-form-label">Nationality</label>
+																<div class="col-sm-9">
+																	<input type="text" class="form-control"
 																		id="nationality" name="nationality"
 																		placeholder="Nationality" required>
 																</div>
 
-																<div class="form-group row">
-																	<label for="dateOfBirth"
-																		class="col-sm-2 col-form-label">Date of Birth</label>
-																	<div class="col-sm-10">
-																		<input type="date" class="form-control" id="date"
-																			name="date" required>
-																	</div>
+															</div>
+															<div class="form-group row">
+																<label for="dateOfBirth" class="col-sm-3 col-form-label">Date
+																	of Birth</label>
+																<div class="col-sm-9">
+																	<input type="date" class="form-control" id="date"
+																		name="date" required>
+																</div>
+															</div>
+
+															<div class="form-group row">
+																<label for="inputAddress3"
+																	class="col-sm-3 col-form-label">Address</label>
+																<div class="col-sm-9">
+																	<input type="text" class="form-control"
+																		id="streetAddress" name="streetAddress"
+																		placeholder="Street Address" required> <input
+																		type="text" class="form-control" id="city" name="city"
+																		placeholder="City" required> <input
+																		type="text" class="form-control" id="state"
+																		name="state" placeholder="State" required> <input
+																		type="text" class="form-control" id="postcode"
+																		name="postcode" placeholder="Postcode" required>
 																</div>
 
-																<div class="form-group row">
-																	<label for="inputAddress3"
-																		class="col-sm-2 col-form-label">Address</label>
-																	<div class="col-sm-10">
-																		<input type="text" class="form-control"
-																			id="streetAddress" name="streetAddress"
-																			placeholder="Street Address" required> <input
-																			type="text" class="form-control" id="city"
-																			name="city" placeholder="City" required> <input
-																			type="text" class="form-control" id="state"
-																			name="state" placeholder="State" required> <input
-																			type="text" class="form-control" id="postcode"
-																			name="postcode" placeholder="Postcode" required>
-																	</div>
-
-																	<div class="form-group row">
-																		<label for="appointmentDate"
-																			class="col-sm-2 col-form-label">Appointment
-																			Date</label>
-																		<div class="col-sm-10">
-																			<input type="datetime-local" class="form-control"
-																				id="datetime-local" name="appointmentDate" required>
-																		</div>
-																	</div>
-
-																	<fieldset class="form-group">
-																		<div class="row">
-																			<legend class="col-form-label col-sm-2 pt-0">Status</legend>
-																			<div class="col-sm-10">
-																				<div class="form-check">
-																					<input class="form-check-input" type="radio"
-																						name="status" id="status1" value="1" checked
-																						required> <label class="form-check-label"
-																						for="gridRadios1"> Red Zone </label>
-																				</div>
-																				<div class="form-check">
-																					<input class="form-check-input" type="radio"
-																						name="status" id="status2" value="2" required>
-																					<label class="form-check-label" for="gridRadios2">
-																						Green Zone </label>
-																				</div>
-																			</div>
-																	</fieldset>
+															</div>
+															<div class="form-group row">
+																<label for="appointmentDate"
+																	class="col-sm-3 col-form-label">Appointment
+																	Date</label>
+																<div class="col-sm-9">
+																	<input type="datetime-local" class="form-control"
+																		id="datetime-local" name="appointmentDate" required>
 																</div>
-																<div class="modal-footer">
-																	<button type="button" class="btn btn-secondary"
-																		data-bs-dismiss="modal">Close</button>
-																	<button type="submit" class="btn btn-primary">Save
-																		changes</button>
+															</div>
+															<div class="form-group row">
+																<label for="status" class="col-sm-3 col-form-label">Health
+																	Status</label>
+																<div class="col-sm-9">
+																	<select class="form-select" id="status" name="status"
+																		aria-label="status">
+																		<option value="1">Red Zone</option>
+																		<option value="2">Green Zone</option>
+																	</select>
 																</div>
+															</div>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-secondary"
+																data-bs-dismiss="modal">Close</button>
+															<button type="submit" class="btn btn-primary">Save
+																changes</button>
+														</div>
 													</form>
 												</div>
 											</div>
@@ -315,8 +296,8 @@
 										<th scope="col">Identification No.</th>
 										<th scope="col">Name</th>
 										<th scope="col">Gender</th>
-										<th scope="col"></th>
 										<th scope="col">Health Status</th>
+										<th scope="col"></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -328,20 +309,24 @@
 										<td><%=u.getIc()%></td>
 										<td><%=u.getName()%></td>
 										<td><%=u.getGender()%></td>
-										<th scope="row"><a href="" data-bs-toggle="modal"
-											data-bs-target="#addPatientModal">More Detail</a></th>
 										<%
 										if (u.getStatus() == 1) {
 										%>
 										<td><span class="badge bg-danger">Red Zone</span></td>
+										<td scope="row"><a href="" data-bs-toggle="modal"
+											data-bs-target="#addPatientModal">More Detail</a></td>
 										<%
 										} else if (u.getStatus() == 2) {
 										%>
 										<td><span class="badge bg-success">Green Zone</span></td>
+										<td scope="row"><a href="" data-bs-toggle="modal"
+											data-bs-target="#addPatientModal">More Detail</a></td>
 										<%
 										} else {
 										%>
 										<td><span class="badge bg-secondary">Discharged</span></td>
+										<td scope="row"><a href="" data-bs-toggle="modal"
+											data-bs-target="#addPatientModal">More Detail</a></td>
 										<%
 										}
 										}
@@ -349,135 +334,6 @@
 									</tr>
 								</tbody>
 							</table>
-							<div class="modal" id="viewPatientModal">
-								<div class="modal-dialog modal-dialog-centered modal-lg">
-									<div class="modal-content">
-										<!-- Modal header -->
-										<div class="modal-header">
-											<h5 class="modal-title">Patient Detail</h5>
-											<button type="button" class="btn-close"
-												data-bs-dismiss="modal" aria-label="Close"></button>
-										</div>
-
-										<!-- Modal body -->
-										<form action="/hms/AddPatient" method="post">
-											<div class="modal-body">
-												<div class="form-group row">
-													<label for="email" class="col-sm-2 col-form-label">Name</label>
-													<div class="col-sm-10">
-														<input type="name" class="form-control" id="name"
-															name="name" placeholder="Name" required>
-													</div>
-												</div>
-												<div class="form-group row">
-													<label for="identificationcard"
-														class="col-sm-2 col-form-label">Identification
-														Card No.</label>
-													<div class="col-sm-10">
-														<input type="identifcationcard" class="form-control"
-															id="identificationcard" name="identificationcard"
-															placeholder="Identification Card" required>
-													</div>
-
-
-													<fieldset class="form-group">
-														<div class="row">
-															<legend class="col-form-label col-sm-2 pt-0">Gender</legend>
-															<div class="col-sm-10">
-																<div class="form-check">
-																	<input class="form-check-input" type="radio"
-																		name="gender" id="gender1" value="Male" checked
-																		required> <label class="form-check-label"
-																		for="gridRadios1"> Male </label>
-																</div>
-																<div class="form-check">
-																	<input class="form-check-input" type="radio"
-																		name="gender" id="gender2" value="Female" required>
-																	<label class="form-check-label" for="gridRadios2">
-																		Female </label>
-																</div>
-															</div>
-													</fieldset>
-												</div>
-												<div class="form-group row">
-													<label for="phoneNum" class="col-sm-2 col-form-label">Phone
-														No.</label>
-													<div class="col-sm-10">
-														<input type="phonenumber" class="form-control"
-															id="phoneNum" name="phoneNum" placeholder="Phone No."
-															required>
-													</div>
-												</div>
-												<div class="form-group row">
-													<label for="nationality" class="col-sm-2 col-form-label">Nationality</label>
-													<div class="col-sm-10">
-														<input type="nationality" class="form-control"
-															id="nationality" name="nationality"
-															placeholder="Nationality" required>
-													</div>
-
-													<div class="form-group row">
-														<label for="dateOfBirth" class="col-sm-2 col-form-label">Date
-															of Birth</label>
-														<div class="col-sm-10">
-															<input type="date" class="form-control" id="date"
-																name="date" required>
-														</div>
-													</div>
-
-													<div class="form-group row">
-														<label for="inputAddress3" class="col-sm-2 col-form-label">Address</label>
-														<div class="col-sm-10">
-															<input type="text" class="form-control"
-																id="streetAddress" name="streetAddress"
-																placeholder="Street Address" required> <input
-																type="text" class="form-control" id="city" name="city"
-																placeholder="City" required> <input type="text"
-																class="form-control" id="state" name="state"
-																placeholder="State" required> <input type="text"
-																class="form-control" id="postcode" name="postcode"
-																placeholder="Postcode" required>
-														</div>
-
-														<div class="form-group row">
-															<label for="appointmentDate"
-																class="col-sm-2 col-form-label">Appointment Date</label>
-															<div class="col-sm-10">
-																<input type="datetime-local" class="form-control"
-																	id="datetime-local" name="appointmentDate" required>
-															</div>
-														</div>
-
-														<fieldset class="form-group">
-															<div class="row">
-																<legend class="col-form-label col-sm-2 pt-0">Status</legend>
-																<div class="col-sm-10">
-																	<div class="form-check">
-																		<input class="form-check-input" type="radio"
-																			name="status" id="status1" value="1" checked required>
-																		<label class="form-check-label" for="gridRadios1">
-																			Red Zone </label>
-																	</div>
-																	<div class="form-check">
-																		<input class="form-check-input" type="radio"
-																			name="status" id="status2" value="2" required>
-																		<label class="form-check-label" for="gridRadios2">
-																			Green Zone </label>
-																	</div>
-																</div>
-														</fieldset>
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-secondary"
-															data-bs-dismiss="modal">Close</button>
-														<button type="submit" class="btn btn-primary">Save
-															changes</button>
-													</div>
-										</form>
-									</div>
-								</div>
-							</div>
-
 						</div>
 
 					</div>
@@ -504,6 +360,24 @@
 						input.value = '';
 					});
 		});
+		function search() {
+			var input, filter, table, tr, td, i, txtValue;
+			input = document.getElementById("search-input");
+			filter = input.value.toUpperCase();
+			table = document.getElementById("patientListTable");
+			tr = table.getElementsByTagName("tr");
+			for (i = 0; i < tr.length; i++) {
+				td = tr[i].getElementsByTagName("td")[1];
+				if (td) {
+					txtValue = td.textContent || td.innerText;
+					if (txtValue.toUpperCase().indexOf(filter) > -1) {
+						tr[i].style.display = "";
+					} else {
+						tr[i].style.display = "none";
+					}
+				}
+			}
+		}
 	</script>
 </body>
 

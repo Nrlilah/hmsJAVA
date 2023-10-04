@@ -250,6 +250,7 @@
 					</div>
 					<!-- End Recent Sales -->
 				</div>
+			</div>
 		</section>
 	</main>
 	<!-- End #main -->
