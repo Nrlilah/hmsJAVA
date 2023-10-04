@@ -48,7 +48,7 @@
 										data-bs-toggle="modal" data-bs-target="#addAccountModal">Add
 										Account</button>
 
-									<div class="modal" id="#addAccountModal">
+									<div class="modal" id="addAccountModal">
 										<div class="modal-dialog modal-dialog-centered modal-lg">
 											<div class="modal-content">
 												<form action="/hms/AddAccount" method="post" class="mx-3">
