@@ -268,7 +268,7 @@
 
 
 
-				<!-- Recent Sales -->
+				<!-- Patient Masterdata -->
 				<div class="col-12">
 					<div class="card recent-sales overflow-auto">
 
@@ -349,6 +349,7 @@
 		class="bi bi-arrow-up-short"></i></a>
 	<%@ include file="ScriptResources.jsp"%>
 	<script>
+		$('table').DataTable();
 		// Get the modal element
 		const modal = document.getElementById('addPatientModal');
 
