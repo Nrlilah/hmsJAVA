@@ -14,6 +14,7 @@
 
 <!-- Original -->
 <script>
+	$('table').DataTable();
 	// Get the input element
 	/* var datetimeLocal = document.getElementById('datetime-local');
 

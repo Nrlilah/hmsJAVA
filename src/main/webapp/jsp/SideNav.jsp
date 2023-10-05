@@ -10,12 +10,12 @@
 				class="bi bi-card-list"></i> <span>Patient Registration</span>
 		</a></li>
 		<li class="nav-item"><a class="nav-link collapsed"
-			id="medication-link" href="Medication.jsp"> <i
-				class="bi bi-card-list"></i> <span>Patient Medication</span>
-		</a></li>
-		<li class="nav-item"><a class="nav-link collapsed"
 			id="scheduling-link" href="PatientAssignation.jsp"> <i
 				class="bi bi-calendar"></i> <span>Patient Assignation</span>
+		</a></li>
+		<li class="nav-item"><a class="nav-link collapsed"
+			id="medication-link" href="Medication.jsp"> <i
+				class="bi bi-card-list"></i> <span>Patient Medication</span>
 		</a></li>
 		<li class="nav-item"><a class="nav-link collapsed"
 			id="scheduling-link" href="Scheduling.jsp"> <i
@@ -29,12 +29,12 @@
 		} else if (session.getAttribute("USERaccessLevel").equals("2")) {
 		%>
 		<li class="nav-item"><a class="nav-link collapsed"
-			id="medication-link" href="Medication.jsp"> <i
-				class="bi bi-card-list"></i> <span>Patient Medication</span>
-		</a></li>
-		<li class="nav-item"><a class="nav-link collapsed"
 			id="scheduling-link" href="PatientAssignation.jsp"> <i
 				class="bi bi-calendar"></i> <span>Patient Assignation</span>
+		</a></li>
+		<li class="nav-item"><a class="nav-link collapsed"
+			id="medication-link" href="Medication.jsp"> <i
+				class="bi bi-card-list"></i> <span>Patient Medication</span>
 		</a></li>
 		<li class="nav-item"><a class="nav-link collapsed"
 			id="scheduling-link" href="Scheduling.jsp"> <i
