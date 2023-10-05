@@ -6,6 +6,10 @@
 <html lang="en">
 <head>
 <%@ include file="HeadResources.jsp"%>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script
+	src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
 	<%@ include file="Header.jsp"%>
@@ -268,7 +272,7 @@
 
 
 
-				<!-- Recent Sales -->
+				<!-- Patient Masterdata -->
 				<div class="col-12">
 					<div class="card recent-sales overflow-auto">
 
@@ -349,6 +353,7 @@
 		class="bi bi-arrow-up-short"></i></a>
 	<%@ include file="ScriptResources.jsp"%>
 	<script>
+		$('table').DataTable();
 		// Get the modal element
 		const modal = document.getElementById('addPatientModal');
 
