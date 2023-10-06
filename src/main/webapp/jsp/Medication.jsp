@@ -93,7 +93,8 @@
 											"/Megathlon/ManageSupplierList?supplierID=<%=supplierlist.get(i).getSupplierID()%>"  --%>
 											<!-- <th scope="row"><a href="AssignMedication.jsp">Assign
 													Medication</a></a></th> -->
-											<td scope="row"><a href="/hms/AssignMedication?patientID=<%=u.getIdpatient()%>">Assign
+											<td scope="row"><a
+												href="/hms/AssignMedication?patientID=<%=u.getIdpatient()%>&patientName=<%=u.getName()%>">Assign
 													Medication</a></a></td>
 											<td scope="row"><a href="" data-bs-toggle="modal"
 												data-bs-target="#viewPatientModal<%=u.getIdpatient()%>">More
