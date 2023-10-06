@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -94,6 +97,9 @@ public class Login extends HttpServlet {
 				ArrayList<User> userlist = new ArrayList<User>();
 				ArrayList<MedicationList> medicationlistlist = new ArrayList<MedicationList>();
 				ArrayList<PredicamentList> predicamentlistlist = new ArrayList<PredicamentList>();
+				ArrayList<Patient> patientQueue = new ArrayList<Patient>();
+				ArrayList<String> patientTime = new ArrayList<String>();
+				ArrayList<Patient> patientAssignedlist = new ArrayList<Patient>();
 				PreparedStatement pst2 = con.prepareStatement("select * from patient");
 				ResultSet rs2 = pst2.executeQuery();
 
@@ -117,6 +123,22 @@ public class Login extends HttpServlet {
 
 				PreparedStatement pst8 = con.prepareStatement("select * from predicament_list");
 				ResultSet rs8 = pst8.executeQuery();
+
+				LocalDate currentDate = LocalDate.now();
+				int day = currentDate.getDayOfMonth();
+				int month = currentDate.getMonthValue();
+				int year = currentDate.getYear();
+
+				PreparedStatement pst9 = con
+						.prepareStatement("select * from patient where status != 0 and year(appointmentDate) = " + year
+								+ " and month(appointmentDate) = " + month + " and day(appointmentDate) = " + day
+								+ " and doctorid = " + session.getAttribute("USERid") + " order by appointmentDate");
+				ResultSet rs9 = pst9.executeQuery();
+
+				PreparedStatement pst10 = con.prepareStatement(
+						"select * from patient where appointmentDate >= CURDATE() and statusprogress='Assigned' "
+								+ "and doctorid = " + session.getAttribute("USERid") + " order by appointmentDate");
+				ResultSet rs10 = pst10.executeQuery();
 
 				if (rs3.next()) {
 					session.setAttribute("red", rs3.getString("red"));
@@ -170,10 +192,45 @@ public class Login extends HttpServlet {
 					predicamentlist.setPredicament_name(rs8.getString("predicament_name"));
 					predicamentlistlist.add(predicamentlist);
 				}
+
+				DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+				DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("HH:mm");
+
+				while (rs9.next()) {
+					Patient patient = new Patient();
+					patient.setIdpatient(Integer.parseInt(rs9.getString("idpatient")));
+					patient.setName(rs9.getString("name"));
+					patient.setAppointmentDate(rs9.getString("appointmentDate"));
+					patient.setStatus(Integer.parseInt(rs9.getString("status")));
+					patient.setStatusprogress(rs9.getString("statusprogress"));
+					LocalDateTime dateTime = LocalDateTime.parse(patient.getAppointmentDate(), inputFormatter);
+					String formattedTime = dateTime.format(outputFormatter);
+					patientTime.add(formattedTime);
+					patientQueue.add(patient);
+				}
+				while (rs10.next()) {
+					Patient patient = new Patient();
+					patient.setIdpatient(Integer.parseInt(rs10.getString("idpatient")));
+					patient.setName(rs10.getString("name"));
+					patient.setIc(rs10.getString("ic"));
+					patient.setGender(rs10.getString("gender"));
+					patient.setPhonenumber(rs10.getString("phonenumber"));
+					patient.setNationality(rs10.getString("nationality"));
+					patient.setDateofbirth(rs10.getString("dateofbirth"));
+					patient.setAddress(rs10.getString("address"));
+					patient.setAppointmentDate(rs10.getString("appointmentDate"));
+					patient.setStatus(Integer.parseInt(rs10.getString("status")));
+					patient.setStatusprogress(rs10.getString("statusprogress"));
+					patientAssignedlist.add(patient);
+				}
+
 				session.setAttribute("PatientData", patientlist);
 				session.setAttribute("UserData", userlist);
 				session.setAttribute("MedicationListListData", medicationlistlist);
 				session.setAttribute("PredicamentListlListData", predicamentlistlist);
+				session.setAttribute("patientQueue", patientQueue);
+				session.setAttribute("patientTime", patientTime);
+				session.setAttribute("patientAssignedlist", patientAssignedlist);
 
 				rs.close();
 				rs2.close();
