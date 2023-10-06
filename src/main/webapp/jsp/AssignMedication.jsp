@@ -3,6 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.hms.beans.Patient"%>
 <%@page import="com.hms.beans.MedicationList"%>
+<%@ include file="validationNurse.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -6,6 +6,7 @@
 <html lang="en">
 <head>
 <%@ include file="HeadResources.jsp"%>
+<%@ include file="validationDoctor.jsp"%>
 </head>
 <body>
 	<%@ include file="Header.jsp"%>
@@ -31,13 +32,13 @@
 				<div class="col-lg-12">
 					<div class="row">
 						<%
-						int r = Integer.parseInt(session.getAttribute("red").toString());
-						int g = Integer.parseInt(session.getAttribute("green").toString());
-						int b = Integer.parseInt(session.getAttribute("blue").toString());
+							int r = Integer.parseInt(session.getAttribute("red").toString());
+							int g = Integer.parseInt(session.getAttribute("green").toString());
+							int b = Integer.parseInt(session.getAttribute("blue").toString());
 
-						double pr = (r * 100) / (r + g + b);
-						double pg = (g * 100) / (r + g + b);
-						double pb = (b * 100) / (r + g + b);
+							double pr = (r * 100) / (r + g + b);
+							double pg = (g * 100) / (r + g + b);
+							double pb = (b * 100) / (r + g + b);
 						%>
 						<!-- Red Zone Card-->
 						<div class="col-xxl-4 col-md-6">

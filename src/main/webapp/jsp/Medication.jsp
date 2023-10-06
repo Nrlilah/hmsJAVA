@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.hms.beans.Patient"%>
+<%@ include file="validationNurse.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +11,6 @@
 <body>
 	<%@ include file="Header.jsp"%>
 	<%@ include file="SideNav.jsp"%>
-
 	<main id="main" class="main">
 
 		<div class="pagetitle">
@@ -75,29 +75,21 @@
 											<th scope="col">Identification No.</th>
 											<th scope="col">Name</th>
 											<th scope="col">Gender</th>
-											<th scope="col"></th>
-											<th scope="col"></th>
 											<th scope="col">Health Status</th>
+											<th scope="col"></th>
+											<th scope="col"></th>
 										</tr>
 									</thead>
 									<tbody>
 										<%
-										ArrayList<Patient> ul = (ArrayList<Patient>) session.getAttribute("PatientData");
-										for (Patient u : ul) {
+										ArrayList<Patient> pal = (ArrayList<Patient>) session.getAttribute("patientAssignedlist");
+										for (Patient u : pal) {
 										%>
 										<tr>
 											<td><%=u.getIc()%></td>
 											<td><%=u.getName()%></td>
-											<td><%=u.getGender()%></td>
-											<%-- "/hms/jsp/AssignMedication?patientID=<%=u.getIdpatient()%>"
-											"/Megathlon/ManageSupplierList?supplierID=<%=supplierlist.get(i).getSupplierID()%>"  --%>
-											<!-- <th scope="row"><a href="AssignMedication.jsp">Assign
-													Medication</a></a></th> -->
-											<td scope="row"><a href="/hms/AssignMedication?patientID=<%=u.getIdpatient()%>">Assign
-													Medication</a></a></td>
-											<td scope="row"><a href="" data-bs-toggle="modal"
-												data-bs-target="#viewPatientModal<%=u.getIdpatient()%>">More
-													Detail</a>
+											<td><%=u.getGender()%>
+
 												<div class="modal"
 													id="viewPatientModal<%=u.getIdpatient()%>">
 													<div class="modal-dialog modal-dialog-centered modal-lg">
@@ -222,14 +214,32 @@
 											if (u.getStatus() == 1) {
 											%>
 											<td><span class="badge bg-danger">Red Zone</span></td>
+											<td scope="row"><a
+												href="/hms/AssignMedication?patientID=<%=u.getIdpatient()%>">Assign
+													Medication</a></a></td>
+											<td scope="row"><a href="" data-bs-toggle="modal"
+												data-bs-target="#viewPatientModal<%=u.getIdpatient()%>">More
+													Detail</a></td>
 											<%
 											} else if (u.getStatus() == 2) {
 											%>
 											<td><span class="badge bg-success">Green Zone</span></td>
+											<td scope="row"><a
+												href="/hms/AssignMedication?patientID=<%=u.getIdpatient()%>">Assign
+													Medication</a></a></td>
+											<td scope="row"><a href="" data-bs-toggle="modal"
+												data-bs-target="#viewPatientModal<%=u.getIdpatient()%>">More
+													Detail</a></td>
 											<%
 											} else {
 											%>
 											<td><span class="badge bg-secondary">Discharged</span></td>
+											<td scope="row"><a
+												href="/hms/AssignMedication?patientID=<%=u.getIdpatient()%>">Assign
+													Medication</a></a></td>
+											<td scope="row"><a href="" data-bs-toggle="modal"
+												data-bs-target="#viewPatientModal<%=u.getIdpatient()%>">More
+													Detail</a></td>
 											<%
 											}
 											%>

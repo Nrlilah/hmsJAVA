@@ -61,13 +61,13 @@
 		<display-name>AssignMedication</display-name>
 		<description></description>
 		<servlet-class>com.hms.controller.AssignMedication</servlet-class>
-	</servlet>  
+	</servlet>
 	<servlet>
-  		<servlet-name>PatientAssignation</servlet-name>
-  		<display-name>PatientAssignation</display-name>
-  		<description></description>
-  		<servlet-class>com.hms.controller.PatientAssignation</servlet-class>
-  	</servlet>
+		<servlet-name>PatientAssignation</servlet-name>
+		<display-name>PatientAssignation</display-name>
+		<description></description>
+		<servlet-class>com.hms.controller.PatientAssignation</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Register</servlet-name>
 		<url-pattern>/Register</url-pattern>
@@ -109,9 +109,9 @@
 		<url-pattern>/AssignMedication</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-  		<servlet-name>PatientAssignation</servlet-name>
-  		<url-pattern>/PatientAssignation</url-pattern>
-  	</servlet-mapping>
+		<servlet-name>PatientAssignation</servlet-name>
+		<url-pattern>/PatientAssignation</url-pattern>
+	</servlet-mapping>
 	<session-config>
 		<session-timeout>60</session-timeout>
 	</session-config>
@@ -120,6 +120,6 @@
 	</welcome-file-list>
 	<error-page>
 		<error-code>404</error-code>
-    <location>/error-404.html</location>   
-    </error-page>
+		<location>/error-404.html</location>
+	</error-page>
 </web-app>

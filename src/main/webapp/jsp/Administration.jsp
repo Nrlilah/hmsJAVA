@@ -4,7 +4,7 @@
 <%@page import="com.hms.beans.User"%>
 <%@page import="com.hms.beans.MedicationList"%>
 <%@page import="com.hms.beans.PredicamentList"%>
-
+<%@ include file="validationAdministrator.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -106,25 +106,6 @@
 																</select>
 															</div>
 														</div>
-														<!-- <fieldset class="form-group">
-															<legend class="col-form-label col-sm-3 pt-0">Gender</legend>
-															<div class="row">
-																<div class="col-sm-9">
-																	<div class="form-check">
-																		<input class="form-check-input" type="radio"
-																			id="gender1" name="gender" value="Male" checked>
-																		<label class="form-check-label" for="gridRadios1">Male
-																		</label>
-																	</div>
-																	<div class="form-check">
-																		<input class="form-check-input" type="radio"
-																			id="gender2" name="gender" value="Female"> <label
-																			class="form-check-label" for="gridRadios2">Female
-																		</label>
-																	</div>
-																</div>
-															</div>
-														</fieldset> -->
 
 														<div class="form-group row">
 															<label for="inputdob3" class="col-sm-3 col-form-label">Date
@@ -181,32 +162,6 @@
 																</select>
 															</div>
 														</div>
-														<!-- <fieldset class="form-group">
-															<legend class="col-form-label col-sm-3 pt-0">Access
-																Level</legend>
-															<div class="row">
-																<div class="col-sm-9">
-																	<div class="form-check">
-																		<input class="form-check-input" type="radio"
-																			name="accesslevel" id="gridRadios1" value="0" checked>
-																		<label class="form-check-label" for="gridRadios1">
-																			0 </label>
-																	</div>
-																	<div class="form-check">
-																		<input class="form-check-input" type="radio"
-																			name="accesslevel" id="gridRadios2" value="1">
-																		<label class="form-check-label" for="gridRadios2">
-																			1 </label>
-																	</div>
-																	<div class="form-check disabled">
-																		<input class="form-check-input" type="radio"
-																			name="accesslevel" id="gridRadios3" value="2">
-																		<label class="form-check-label" for="gridRadios3">
-																			2 </label>
-																	</div>
-																</div>
-															</div>
-														</fieldset> -->
 													</div>
 
 													<!-- Modal Footer -->
@@ -377,7 +332,136 @@
 											<tr>
 												<td><%=u.getIc()%></td>
 												<td><%=u.getName()%></td>
-												<td><%=u.getGender()%></td>
+												<td><%=u.getGender()%>
+													<div class="modal" id="viewAccountModal<%=u.getId()%>">
+														<div class="modal-dialog modal-dialog-centered modal-lg">
+															<div class="modal-content">
+																<form action="/hms/AddAccount" method="post"
+																	class="mx-3">
+																	<!-- Modal header -->
+																	<div class="modal-header">
+																		<h5 class="modal-title">Add Account Form</h5>
+																		<button type="button" class="btn-close"
+																			data-bs-dismiss="modal" aria-label="Close"></button>
+																	</div>
+
+																	<!-- Modal body -->
+																	<div class="modal-body">
+																		<div class="form-group row">
+																			<label for="inputName3"
+																				class="col-sm-3 col-form-label">Name</label>
+																			<div class="col-sm-9">
+																				<input type="text" class="form-control"
+																					id="inputName3" name="name" value="<%=u.getName()%>" placeholder="Name">
+																			</div>
+																		</div>
+																		<div class="form-group row">
+																			<label for="inputEmail3"
+																				class="col-sm-3 col-form-label">Email</label>
+																			<div class="col-sm-9">
+																				<input type="email" class="form-control"
+																					id="inputEmail3" name="email" value="<%=u.getEmail()%>" placeholder="Email">
+																			</div>
+																		</div>
+																		<div class="form-group row">
+																			<label for="inputPassword3"
+																				class="col-sm-3 col-form-label">Password</label>
+																			<div class="col-sm-9">
+																				<input type="text" class="form-control"
+																					id="inputPassword3" name="password" value="<%=u.getPassword()%>">
+																			</div>
+
+																		</div>
+
+																		<div class="form-group row">
+																			<label for="inputIC3" class="col-sm-3 col-form-label">Identification
+																				Card No.</label>
+																			<div class="col-sm-9">
+																				<input type="text" class="form-control"
+																					id="inputIC3" name="ic" value="<%=u.getIc()%>" placeholder="IC Number">
+																			</div>
+																		</div>
+																		<div class="form-group row">
+																			<label for="gender" class="col-sm-3 col-form-label">Gender</label>
+																			<div class="col-sm-9">
+																				<select class="form-select" id="gender"
+																					name="gender" aria-label="Gender">
+																					<option value="Male">Male</option>
+																					<option value="Female">Female</option>
+																				</select>
+																			</div>
+																		</div>
+
+																		<div class="form-group row">
+																			<label for="inputdob3"
+																				class="col-sm-3 col-form-label">Date of
+																				Birth</label>
+																			<div class="col-sm-9">
+																				<input type="date" class="form-control" id="date"
+																					name="dateofbirth">
+																			</div>
+																		</div>
+
+
+																		<div class="form-group row">
+																			<label for="inputphonenum"
+																				class="col-sm-3 col-form-label">Phone Number</label>
+																			<div class="col-sm-9">
+																				<input type="text" class="form-control"
+																					id="inputphonenum" name="phonenumber"
+																					placeholder="Phone Number">
+																			</div>
+																		</div>
+																		<div class="form-group row">
+																			<label for="inputnationality"
+																				class="col-sm-3 col-form-label">Nationality</label>
+																			<div class="col-sm-9">
+																				<input type="text" class="form-control"
+																					id="inputnationality" name="nationality"
+																					placeholder="Nationality">
+																			</div>
+																		</div>
+																		<div class="form-group row">
+																			<label for="inputAddress3"
+																				class="col-sm-3 col-form-label">Address</label>
+																			<div class="col-sm-9">
+																				<input type="text" class="form-control"
+																					id="streetAddress" name="streetAddress"
+																					placeholder="Street Address" required> <input
+																					type="text" class="form-control" id="city"
+																					name="city" placeholder="City" required> <input
+																					type="text" class="form-control" id="state"
+																					name="state" placeholder="State" required>
+																				<input type="text" class="form-control"
+																					id="postcode" name="postcode"
+																					placeholder="Postcode" required>
+																			</div>
+																		</div>
+																		<div class="form-group row">
+																			<label for="accesslevel"
+																				class="col-sm-3 col-form-label">Access Level</label>
+																			<div class="col-sm-9">
+																				<select class="form-select" id="accesslevel"
+																					name="accesslevel" aria-label="accesslevel">
+																					<option value="0">Administrator</option>
+																					<option value="2">Doctor</option>
+																					<option value="1">Nurse</option>
+																				</select>
+																			</div>
+																		</div>
+																	</div>
+
+																	<!-- Modal Footer -->
+																	<div class="modal-footer">
+																		<button type="button" class="btn btn-secondary"
+																			data-bs-dismiss="modal">Close</button>
+																		<button type="submit" class="btn btn-primary">Save
+																			changes</button>
+																	</div>
+																</form>
+															</div>
+														</div>
+													</div></td>
 												<%
 												if (u.getAccessLevel() == 0) {
 												%>
@@ -392,7 +476,9 @@
 												<%
 												}
 												%>
-												<td scope="row"><a href="#">More Detail</a></td>
+												<td scope="row"><a href="#" data-bs-toggle="modal"
+													data-bs-target="#viewAccountModal<%=u.getId()%>">More
+														Detail</a></td>
 											</tr>
 											<%
 											}
