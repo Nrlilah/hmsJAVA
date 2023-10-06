@@ -88,8 +88,13 @@
 										<tr>
 											<td><%=u.getIc()%></td>
 											<td><%=u.getName()%></td>
-											<td><%=u.getGender()%>
-
+											<td><%=u.getGender()%></td>
+											<td scope="row"><a
+												href="/hms/AssignMedication?patientID=<%=u.getIdpatient()%>&patientName=<%=u.getName()%>">Assign
+													Medication</a></a></td>
+											<td scope="row"><a href="" data-bs-toggle="modal"
+												data-bs-target="#viewPatientModal<%=u.getIdpatient()%>">More
+													Detail</a>
 												<div class="modal"
 													id="viewPatientModal<%=u.getIdpatient()%>">
 													<div class="modal-dialog modal-dialog-centered modal-lg">

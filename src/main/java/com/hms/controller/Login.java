@@ -64,6 +64,7 @@ public class Login extends HttpServlet {
 			PreparedStatement pst = con.prepareStatement("SELECT * FROM user WHERE email = ? AND password = ?");
 			pst.setString(1, email);
 			pst.setString(2, password);
+			System.out.println(email);
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
 				int USERid = rs.getInt("id");
