@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.hms.beans.Medication;
+import com.hms.beans.Predicament;
 
 /**
  * Servlet implementation class AssignMedication
@@ -45,6 +46,7 @@ public class AssignMedication extends HttpServlet {
 		int patientID = Integer.parseInt(request.getParameter("patientID"));
 		String patientName = request.getParameter("patientName").toString();
 		ArrayList<Medication> Medicationlist = new ArrayList<Medication>();
+		ArrayList<Predicament> Predicamentlist = new ArrayList<Predicament>();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DatabaseConnection.getConnection();
@@ -69,11 +71,28 @@ public class AssignMedication extends HttpServlet {
 				Medicationlist.add(medication);
 			}
 			session.setAttribute("MedicationListData", Medicationlist);
-			System.out.println(patientID);
 			pst.close();
-		}
+		} catch (Exception ex) {
+			ex.printStackTrace();
 
-		catch (Exception ex) {
+		}
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DatabaseConnection.getConnection();
+			PreparedStatement pst = con.prepareStatement(
+					"SELECT * FROM predicament INNER JOIN predicament_list ON predicament.predicament_id = predicament_list.predicamentList_id WHERE patient_id = ?");
+
+			pst.setInt(1, Integer.parseInt(session.getAttribute("patientID").toString()));
+			ResultSet rs2 = pst.executeQuery();
+			while (rs2.next()) {
+				Predicament predicament = new Predicament();
+				predicament.setPredicamentList_id(rs2.getInt("predicamentList_id"));
+				predicament.setPredicament_name(rs2.getString("predicament_name"));
+				Predicamentlist.add(predicament);
+			}
+			session.setAttribute("PredicamentListData", Predicamentlist);
+			pst.close();
+		} catch (Exception ex) {
 			ex.printStackTrace();
 
 		}
