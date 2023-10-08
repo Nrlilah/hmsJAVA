@@ -53,10 +53,10 @@ public class AddPredicament extends HttpServlet {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DatabaseConnection.getConnection();
-			Statement stat = con.createStatement();
-			stat.executeUpdate(
-					"insert into predicament_list (predicament_name) " + "values('" + predicament_name + "')");
-			PreparedStatement pst8 = con.prepareStatement("select * from predicament_list");
+			PreparedStatement pst = con.prepareStatement("INSERT INTO predicament_list (predicament_name) VALUES (?)");
+			pst.setString(1, predicament_name);
+			int rowsAffected = pst.executeUpdate();
+			PreparedStatement pst8 = con.prepareStatement("SELECT * FROM predicament_list");
 			ResultSet rs8 = pst8.executeQuery();while (rs8.next()) {
 				PredicamentList predicamentlist = new PredicamentList();
 				predicamentlist.setPredicamentList_id(Integer.parseInt(rs8.getString("predicamentList_id")));

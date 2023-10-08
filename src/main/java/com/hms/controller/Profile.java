@@ -62,9 +62,10 @@ public class Profile extends HttpServlet {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DatabaseConnection.getConnection();
-			PreparedStatement pst = con
-					.prepareStatement("select name,email,gender,phonenumber,nationality,address from user WHERE id = "
-							+ session.getAttribute("USERid"));
+			PreparedStatement pst = con.prepareStatement(
+					"SELECT name, email, gender, phonenumber, nationality, address FROM user WHERE id = ?");
+			pst.setInt(1, (int) session.getAttribute("USERid"));
+
 			System.out.println(pst);
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
@@ -78,20 +79,19 @@ public class Profile extends HttpServlet {
 
 				String sql = "update user SET name = ?, email = ?, gender = ?, phonenumber = ?, nationality = ?, address = ? WHERE id = ?";
 				PreparedStatement preparedStatement = con.prepareStatement(sql);
-				preparedStatement.setString(1, fullName); 
-				preparedStatement.setString(2, email);  
-				preparedStatement.setString(3, gender);  
-				preparedStatement.setString(4, phone);  
-				preparedStatement.setString(5, nationality);  
-				preparedStatement.setString(6, address); 
-				preparedStatement.setInt(7, Integer.parseInt(session.getAttribute("USERid").toString())); 
+				preparedStatement.setString(1, fullName);
+				preparedStatement.setString(2, email);
+				preparedStatement.setString(3, gender);
+				preparedStatement.setString(4, phone);
+				preparedStatement.setString(5, nationality);
+				preparedStatement.setString(6, address);
+				preparedStatement.setInt(7, Integer.parseInt(session.getAttribute("USERid").toString()));
 
 				preparedStatement.executeUpdate();
 				System.out.println("ok5");
-
 				PreparedStatement pst2 = con.prepareStatement(
-						"select name,email,gender,phonenumber,nationality,address from user WHERE id = "
-								+ Integer.parseInt(session.getAttribute("USERid").toString()));
+						"SELECT name, email, gender, phonenumber, nationality, address FROM user WHERE id = ?");
+				pst2.setInt(1, Integer.parseInt(session.getAttribute("USERid").toString()));
 				ResultSet rs2 = pst2.executeQuery();
 				if (rs2.next()) {
 					String USERemail = rs2.getString("email");

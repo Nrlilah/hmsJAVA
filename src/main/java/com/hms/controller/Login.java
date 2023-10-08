@@ -129,15 +129,18 @@ public class Login extends HttpServlet {
 				int month = currentDate.getMonthValue();
 				int year = currentDate.getYear();
 
-				PreparedStatement pst9 = con
-						.prepareStatement("select * from patient where status != 0 and year(appointmentDate) = " + year
-								+ " and month(appointmentDate) = " + month + " and day(appointmentDate) = " + day
-								+ " and doctorid = " + session.getAttribute("USERid") + " order by appointmentDate");
+				PreparedStatement pst9 = con.prepareStatement ("SELECT * FROM patient WHERE status != 0 AND YEAR(appointmentDate) = ? "
+						+ "AND MONTH(appointmentDate) = ? AND DAY(appointmentDate) = ? AND doctorid = ? "
+						+ "ORDER BY appointmentDate");
+				pst9.setInt(1, year);
+				pst9.setInt(2, month);
+				pst9.setInt(3, day);
+				pst9.setInt(4, (int) session.getAttribute("USERid"));
 				ResultSet rs9 = pst9.executeQuery();
 
-				PreparedStatement pst10 = con.prepareStatement(
-						"select * from patient where appointmentDate >= CURDATE() and statusprogress='Assigned' "
-								+ "and doctorid = " + session.getAttribute("USERid") + " order by appointmentDate");
+				PreparedStatement pst10 = con.prepareStatement("SELECT * FROM patient WHERE appointmentDate >= CURDATE() "
+						+ "AND statusprogress = 'Assigned' AND doctorid = ? ORDER BY appointmentDate");
+				pst10.setInt(1, (int) session.getAttribute("USERid"));
 				ResultSet rs10 = pst10.executeQuery();
 
 				if (rs3.next()) {
