@@ -39,7 +39,7 @@
 					class="d-none d-md-block dropdown-toggle ps-2"><%=session.getAttribute("USERname")%></span>
 			</a> <!-- End Profile Iamge Icon -->
 
-				<ul
+				<ul id="AccountDropdown"
 					class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
 					<li class="dropdown-header">
 						<h6><%=session.getAttribute("USERname")%></h6> <span><%=session.getAttribute("USERrole")%></span>
@@ -61,7 +61,7 @@
 					</li>
 
 					<li><a href="Login.jsp"
-						class="dropdown-item d-flex align-items-center" href="#"> <i
+						class="dropdown-item d-flex align-items-center" > <i
 							class="bi bi-box-arrow-right"></i> <span>Sign Out</span>
 					</a></li>
 

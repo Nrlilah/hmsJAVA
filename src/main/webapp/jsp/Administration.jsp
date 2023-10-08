@@ -45,8 +45,9 @@
 									</h5>
 
 									<button type="button" class="btn btn-primary"
-										data-bs-toggle="modal" data-bs-target="#addAccountModal">Add
-										Account</button>
+										data-bs-toggle="modal" data-bs-target="#addAccountModal">
+										<i class="bi bi-collection">Add Account </i>
+									</button>
 
 									<div class="modal" id="addAccountModal">
 										<div class="modal-dialog modal-dialog-centered modal-lg">
@@ -64,8 +65,8 @@
 														<div class="form-group row">
 															<label for="inputName3" class="col-sm-3 col-form-label">Name</label>
 															<div class="col-sm-9">
-																<input type="text" class="form-control" id="inputName3"
-																	name="name" placeholder="Name">
+																<input type="text" class="form-control" id="name"
+																	name="name" placeholder="Name" required>
 															</div>
 														</div>
 														<div class="form-group row">
@@ -93,7 +94,9 @@
 																Card No.</label>
 															<div class="col-sm-9">
 																<input type="text" class="form-control" id="inputIC3"
-																	name="ic" placeholder="IC Number">
+																	name="ic" placeholder="IC Number" required
+																	pattern="[0-9]{12}"
+																	title="Please enter a 12-digit number without ' - '.">
 															</div>
 														</div>
 														<div class="form-group row">
@@ -112,9 +115,35 @@
 																of Birth</label>
 															<div class="col-sm-9">
 																<input type="date" class="form-control" id="date"
-																	name="dateofbirth">
+																	name="dateofbirth" required>
+																<div id="dateofbirthError" style="color: red;"></div>
 															</div>
 														</div>
+
+														<script>
+															document
+																	.getElementById(
+																			'dateofbirth')
+																	.addEventListener(
+																			'input',
+																			function() {
+																				var selectedDate = new Date(
+																						this.value);
+																				var currentDate = new Date();
+																				var dateError = document
+																						.getElementById('dateofbirthError');
+
+																				if (selectedDate > currentDate) {
+																					dateError.textContent = "";
+																					this
+																							.setCustomValidity("Date of birth cannot be later than current date.");
+																				} else {
+																					dateError.textContent = "";
+																					this
+																							.setCustomValidity("");
+																				}
+																			});
+														</script>
 
 
 														<div class="form-group row">
@@ -123,7 +152,9 @@
 															<div class="col-sm-9">
 																<input type="text" class="form-control"
 																	id="inputphonenum" name="phonenumber"
-																	placeholder="Phone Number">
+																	placeholder="Phone Number" required
+																	pattern = "[0-9]{1,15}"
+																	title= "Please enter a maximum of 15-digit number without ' - ' or any non-numeric characters.">
 															</div>
 														</div>
 														<div class="form-group row">
@@ -132,7 +163,9 @@
 															<div class="col-sm-9">
 																<input type="text" class="form-control"
 																	id="inputnationality" name="nationality"
-																	placeholder="Nationality">
+																	placeholder="Nationality" required
+																	pattern = "[A-Za-z\s]"
+																	title="Please enter only letters and spaces. Numbers are not allowed.">
 															</div>
 														</div>
 														<div class="form-group row">
@@ -147,7 +180,8 @@
 																	class="form-control" id="state" name="state"
 																	placeholder="State" required> <input
 																	type="text" class="form-control" id="postcode"
-																	name="postcode" placeholder="Postcode" required>
+																	name="postcode" placeholder="Postcode" required
+																	pattern="[0-9]+">
 															</div>
 														</div>
 														<div class="form-group row">
@@ -192,8 +226,9 @@
 									</h5>
 
 									<button type="button" class="btn btn-primary"
-										data-bs-toggle="modal" data-bs-target="#addMedicationModal">Add
-										Medication</button>
+										data-bs-toggle="modal" data-bs-target="#addMedicationModal">
+										<i class="bi bi-capsule-pill">Add
+										Medication</i></button>
 
 									<div class="modal" id="addMedicationModal">
 										<div class="modal-dialog modal-dialog-centered modal-lg">
@@ -212,8 +247,8 @@
 															<label for="inputNameMedication"
 																class="col-sm-3 col-form-label">Medication Name</label>
 															<div class="col-sm-9">
-																<input type="text" class="form-control" id="inputName3"
-																	name="medicationItem" placeholder="Medication Name">
+																<input type="text" class="form-control" id="medicationItem"
+																	name="medicationItem" placeholder="Medication Name" required>
 															</div>
 														</div>
 													</div>
@@ -246,8 +281,9 @@
 									</h5>
 
 									<button type="button" class="btn btn-primary"
-										data-bs-toggle="modal" data-bs-target="#addPredicamentModal">Add
-										Predicament</button>
+										data-bs-toggle="modal" data-bs-target="#addPredicamentModal">
+										<i class="bi bi-bandaid">Add
+										Predicament</i></button>
 
 									<div class="modal" id="addPredicamentModal">
 										<div class="modal-dialog modal-dialog-centered modal-lg">
@@ -268,7 +304,7 @@
 															<div class="col-sm-9">
 																<input type="text" class="form-control"
 																	id="predicament_name" name="predicament_name"
-																	placeholder="Predicament Name">
+																	placeholder="Predicament Name" required>
 															</div>
 														</div>
 													</div>
@@ -368,7 +404,8 @@
 																			class="col-sm-3 col-form-label">Password</label>
 																		<div class="col-sm-9">
 																			<input type="text" class="form-control" id="password"
-																				name="password" value="<%=u.getPassword()%>" disabled>
+																				name="password" value="<%=u.getPassword()%>"
+																				disabled>
 																		</div>
 
 																	</div>
