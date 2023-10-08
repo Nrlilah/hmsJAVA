@@ -59,11 +59,94 @@
 										<h6>Sort</h6>
 									</li>
 
-									<li><a class="dropdown-item" href="#">Ascending</a></li>
-									<li><a class="dropdown-item" href="#">Descending</a></li>
+									<li><a class="dropdown-item zone" href="#">All</a></li>
+									<li><a class="dropdown-item zone" href="#">Red Zone</a></li>
+									<li><a class="dropdown-item zone" href="#">Green Zone</a></li>
+									<li><a class="dropdown-item zone" href="#">Discharged</a></li>
 								</ul>
 							</div>
 
+							<script>
+								$(document)
+										.ready(
+												function() {
+													// Function to handle filter select change
+													$("#filterSelect")
+															.change(
+																	function() {
+																		var filterOption = $(
+																				this)
+																				.val();// Get the selected filter option
+
+																		// Loop through table rows and show/hide based on the selected option
+																		$(
+																				"#patientListTable tbody tr")
+																				.each(
+																						function() {
+																							var status = $(
+																									this)
+																									.find(
+																											"td:eq(3)")
+																									.text()
+																									.trim(); // Assuming the status is in the 4th column (index 3)
+
+																							if (filterOption === "all"
+																									|| filterOption === status
+																											.toLowerCase()
+																											.replace(
+																													" ",
+																													"")) {
+																								$(
+																										this)
+																										.show(); // Show the row
+																							} else {
+																								$(
+																										this)
+																										.hide(); // Hide the row
+																							}
+																						});
+																	});
+
+													// Function to handle dropdown item click for sorting
+													$(".zone")
+															.click(
+																	function(e) {
+																		e
+																				.preventDefault();
+
+																		// Get the selected filter option text
+																		var filterOption = $(
+																				this)
+																				.text()
+																				.toLowerCase();
+
+																		// Loop through table rows and show/hide based on the selected option
+																		$(
+																				"#patientListTable tbody tr")
+																				.each(
+																						function() {
+																							var status = $(
+																									this)
+																									.find(
+																											"td:eq(3)")
+																									.text()
+																									.trim()
+																									.toLowerCase(); // Assuming the status is in the 4th column (index 3)
+
+																							if (filterOption === "all"
+																									|| filterOption === status) {
+																								$(
+																										this)
+																										.show(); // Show the row
+																							} else {
+																								$(
+																										this)
+																										.hide(); // Hide the row
+																							}
+																						});
+																	});
+												});
+							</script>
 							<div class="card-body">
 								<h5 class="card-title">
 									Patient <span>| Masterdata</span>

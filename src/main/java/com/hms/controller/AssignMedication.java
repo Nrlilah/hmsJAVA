@@ -44,6 +44,8 @@ public class AssignMedication extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		int patientID = Integer.parseInt(request.getParameter("patientID"));
 		String patientName = request.getParameter("patientName").toString();
+		session.setAttribute("patientID", patientID);
+		session.setAttribute("patientName", patientName);
 		ArrayList<Medication> Medicationlist = new ArrayList<Medication>();
 		ArrayList<Predicament> Predicamentlist = new ArrayList<Predicament>();
 		try {
@@ -69,19 +71,14 @@ public class AssignMedication extends HttpServlet {
 				medication.setMedicationItem(rs.getString("medicationItem"));
 				Medicationlist.add(medication);
 			}
-			session.setAttribute("MedicationListData", Medicationlist);
-			pst.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
 
-		}
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DatabaseConnection.getConnection();
-			PreparedStatement pst = con.prepareStatement(
+			pst.close();
+			rs.close();
+			session.setAttribute("MedicationListData", Medicationlist);
+			pst = con.prepareStatement(
 					"SELECT * FROM predicament INNER JOIN predicament_list ON predicament.predicament_id = predicament_list.predicamentList_id WHERE patient_id = ?");
 
-			pst.setInt(1, Integer.parseInt(session.getAttribute("patientID").toString()));
+			pst.setInt(1, patientID);
 			ResultSet rs2 = pst.executeQuery();
 			while (rs2.next()) {
 				Predicament predicament = new Predicament();
@@ -91,13 +88,11 @@ public class AssignMedication extends HttpServlet {
 			}
 			session.setAttribute("PredicamentListData", Predicamentlist);
 			pst.close();
+			rs2.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 
 		}
-
-		session.setAttribute("patientID", patientID);
-		session.setAttribute("patientName", patientName);
 		response.sendRedirect("jsp/AssignMedication.jsp");
 	}
 
@@ -121,18 +116,19 @@ public class AssignMedication extends HttpServlet {
 		Period period = Period.between(startDate, endDate);
 		int duration = period.getDays();
 		System.out.println(medicationItem + Dosage + startDateTime + endDateTime + notes);
-
+		ArrayList<Medication> Medicationlist = new ArrayList<Medication>();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DatabaseConnection.getConnection();
-			//Statement stat = con.createStatement();
+			// Statement stat = con.createStatement();
 			PreparedStatement pst = con
 					.prepareStatement("select medicationList_id FROM medication_list WHERE medicationItem = ? ");
 			pst.setString(1, medicationItem);
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
-				PreparedStatement pst2 = con.prepareStatement("INSERT INTO medication (medicationList_id, patientid, dosage, frequency, startdatetime, enddatetime, duration, notes, prescribeby) "
-						+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+				PreparedStatement pst2 = con.prepareStatement(
+						"INSERT INTO medication (medicationList_id, patientid, dosage, frequency, startdatetime, enddatetime, duration, notes, prescribeby) "
+								+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 				pst2.setInt(1, rs.getInt("medicationList_id"));
 				pst2.setInt(2, (int) session.getAttribute("patientID"));
 				pst2.setString(3, Dosage);
@@ -142,14 +138,36 @@ public class AssignMedication extends HttpServlet {
 				pst2.setInt(7, duration);
 				pst2.setString(8, notes);
 				pst2.setInt(9, (int) session.getAttribute("USERid"));
-				
-				int rowsAffected = pst2.executeUpdate();
+				pst2.executeUpdate();
 			}
-			// doGet(request, response);
-			response.sendRedirect("jsp/AssignMedication.jsp");
+			pst = con.prepareStatement(
+					"SELECT * FROM medication INNER JOIN medication_list ON medication.medicationList_id = medication_list.medicationList_id WHERE patientid = ?");
+
+			pst.setInt(1, (int) session.getAttribute("patientID"));
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				Medication medication = new Medication();
+				medication.setMedicationid(rs.getInt("medicationid"));
+				medication.setPatientid(rs.getInt("patientid"));
+				medication.setDosage(rs.getString("dosage"));
+				medication.setFrequency(rs.getString("frequency"));
+				medication.setStartdatetime(rs.getString("startdatetime"));
+				medication.setEnddatetime(rs.getString("enddatetime"));
+				medication.setDuration(rs.getString("duration"));
+				medication.setNotes(rs.getString("notes"));
+				medication.setPrescribeby(rs.getInt("prescribeby"));
+				medication.setMedicationList_id(rs.getInt("medicationList_id"));
+				medication.setMedicationItem(rs.getString("medicationItem"));
+				Medicationlist.add(medication);
+			}
+
+			pst.close();
+			rs.close();
+			session.setAttribute("MedicationListData", Medicationlist);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 
 		}
+		response.sendRedirect("jsp/AssignMedication.jsp");
 	}
 }

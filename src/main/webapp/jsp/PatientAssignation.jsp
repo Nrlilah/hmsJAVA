@@ -40,16 +40,101 @@
 								<div class="filter">
 									<a class="icon" href="#" data-bs-toggle="dropdown"><i
 										class="bi bi-three-dots"></i></a>
-									<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+									<ul id="filterSort"
+										class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
 										<li class="dropdown-header text-start">
 											<h6>Sort</h6>
 										</li>
 
-										<li><a class="dropdown-item" href="#">Ascending</a></li>
-										<li><a class="dropdown-item" href="#">Descending</a></li>
+										<li><a class="dropdown-item zone" href="#">All</a></li>
+										<li><a class="dropdown-item zone" href="#">Red Zone</a></li>
+										<li><a class="dropdown-item zone" href="#">Green Zone</a></li>
+										<li><a class="dropdown-item zone" href="#">Discharged</a></li>
 									</ul>
 								</div>
 
+								<script>
+									$(document)
+											.ready(
+													function() {
+														// Function to handle filter select change
+														$("#filterSelect")
+																.change(
+																		function() {
+																			var filterOption = $(
+																					this)
+																					.val();// Get the selected filter option
+
+																			// Loop through table rows and show/hide based on the selected option
+																			$(
+																					"#patientListTable tbody tr")
+																					.each(
+																							function() {
+																								var status = $(
+																										this)
+																										.find(
+																												"td:eq(3)")
+																										.text()
+																										.trim(); // Assuming the status is in the 4th column (index 3)
+
+																								if (filterOption === "all"
+																										|| filterOption === status
+																												.toLowerCase()
+																												.replace(
+																														" ",
+																														"")) {
+																									$(
+																											this)
+																											.show(); // Show the row
+																								} else {
+																									$(
+																											this)
+																											.hide(); // Hide the row
+																								}
+																							});
+																		});
+
+														// Function to handle dropdown item click for sorting
+														$(".zone")
+																.click(
+																		function(
+																				e) {
+																			e
+																					.preventDefault();
+
+																			// Get the selected filter option text
+																			var filterOption = $(
+																					this)
+																					.text()
+																					.toLowerCase();
+
+																			// Loop through table rows and show/hide based on the selected option
+																			$(
+																					"#patientListTable tbody tr")
+																					.each(
+																							function() {
+																								var status = $(
+																										this)
+																										.find(
+																												"td:eq(3)")
+																										.text()
+																										.trim()
+																										.toLowerCase(); // Assuming the status is in the 4th column (index 3)
+
+																								if (filterOption === "all"
+																										|| filterOption === status) {
+																									$(
+																											this)
+																											.show(); // Show the row
+																								} else {
+																									$(
+																											this)
+																											.hide(); // Hide the row
+																								}
+																							});
+																		});
+													});
+								</script>
 								<div class="card-body">
 									<h5 class="card-title">
 										Patient <span>| Masterdata</span>
@@ -73,7 +158,7 @@
 											for (Patient p : pl) {
 											%>
 											<tr>
-												<td><%=p.getIc()%>
+												<td><%=p.getIc().substring(6, 12)%>
 													<div class="modal"
 														id="viewPatientModal<%=p.getIdpatient()%>">
 														<div class="modal-dialog modal-dialog-centered modal-lg">

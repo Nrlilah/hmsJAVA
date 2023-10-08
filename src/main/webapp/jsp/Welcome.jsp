@@ -171,7 +171,9 @@
 																<div class="col-sm-9">
 																	<input type="text" class="form-control"
 																		id="identificationcard" name="identificationcard"
-																		placeholder="Identification Card" required>
+																		placeholder="Identification Card" required
+																		pattern="[0-9]{12}"
+																	title="Please enter a 12-digit number without ' - '.">
 																</div>
 															</div>
 															<div class="form-group row">
@@ -189,7 +191,9 @@
 																	No.</label>
 																<div class="col-sm-9">
 																	<input type="text" class="form-control" id="phoneNum"
-																		name="phoneNum" placeholder="Phone No." required>
+																		name="phoneNum" placeholder="Phone No." required
+																		pattern = "[0-9]{1,15}"
+																	title= "Please enter a maximum of 15-digit number without ' - ' or any non-numeric characters.">
 																</div>
 															</div>
 															<div class="form-group row">
@@ -197,7 +201,9 @@
 																<div class="col-sm-9">
 																	<input type="text" class="form-control"
 																		id="nationality" name="nationality"
-																		placeholder="Nationality" required>
+																		placeholder="Nationality" required
+																		pattern = "[A-Za-z\s]"
+																	title="Please enter only letters and spaces. Numbers are not allowed.">
 																</div>
 
 															</div>
@@ -207,8 +213,33 @@
 																<div class="col-sm-9">
 																	<input type="date" class="form-control" id="date"
 																		name="date" required>
+																		<div id="dateofbirthError" style="color: red;"></div>
 																</div>
 															</div>
+															<script>
+															document
+																	.getElementById(
+																			'dateofbirth')
+																	.addEventListener(
+																			'input',
+																			function() {
+																				var selectedDate = new Date(
+																						this.value);
+																				var currentDate = new Date();
+																				var dateError = document
+																						.getElementById('dateofbirthError');
+
+																				if (selectedDate > currentDate) {
+																					dateError.textContent = "";
+																					this
+																							.setCustomValidity("Date of birth cannot be later than current date.");
+																				} else {
+																					dateError.textContent = "";
+																					this
+																							.setCustomValidity("");
+																				}
+																			});
+														</script>
 
 															<div class="form-group row">
 																<label for="inputAddress3"
@@ -222,7 +253,8 @@
 																		type="text" class="form-control" id="state"
 																		name="state" placeholder="State" required> <input
 																		type="text" class="form-control" id="postcode"
-																		name="postcode" placeholder="Postcode" required>
+																		name="postcode" placeholder="Postcode" required
+																		pattern="[0-9]+">
 																</div>
 
 															</div>
@@ -233,8 +265,34 @@
 																<div class="col-sm-9">
 																	<input type="datetime-local" class="form-control"
 																		id="datetime-local" name="appointmentDate" required>
+																		<div id="appointmentDateError" style="color: red;"></div>
 																</div>
 															</div>
+															<script>
+															document
+																	.getElementById(
+																			'appointmentDate')
+																	.addEventListener(
+																			'input',
+																			function() {
+																				var selectedDate = new Date(
+																						this.value);
+																				var currentDate = new Date();
+																				var appointmentDateError = document
+																						.getElementById('appointmentDateError');
+
+																				if (selectedDate < currentDate) {
+																					appointmentDateError.textContent = "";
+																					this
+																							.setCustomValidity("The date has passed.");
+																				} else {
+																					appointmentDateError.textContent = "";
+																					this
+																							.setCustomValidity("");
+																				}
+																			});
+														</script>
+														
 															<div class="form-group row">
 																<label for="status" class="col-sm-3 col-form-label">Health
 																	Status</label>
@@ -281,10 +339,51 @@
 									<h6>Sort</h6>
 								</li>
 
-								<li><a class="dropdown-item" href="#">Ascending</a></li>
-								<li><a class="dropdown-item" href="#">Descending</a></li>
+								<li><a class="dropdown-item zone" href="#">All</a></li>
+								<li><a class="dropdown-item zone" href="#">Red Zone</a></li>
+								<li><a class="dropdown-item zone" href="#">Green Zone</a></li>
+								<li><a class="dropdown-item zone" href="#">Discharged</a></li>
 							</ul>
 						</div>
+						
+						<script>
+							$(document).ready(function() {
+								// Function to handle filter select change
+								$("#filterSelect").change(function() {
+									var filterOption = $(this).val();// Get the selected filter option
+
+								// Loop through table rows and show/hide based on the selected option
+								$("#patientListTable tbody tr").each(function() {
+									var status = $(this).find("td:eq(3)").text().trim(); // Assuming the status is in the 4th column (index 3)
+
+									if (filterOption === "all" || filterOption === status.toLowerCase().replace(" ","")) {
+										$(this).show(); // Show the row
+									} else {
+										$(this).hide(); // Hide the row
+									}
+								});
+							});
+
+							// Function to handle dropdown item click for sorting
+							$(".zone").click(function(e) {
+								e.preventDefault();
+
+								// Get the selected filter option text
+								var filterOption = $(this).text().toLowerCase();
+
+								// Loop through table rows and show/hide based on the selected option
+								$("#patientListTable tbody tr").each(function() {
+									var status = $(this).find("td:eq(3)").text().trim().toLowerCase(); // Assuming the status is in the 4th column (index 3)
+
+									if (filterOption === "all" || filterOption === status) {
+										$(this).show(); // Show the row
+									} else {
+										$(this).hide(); // Hide the row
+									}
+								});
+							});
+						});
+					</script>
 
 						<div class="card-body">
 							<h5 class="card-title">
@@ -300,7 +399,6 @@
 										<th scope="col">Health Status</th>
 										<th scope="col">Status Progress</th>
 										<th scope="col"></th>
-										<th scope="col"></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -309,7 +407,7 @@
 									for (Patient u : ul) {
 									%>
 									<tr>
-										<td><%=u.getIc()%></td>
+										<td><%=u.getIc().substring(6, 12)%></td>
 										<td><%=u.getName()%></td>
 										<td><%=u.getGender()%></td>
 										<%
@@ -328,135 +426,133 @@
 										}
 										%>
 										<td><%=u.getStatusprogress()%></td>
-											<td scope="row"><a href="" data-bs-toggle="modal"
-												data-bs-target="#viewPatientModal<%=u.getIdpatient()%>">More
-													Detail</a>
-												<div class="modal"
-													id="viewPatientModal<%=u.getIdpatient()%>">
-													<div class="modal-dialog modal-dialog-centered modal-lg">
-														<div class="modal-content">
-															<!-- Modal header -->
-															<div class="modal-header">
-																<h5 class="modal-title">View Patient</h5>
-																<button type="button" class="btn-close"
-																	data-bs-dismiss="modal" aria-label="Close"></button>
-															</div>
-
-															<!-- Modal body -->
-															<form action="/hms/AddPatient" method="post">
-																<div class="modal-body">
-																	<div class="form-group row">
-																		<label for="email" class="col-sm-3 col-form-label">Name</label>
-																		<div class="col-sm-9">
-																			<input type="text" class="form-control" id="name"
-																				name="name" placeholder="Name"
-																				value="<%=u.getName()%>" required disabled>
-																		</div>
-																	</div>
-																	<div class="form-group row">
-																		<label for="identificationcard"
-																			class="col-sm-3 col-form-label">Identification
-																			Card No.</label>
-																		<div class="col-sm-9">
-																			<input type="text" class="form-control"
-																				id="identificationcard" name="identificationcard"
-																				placeholder="Identification Card"
-																				value="<%=u.getIc()%>" required disabled>
-																		</div>
-																	</div>
-																	<div class="form-group row">
-																		<label for="gender" class="col-sm-3 col-form-label">Gender</label>
-																		<div class="col-sm-9">
-																			<input type="text" class="form-control" id="gender"
-																				name="gender" placeholder="Gender"
-																				value="<%=u.getGender()%>" required disabled>
-																		</div>
-																	</div>
-																	<div class="form-group row">
-																		<label for="phoneNum" class="col-sm-3 col-form-label">Phone
-																			No.</label>
-																		<div class="col-sm-9">
-																			<input type="text" class="form-control" id="phoneNum"
-																				name="phoneNum" placeholder="Phone No."
-																				value="<%=u.getPhonenumber()%>" required disabled>
-																		</div>
-																	</div>
-																	<div class="form-group row">
-																		<label for="nationality"
-																			class="col-sm-3 col-form-label">Nationality</label>
-																		<div class="col-sm-9">
-																			<input type="text" class="form-control"
-																				id="nationality" name="nationality"
-																				placeholder="Nationality"
-																				value="<%=u.getNationality()%>" required disabled>
-																		</div>
-
-																	</div>
-																	<div class="form-group row">
-																		<label for="dateOfBirth"
-																			class="col-sm-3 col-form-label">Date of Birth</label>
-																		<div class="col-sm-9">
-																			<input type="date" class="form-control" id="date"
-																				name="date" value="<%=u.getDateofbirth()%>" required
-																				disabled>
-																		</div>
-																	</div>
-
-																	<div class="form-group row">
-																		<label for="inputAddress3"
-																			class="col-sm-3 col-form-label">Address</label>
-																		<div class="col-sm-9">
-																			<input type="text" class="form-control" id="address"
-																				name="address" placeholder="address"
-																				value="<%=u.getAddress()%>" required disabled>
-																		</div>
-
-																	</div>
-																	<div class="form-group row">
-																		<label for="appointmentDate"
-																			class="col-sm-3 col-form-label">Appointment
-																			Date</label>
-																		<div class="col-sm-9">
-																			<input type="datetime-local" class="form-control"
-																				id="datetime-local" name="appointmentDate"
-																				value="<%=u.getAppointmentDate()%>" required
-																				disabled>
-																		</div>
-																	</div>
-																	<div class="form-group row">
-																		<label for="status" class="col-sm-3 col-form-label">Health
-																			Status</label>
-																		<div class="col-sm-9">
-																			<%
-																			if (u.getStatus() == 1) {
-																			%>
-																			<input type="text" class="form-control" id="status"
-																				name="status" value="Red Zone" required disabled>
-																			<%
-																			} else {
-																			%>
-																			<input type="text" class="form-control" id="status"
-																				name="status" value="Green Zone" required disabled>
-																			<%
-																			}
-																			%>
-																		</div>
-																	</div>
-																</div>
-																<div class="modal-footer">
-																	<button type="button" class="btn btn-secondary"
-																		data-bs-dismiss="modal">Close</button>
-																</div>
-															</form>
+										<td scope="row"><a href="" data-bs-toggle="modal"
+											data-bs-target="#viewPatientModal<%=u.getIdpatient()%>">More
+												Detail</a>
+											<div class="modal" id="viewPatientModal<%=u.getIdpatient()%>">
+												<div class="modal-dialog modal-dialog-centered modal-lg">
+													<div class="modal-content">
+														<!-- Modal header -->
+														<div class="modal-header">
+															<h5 class="modal-title">View Patient</h5>
+															<button type="button" class="btn-close"
+																data-bs-dismiss="modal" aria-label="Close"></button>
 														</div>
+
+														<!-- Modal body -->
+														<form action="/hms/AddPatient" method="post">
+															<div class="modal-body">
+																<div class="form-group row">
+																	<label for="email" class="col-sm-3 col-form-label">Name</label>
+																	<div class="col-sm-9">
+																		<input type="text" class="form-control" id="name"
+																			name="name" placeholder="Name"
+																			value="<%=u.getName()%>" required disabled>
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label for="identificationcard"
+																		class="col-sm-3 col-form-label">Identification
+																		Card No.</label>
+																	<div class="col-sm-9">
+																		<input type="text" class="form-control"
+																			id="identificationcard" name="identificationcard"
+																			placeholder="Identification Card"
+																			value="<%=u.getIc()%>" required disabled>
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label for="gender" class="col-sm-3 col-form-label">Gender</label>
+																	<div class="col-sm-9">
+																		<input type="text" class="form-control" id="gender"
+																			name="gender" placeholder="Gender"
+																			value="<%=u.getGender()%>" required disabled>
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label for="phoneNum" class="col-sm-3 col-form-label">Phone
+																		No.</label>
+																	<div class="col-sm-9">
+																		<input type="text" class="form-control" id="phoneNum"
+																			name="phoneNum" placeholder="Phone No."
+																			value="<%=u.getPhonenumber()%>" required disabled>
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label for="nationality"
+																		class="col-sm-3 col-form-label">Nationality</label>
+																	<div class="col-sm-9">
+																		<input type="text" class="form-control"
+																			id="nationality" name="nationality"
+																			placeholder="Nationality"
+																			value="<%=u.getNationality()%>" required disabled>
+																	</div>
+
+																</div>
+																<div class="form-group row">
+																	<label for="dateOfBirth"
+																		class="col-sm-3 col-form-label">Date of Birth</label>
+																	<div class="col-sm-9">
+																		<input type="date" class="form-control" id="date"
+																			name="date" value="<%=u.getDateofbirth()%>" required
+																			disabled>
+																	</div>
+																</div>
+
+																<div class="form-group row">
+																	<label for="inputAddress3"
+																		class="col-sm-3 col-form-label">Address</label>
+																	<div class="col-sm-9">
+																		<input type="text" class="form-control" id="address"
+																			name="address" placeholder="address"
+																			value="<%=u.getAddress()%>" required disabled>
+																	</div>
+
+																</div>
+																<div class="form-group row">
+																	<label for="appointmentDate"
+																		class="col-sm-3 col-form-label">Appointment
+																		Date</label>
+																	<div class="col-sm-9">
+																		<input type="datetime-local" class="form-control"
+																			id="datetime-local" name="appointmentDate"
+																			value="<%=u.getAppointmentDate()%>" required disabled>
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label for="status" class="col-sm-3 col-form-label">Health
+																		Status</label>
+																	<div class="col-sm-9">
+																		<%
+																		if (u.getStatus() == 1) {
+																		%>
+																		<input type="text" class="form-control" id="status"
+																			name="status" value="Red Zone" required disabled>
+																		<%
+																		} else {
+																		%>
+																		<input type="text" class="form-control" id="status"
+																			name="status" value="Green Zone" required disabled>
+																		<%
+																		}
+																		%>
+																	</div>
+																</div>
+															</div>
+															<div class="modal-footer">
+																<button type="button" class="btn btn-secondary"
+																	data-bs-dismiss="modal">Close</button>
+															</div>
+														</form>
 													</div>
-												</div></td>
-										
+												</div>
+											</div></td>
+
 										<%
 										}
 										%>
-										
-										
+
+
 									</tr>
 								</tbody>
 							</table>
@@ -464,7 +560,7 @@
 
 					</div>
 				</div>
-				<!-- End Recent Sales -->
+				<!-- End Patient Masterdata -->
 			</div>
 		</section>
 	</main>
@@ -505,6 +601,32 @@
 				}
 			}
 		}
+	</script>
+	<script>
+		$(document).ready(
+				function() {
+					// Function to handle filter select change
+					$("#filterSelect").change(
+							function() {
+								var filterOption = $(this).val(); // Get the selected filter option
+
+								// Loop through table rows and show/hide based on the selected option
+								$("#patientListTable tbody tr").each(
+										function() {
+											var status = $(this).find(
+													"td:eq(3)").text().trim(); // Assuming the status is in the 4th column (index 3)
+
+											if (filterOption === "all"
+													|| filterOption === status
+															.toLowerCase()
+															.replace(" ", "")) {
+												$(this).show(); // Show the row
+											} else {
+												$(this).hide(); // Hide the row
+											}
+										});
+							});
+				});
 	</script>
 </body>
 

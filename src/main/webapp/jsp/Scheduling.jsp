@@ -48,17 +48,102 @@
 											<h6>Sort</h6>
 										</li>
 
-										<li><a class="dropdown-item" href="#">Ascending</a></li>
-										<li><a class="dropdown-item" href="#">Descending</a></li>
+										<li><a class="dropdown-item zone" href="#">All</a></li>
+										<li><a class="dropdown-item zone" href="#">Red Zone</a></li>
+										<li><a class="dropdown-item zone" href="#">Green Zone</a></li>
+										<li><a class="dropdown-item zone" href="#">Discharged</a></li>
 									</ul>
 								</div>
+
+								<script>
+									$(document)
+											.ready(
+													function() {
+														// Function to handle filter select change
+														$("#filterSelect")
+																.change(
+																		function() {
+																			var filterOption = $(
+																					this)
+																					.val();// Get the selected filter option
+
+																			// Loop through table rows and show/hide based on the selected option
+																			$(
+																					"#patientListTable tbody tr")
+																					.each(
+																							function() {
+																								var status = $(
+																										this)
+																										.find(
+																												"td:eq(3)")
+																										.text()
+																										.trim(); // Assuming the status is in the 4th column (index 3)
+
+																								if (filterOption === "all"
+																										|| filterOption === status
+																												.toLowerCase()
+																												.replace(
+																														" ",
+																														"")) {
+																									$(
+																											this)
+																											.show(); // Show the row
+																								} else {
+																									$(
+																											this)
+																											.hide(); // Hide the row
+																								}
+																							});
+																		});
+
+														// Function to handle dropdown item click for sorting
+														$(".zone")
+																.click(
+																		function(
+																				e) {
+																			e
+																					.preventDefault();
+
+																			// Get the selected filter option text
+																			var filterOption = $(
+																					this)
+																					.text()
+																					.toLowerCase();
+
+																			// Loop through table rows and show/hide based on the selected option
+																			$(
+																					"#patientListTable tbody tr")
+																					.each(
+																							function() {
+																								var status = $(
+																										this)
+																										.find(
+																												"td:eq(4)")
+																										.text()
+																										.trim()
+																										.toLowerCase(); // Assuming the status is in the 4th column (index 3)
+
+																								if (filterOption === "all"
+																										|| filterOption === status) {
+																									$(
+																											this)
+																											.show(); // Show the row
+																								} else {
+																									$(
+																											this)
+																											.hide(); // Hide the row
+																								}
+																							});
+																		});
+													});
+								</script>
 
 								<div class="card-body">
 									<h5 class="card-title">
 										Queue List <span>| Masterdata</span>
 									</h5>
 
-									<table id="userListTable"
+									<table id="patientListTable"
 										class="table table-borderless datatable">
 										<thead>
 											<tr>
@@ -67,7 +152,6 @@
 												<th scope="col">Name</th>
 												<th scope="col">Gender</th>
 												<th scope="col">Health Status</th>
-												<th scope="col"></th>
 												<th scope="col"></th>
 											</tr>
 										</thead>
@@ -96,133 +180,132 @@
 												<%
 												}
 												%>
-												<td scope="row"><a
-												href="/hms/AssignMedication?patientID=<%=p.getIdpatient()%>&patientName=<%=p.getName()%>">Assign
-													Medication</a></a></td>
-											<td scope="row"><a href="" data-bs-toggle="modal"
-												data-bs-target="#viewPatientModal<%=p.getIdpatient()%>">More
-													Detail</a>
-												<div class="modal"
-													id="viewPatientModal<%=p.getIdpatient()%>">
-													<div class="modal-dialog modal-dialog-centered modal-lg">
-														<div class="modal-content">
-															<!-- Modal header -->
-															<div class="modal-header">
-																<h5 class="modal-title">View Patient</h5>
-																<button type="button" class="btn-close"
-																	data-bs-dismiss="modal" aria-label="Close"></button>
+												<td scope="row"><a href="" data-bs-toggle="modal"
+													data-bs-target="#viewPatientModal<%=p.getIdpatient()%>">More
+														Detail</a>
+													<div class="modal"
+														id="viewPatientModal<%=p.getIdpatient()%>">
+														<div class="modal-dialog modal-dialog-centered modal-lg">
+															<div class="modal-content">
+																<!-- Modal header -->
+																<div class="modal-header">
+																	<h5 class="modal-title">View Patient</h5>
+																	<button type="button" class="btn-close"
+																		data-bs-dismiss="modal" aria-label="Close"></button>
+																</div>
+
+																<!-- Modal body -->
+																<form action="/hms/AddPatient" method="post">
+																	<div class="modal-body">
+																		<div class="form-group row">
+																			<label for="email" class="col-sm-3 col-form-label">Name</label>
+																			<div class="col-sm-9">
+																				<input type="text" class="form-control" id="name"
+																					name="name" placeholder="Name"
+																					value="<%=p.getName()%>" required disabled>
+																			</div>
+																		</div>
+																		<div class="form-group row">
+																			<label for="identificationcard"
+																				class="col-sm-3 col-form-label">Identification
+																				Card No.</label>
+																			<div class="col-sm-9">
+																				<input type="text" class="form-control"
+																					id="identificationcard" name="identificationcard"
+																					placeholder="Identification Card"
+																					value="<%=p.getIc()%>" required disabled>
+																			</div>
+																		</div>
+																		<div class="form-group row">
+																			<label for="gender" class="col-sm-3 col-form-label">Gender</label>
+																			<div class="col-sm-9">
+																				<input type="text" class="form-control" id="gender"
+																					name="gender" placeholder="Gender"
+																					value="<%=p.getGender()%>" required disabled>
+																			</div>
+																		</div>
+																		<div class="form-group row">
+																			<label for="phoneNum" class="col-sm-3 col-form-label">Phone
+																				No.</label>
+																			<div class="col-sm-9">
+																				<input type="text" class="form-control"
+																					id="phoneNum" name="phoneNum"
+																					placeholder="Phone No."
+																					value="<%=p.getPhonenumber()%>" required disabled>
+																			</div>
+																		</div>
+																		<div class="form-group row">
+																			<label for="nationality"
+																				class="col-sm-3 col-form-label">Nationality</label>
+																			<div class="col-sm-9">
+																				<input type="text" class="form-control"
+																					id="nationality" name="nationality"
+																					placeholder="Nationality"
+																					value="<%=p.getNationality()%>" required disabled>
+																			</div>
+
+																		</div>
+																		<div class="form-group row">
+																			<label for="dateOfBirth"
+																				class="col-sm-3 col-form-label">Date of
+																				Birth</label>
+																			<div class="col-sm-9">
+																				<input type="date" class="form-control" id="date"
+																					name="date" value="<%=p.getDateofbirth()%>"
+																					required disabled>
+																			</div>
+																		</div>
+
+																		<div class="form-group row">
+																			<label for="inputAddress3"
+																				class="col-sm-3 col-form-label">Address</label>
+																			<div class="col-sm-9">
+																				<input type="text" class="form-control" id="address"
+																					name="address" placeholder="address"
+																					value="<%=p.getAddress()%>" required disabled>
+																			</div>
+
+																		</div>
+																		<div class="form-group row">
+																			<label for="appointmentDate"
+																				class="col-sm-3 col-form-label">Appointment
+																				Date</label>
+																			<div class="col-sm-9">
+																				<input type="datetime-local" class="form-control"
+																					id="datetime-local" name="appointmentDate"
+																					value="<%=p.getAppointmentDate()%>" required
+																					disabled>
+																			</div>
+																		</div>
+																		<div class="form-group row">
+																			<label for="status" class="col-sm-3 col-form-label">Health
+																				Status</label>
+																			<div class="col-sm-9">
+																				<%
+																				if (p.getStatus() == 1) {
+																				%>
+																				<input type="text" class="form-control" id="status"
+																					name="status" value="Red Zone" required disabled>
+																				<%
+																				} else {
+																				%>
+																				<input type="text" class="form-control" id="status"
+																					name="status" value="Green Zone" required disabled>
+																				<%
+																				}
+																				%>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="modal-footer">
+																		<button type="button" class="btn btn-secondary"
+																			data-bs-dismiss="modal">Close</button>
+																	</div>
+																</form>
 															</div>
-
-															<!-- Modal body -->
-															<form action="/hms/AddPatient" method="post">
-																<div class="modal-body">
-																	<div class="form-group row">
-																		<label for="email" class="col-sm-3 col-form-label">Name</label>
-																		<div class="col-sm-9">
-																			<input type="text" class="form-control" id="name"
-																				name="name" placeholder="Name"
-																				value="<%=p.getName()%>" required disabled>
-																		</div>
-																	</div>
-																	<div class="form-group row">
-																		<label for="identificationcard"
-																			class="col-sm-3 col-form-label">Identification
-																			Card No.</label>
-																		<div class="col-sm-9">
-																			<input type="text" class="form-control"
-																				id="identificationcard" name="identificationcard"
-																				placeholder="Identification Card"
-																				value="<%=p.getIc()%>" required disabled>
-																		</div>
-																	</div>
-																	<div class="form-group row">
-																		<label for="gender" class="col-sm-3 col-form-label">Gender</label>
-																		<div class="col-sm-9">
-																			<input type="text" class="form-control" id="gender"
-																				name="gender" placeholder="Gender"
-																				value="<%=p.getGender()%>" required disabled>
-																		</div>
-																	</div>
-																	<div class="form-group row">
-																		<label for="phoneNum" class="col-sm-3 col-form-label">Phone
-																			No.</label>
-																		<div class="col-sm-9">
-																			<input type="text" class="form-control" id="phoneNum"
-																				name="phoneNum" placeholder="Phone No."
-																				value="<%=p.getPhonenumber()%>" required disabled>
-																		</div>
-																	</div>
-																	<div class="form-group row">
-																		<label for="nationality"
-																			class="col-sm-3 col-form-label">Nationality</label>
-																		<div class="col-sm-9">
-																			<input type="text" class="form-control"
-																				id="nationality" name="nationality"
-																				placeholder="Nationality"
-																				value="<%=p.getNationality()%>" required disabled>
-																		</div>
-
-																	</div>
-																	<div class="form-group row">
-																		<label for="dateOfBirth"
-																			class="col-sm-3 col-form-label">Date of Birth</label>
-																		<div class="col-sm-9">
-																			<input type="date" class="form-control" id="date"
-																				name="date" value="<%=p.getDateofbirth()%>" required
-																				disabled>
-																		</div>
-																	</div>
-
-																	<div class="form-group row">
-																		<label for="inputAddress3"
-																			class="col-sm-3 col-form-label">Address</label>
-																		<div class="col-sm-9">
-																			<input type="text" class="form-control" id="address"
-																				name="address" placeholder="address"
-																				value="<%=p.getAddress()%>" required disabled>
-																		</div>
-
-																	</div>
-																	<div class="form-group row">
-																		<label for="appointmentDate"
-																			class="col-sm-3 col-form-label">Appointment
-																			Date</label>
-																		<div class="col-sm-9">
-																			<input type="datetime-local" class="form-control"
-																				id="datetime-local" name="appointmentDate"
-																				value="<%=p.getAppointmentDate()%>" required
-																				disabled>
-																		</div>
-																	</div>
-																	<div class="form-group row">
-																		<label for="status" class="col-sm-3 col-form-label">Health
-																			Status</label>
-																		<div class="col-sm-9">
-																			<%
-																			if (p.getStatus() == 1) {
-																			%>
-																			<input type="text" class="form-control" id="status"
-																				name="status" value="Red Zone" required disabled>
-																			<%
-																			} else {
-																			%>
-																			<input type="text" class="form-control" id="status"
-																				name="status" value="Green Zone" required disabled>
-																			<%
-																			}
-																			%>
-																		</div>
-																	</div>
-																</div>
-																<div class="modal-footer">
-																	<button type="button" class="btn btn-secondary"
-																		data-bs-dismiss="modal">Close</button>
-																</div>
-															</form>
 														</div>
-													</div>
-												</div></td>
-												
+													</div></td>
+
 												<%
 												}
 												%>
