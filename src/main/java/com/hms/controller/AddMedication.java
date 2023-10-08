@@ -53,9 +53,11 @@ public class AddMedication extends HttpServlet {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DatabaseConnection.getConnection();
-			Statement stat = con.createStatement();
-			stat.executeUpdate("insert into medication_list (medicationItem) " + "values('" + medicationItem + "')");
-			PreparedStatement pst7 = con.prepareStatement("select * from medication_list");
+			PreparedStatement pst = con.prepareStatement("INSERT INTO medication_list (medicationItem) VALUES (?)");
+			pst.setString(1, medicationItem);
+			int rowsAffected = pst.executeUpdate();
+			
+			PreparedStatement pst7 = con.prepareStatement("SELECT * FROM medication_list");
 			ResultSet rs7 = pst7.executeQuery();
 			while (rs7.next()) {
 				MedicationList medicationList = new MedicationList();

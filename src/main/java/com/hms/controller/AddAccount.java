@@ -74,14 +74,24 @@ public class AddAccount extends HttpServlet {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DatabaseConnection.getConnection();
-			Statement stat = con.createStatement();
-			stat.executeUpdate(
-					"insert into user (name, email, password, ic, gender, phonenumber, nationality, dateofbirth, address, accesslevel, role) "
-							+ "values('" + name + "','" + email + "','" + password + "','" + ic + "','" + gender + "','"
-							+ phonenumber + "','" + nationality + "','" + dateofbirth + "','" + address + "','"
-							+ accesslevel + "','" + role + "')");
-			
-			PreparedStatement pst6 = con.prepareStatement("select * from user");
+			PreparedStatement pst = con.prepareStatement(
+					"INSERT INTO user (name, email, password, ic, gender, phonenumber, nationality, dateofbirth, address, accesslevel, role) "
+							+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			pst.setString(1, name);
+			pst.setString(2, email);
+			pst.setString(3, password);
+			pst.setString(4, ic);
+			pst.setString(5, gender);
+			pst.setString(6, phonenumber);
+			pst.setString(7, nationality);
+			pst.setString(8, dateofbirth);
+			pst.setString(9, address);
+			pst.setString(10, accesslevel);
+			pst.setString(11, role);
+
+			int rowsAffected = pst.executeUpdate();
+
+			PreparedStatement pst6 = con.prepareStatement("SELECT * from user");
 			ResultSet rs6 = pst6.executeQuery();
 			while (rs6.next()) {
 				User user = new User();

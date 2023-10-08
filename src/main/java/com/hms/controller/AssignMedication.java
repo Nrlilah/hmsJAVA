@@ -2,7 +2,6 @@ package com.hms.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -91,64 +90,44 @@ public class AssignMedication extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		ArrayList<Medication> Medicationlist = new ArrayList<Medication>();
 		String medicationItem = request.getParameter("medicationItem").trim();
 		String Dosage = request.getParameter("Dosage").trim();
 		String Frequency = request.getParameter("Frequency").trim();
 		String startDateTime = request.getParameter("startDateTime").trim();
 		String endDateTime = request.getParameter("endDateTime").trim();
 		String notes = request.getParameter("notes").trim();
-//		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//		
 		LocalDate startDate = LocalDate.parse(startDateTime, formatter);
 		LocalDate endDate = LocalDate.parse(endDateTime, formatter);
-
-		// Calculate the difference between the two local date objects
 		Period period = Period.between(startDate, endDate);
-
-		// Get the difference in days
 		int duration = period.getDays();
-		System.out.println(medicationItem + Dosage + startDateTime + endDateTime + notes + duration);
+		System.out.println(medicationItem + Dosage + startDateTime + endDateTime + notes);
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DatabaseConnection.getConnection();
-			Statement stat = con.createStatement();
+			//Statement stat = con.createStatement();
 			PreparedStatement pst = con
 					.prepareStatement("select medicationList_id FROM medication_list WHERE medicationItem = ? ");
 			pst.setString(1, medicationItem);
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
-				stat.executeUpdate(
-						"insert into medication(medicationList_id, patientid, dosage, frequency, startdatetime, enddatetime, duration, notes, prescribeby) values("
-								+ rs.getInt("medicationList_id") + "," + session.getAttribute("patientID") + ",'"
-								+ Dosage + "','" + Frequency + "','" + startDateTime + "','" + endDateTime + "','"
-								+ duration + "','" + notes + "'," + session.getAttribute("USERid") + ")");
-
-				pst = con.prepareStatement(
-						"SELECT * FROM medication INNER JOIN medication_list ON medication.medicationList_id = medication_list.medicationList_id WHERE patientid = ?");
-
-				pst.setInt(1, Integer.parseInt(session.getAttribute("patientID").toString()));
-				ResultSet rs2 = pst.executeQuery();
-				while (rs2.next()) {
-					Medication medication = new Medication();
-					medication.setMedicationid(rs2.getInt("medicationid"));
-					medication.setPatientid(rs2.getInt("patientid"));
-					medication.setDosage(rs2.getString("dosage"));
-					medication.setFrequency(rs2.getString("frequency"));
-					medication.setStartdatetime(rs2.getString("startdatetime"));
-					medication.setEnddatetime(rs2.getString("enddatetime"));
-					medication.setDuration(rs2.getString("duration"));
-					medication.setNotes(rs2.getString("notes"));
-					medication.setPrescribeby(rs2.getInt("prescribeby"));
-					medication.setMedicationList_id(rs2.getInt("medicationList_id"));
-					medication.setMedicationItem(rs2.getString("medicationItem"));
-					Medicationlist.add(medication);
-				}
-				session.setAttribute("MedicationListData", Medicationlist);
-				response.sendRedirect("jsp/AssignMedication.jsp");
+				PreparedStatement pst2 = con.prepareStatement("INSERT INTO medication (medicationList_id, patientid, dosage, frequency, startdatetime, enddatetime, duration, notes, prescribeby) "
+						+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+				pst2.setInt(1, rs.getInt("medicationList_id"));
+				pst2.setInt(2, (int) session.getAttribute("patientID"));
+				pst2.setString(3, Dosage);
+				pst2.setString(4, Frequency);
+				pst2.setString(5, startDateTime);
+				pst2.setString(6, endDateTime);
+				pst2.setInt(7, duration);
+				pst2.setString(8, notes);
+				pst2.setInt(9, (int) session.getAttribute("USERid"));
+				
+				int rowsAffected = pst2.executeUpdate();
 			}
+			// doGet(request, response);
+			response.sendRedirect("jsp/AssignMedication.jsp");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 

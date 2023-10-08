@@ -55,35 +55,50 @@ public class AddPatient extends HttpServlet {
 		String phoneNum = request.getParameter("phoneNum").trim();
 		String nationality = request.getParameter("nationality").trim();
 		String dateOfBirth = request.getParameter("date").trim();
-		String address = request.getParameter("streetAddress").trim() + ", " + request.getParameter("postcode").trim() + ", "
-				+ request.getParameter("city").trim() + ", " + request.getParameter("state").trim();
+		String address = request.getParameter("streetAddress").trim() + ", " + request.getParameter("postcode").trim()
+				+ ", " + request.getParameter("city").trim() + ", " + request.getParameter("state").trim();
 		String appointmentDate = request.getParameter("appointmentDate");
 		String status = request.getParameter("status").trim();
-		System.out
-				.println(name + identificationcard + phoneNum + nationality + dateOfBirth + address + appointmentDate+status);
+		System.out.println(
+				name + identificationcard + phoneNum + nationality + dateOfBirth + address + appointmentDate + status);
 		System.out.println("AAAAAAAAAAAAA" + name);
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DatabaseConnection.getConnection();
-			Statement stat = con.createStatement();
-			stat.executeUpdate("insert into patient(name, ic, gender, phonenumber, nationality, dateofbirth, address, appointmentDate, status, statusprogress) values('" + name + "','" + identificationcard
-					+ "','" + gender + "','" + phoneNum + "','" + nationality + "','" + dateOfBirth +  "','" + address + "','" + appointmentDate + "','" + status +"','Registered')");
-			ArrayList<Patient> patientlist = new ArrayList<Patient>();
-			PreparedStatement pst2 = con.prepareStatement("select * from patient");
-			ResultSet rs2 = pst2.executeQuery();
-			
-			PreparedStatement pst3 = con.prepareStatement("select count(idPatient) as red from patient where status = 1");
-			ResultSet rs3 = pst3.executeQuery();
-			
-			PreparedStatement pst4 = con.prepareStatement("select count(idPatient) as green from patient where status = 2");
-			ResultSet rs4 = pst4.executeQuery();
-			
-			PreparedStatement pst5 = con.prepareStatement("select count(idPatient) as blue from patient where status = 3");
-			ResultSet rs5 = pst5.executeQuery();
-			
-			
-			
+
+			// Use prepared statement to insert patient record
+			PreparedStatement pst2 = con.prepareStatement("INSERT INTO patient (name, ic, gender, phonenumber, nationality, dateofbirth, address, appointmentDate, status, statusprogress) "
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'Registered')");
+			pst2.setString(1, name);
+			pst2.setString(2, identificationcard);
+			pst2.setString(3, gender);
+			pst2.setString(4, phoneNum);
+			pst2.setString(5, nationality);
+			pst2.setString(6, dateOfBirth);
+			pst2.setString(7, address);
+			pst2.setString(8, appointmentDate);
+			pst2.setString(9, status);
+			pst2.executeUpdate();
+
+			// Use prepared statement to retrieve patient records
+			String selectPatientQuery = "SELECT * FROM patient";
+			PreparedStatement pstSelectPatient = con.prepareStatement(selectPatientQuery);
+			ResultSet rs2 = pstSelectPatient.executeQuery();
+
+			// Use prepared statements to retrieve status counts
+			String countRedQuery = "SELECT COUNT(idPatient) AS red FROM patient WHERE status = 1";
+			String countGreenQuery = "SELECT COUNT(idPatient) AS green FROM patient WHERE status = 2";
+			String countBlueQuery = "SELECT COUNT(idPatient) AS blue FROM patient WHERE status = 3";
+
+			PreparedStatement pstCountRed = con.prepareStatement(countRedQuery);
+			PreparedStatement pstCountGreen = con.prepareStatement(countGreenQuery);
+			PreparedStatement pstCountBlue = con.prepareStatement(countBlueQuery);
+
+			ResultSet rs3 = pstCountRed.executeQuery();
+			ResultSet rs4 = pstCountGreen.executeQuery();
+			ResultSet rs5 = pstCountBlue.executeQuery();
+
 			if (rs3.next()) {
 				session.setAttribute("red", rs3.getString("red"));
 			}
@@ -93,6 +108,9 @@ public class AddPatient extends HttpServlet {
 			if (rs5.next()) {
 				session.setAttribute("blue", rs5.getString("blue"));
 			}
+
+			ArrayList<Patient> patientlist = new ArrayList<Patient>();
+
 			while (rs2.next()) {
 				Patient patient = new Patient();
 				patient.setIc(rs2.getString("ic"));
@@ -102,12 +120,21 @@ public class AddPatient extends HttpServlet {
 				patient.setStatusprogress(rs2.getString("statusprogress"));
 				patientlist.add(patient);
 			}
-			System.out.print(patientlist);
+
 			session.setAttribute("PatientData", patientlist);
 			response.sendRedirect("jsp/Welcome.jsp");
+
+			// Close resources
+			rs2.close();
+			pstSelectPatient.close();
+			pstCountRed.close();
+			pstCountGreen.close();
+			pstCountBlue.close();
+			pst2.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+
 	}
 
 }

@@ -32,13 +32,13 @@
 				<div class="col-lg-12">
 					<div class="row">
 						<%
-							int r = Integer.parseInt(session.getAttribute("red").toString());
-							int g = Integer.parseInt(session.getAttribute("green").toString());
-							int b = Integer.parseInt(session.getAttribute("blue").toString());
+						int r = Integer.parseInt(session.getAttribute("red").toString());
+						int g = Integer.parseInt(session.getAttribute("green").toString());
+						int b = Integer.parseInt(session.getAttribute("blue").toString());
 
-							double pr = (r * 100) / (r + g + b);
-							double pg = (g * 100) / (r + g + b);
-							double pb = (b * 100) / (r + g + b);
+						double pr = (r * 100) / (r + g + b);
+						double pg = (g * 100) / (r + g + b);
+						double pb = (b * 100) / (r + g + b);
 						%>
 						<!-- Red Zone Card-->
 						<div class="col-xxl-4 col-md-6">
@@ -299,6 +299,7 @@
 										<th scope="col">Gender</th>
 										<th scope="col">Health Status</th>
 										<th scope="col"></th>
+										<th scope="col"></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -315,17 +316,24 @@
 										%>
 										<td><span class="badge bg-danger">Red Zone</span></td>
 										<td scope="row"><a href="" data-bs-toggle="modal"
+											data-bs-target="#addPredicamentModal">Add Predicament</a></td>
+										<td scope="row"><a href="" data-bs-toggle="modal"
 											data-bs-target="#addPatientModal">More Detail</a></td>
+
 										<%
 										} else if (u.getStatus() == 2) {
 										%>
 										<td><span class="badge bg-success">Green Zone</span></td>
+										<td scope="row"><a href="" data-bs-toggle="modal"
+											data-bs-target="#addPredicamentModal">Add Predicament</a></td>
 										<td scope="row"><a href="" data-bs-toggle="modal"
 											data-bs-target="#addPatientModal">More Detail</a></td>
 										<%
 										} else {
 										%>
 										<td><span class="badge bg-secondary">Discharged</span></td>
+										<td scope="row"><a href="" data-bs-toggle="modal"
+											data-bs-target="#addPredicamentModal">Add Predicament</a></td>
 										<td scope="row"><a href="" data-bs-toggle="modal"
 											data-bs-target="#addPatientModal">More Detail</a></td>
 										<%
