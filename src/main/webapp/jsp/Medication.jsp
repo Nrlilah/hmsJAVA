@@ -76,6 +76,7 @@
 											<th scope="col">Name</th>
 											<th scope="col">Gender</th>
 											<th scope="col">Health Status</th>
+											<th scope="col">Status Progress</th>
 											<th scope="col"></th>
 											<th scope="col"></th>
 										</tr>
@@ -89,9 +90,25 @@
 											<td><%=u.getIc()%></td>
 											<td><%=u.getName()%></td>
 											<td><%=u.getGender()%></td>
+											<%
+											if (u.getStatus() == 1) {
+											%>
+											<td><span class="badge bg-danger">Red Zone</span></td>
+											<%
+											} else if (u.getStatus() == 2) {
+											%>
+											<td><span class="badge bg-success">Green Zone</span></td>
+											<%
+											} else {
+											%>
+											<td><span class="badge bg-secondary">Discharged</span></td>
+											<%
+											}
+											%>
+											<td><%=u.getStatusprogress()%></td>
 											<td scope="row"><a
 												href="/hms/AssignMedication?patientID=<%=u.getIdpatient()%>&patientName=<%=u.getName()%>">Assign
-													Medication</a></a></td>
+													Medication</a></td>
 											<td scope="row"><a href="" data-bs-toggle="modal"
 												data-bs-target="#viewPatientModal<%=u.getIdpatient()%>">More
 													Detail</a>
@@ -215,39 +232,6 @@
 														</div>
 													</div>
 												</div></td>
-											<%
-											if (u.getStatus() == 1) {
-											%>
-											<td><span class="badge bg-danger">Red Zone</span></td>
-											<td scope="row"><a
-												href="/hms/AssignMedication?patientID=<%=u.getIdpatient()%>">Assign
-													Medication</a></a></td>
-											<td scope="row"><a href="" data-bs-toggle="modal"
-												data-bs-target="#viewPatientModal<%=u.getIdpatient()%>">More
-													Detail</a></td>
-											<%
-											} else if (u.getStatus() == 2) {
-											%>
-											<td><span class="badge bg-success">Green Zone</span></td>
-											<td scope="row"><a
-												href="/hms/AssignMedication?patientID=<%=u.getIdpatient()%>">Assign
-													Medication</a></a></td>
-											<td scope="row"><a href="" data-bs-toggle="modal"
-												data-bs-target="#viewPatientModal<%=u.getIdpatient()%>">More
-													Detail</a></td>
-											<%
-											} else {
-											%>
-											<td><span class="badge bg-secondary">Discharged</span></td>
-											<td scope="row"><a
-												href="/hms/AssignMedication?patientID=<%=u.getIdpatient()%>">Assign
-													Medication</a></a></td>
-											<td scope="row"><a href="" data-bs-toggle="modal"
-												data-bs-target="#viewPatientModal<%=u.getIdpatient()%>">More
-													Detail</a></td>
-											<%
-											}
-											%>
 
 											<%
 											}

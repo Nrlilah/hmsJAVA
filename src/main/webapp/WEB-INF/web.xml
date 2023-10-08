@@ -68,6 +68,18 @@
 		<description></description>
 		<servlet-class>com.hms.controller.PatientAssignation</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>DischargedPatient</servlet-name>
+		<display-name>DischargedPatient</display-name>
+		<description></description>
+		<servlet-class>com.hms.controller.DischargedPatient</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>AssignPredicament</servlet-name>
+		<display-name>AssignPredicament</display-name>
+		<description></description>
+		<servlet-class>com.hms.controller.AssignPredicament</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Register</servlet-name>
 		<url-pattern>/Register</url-pattern>
@@ -111,6 +123,14 @@
 	<servlet-mapping>
 		<servlet-name>PatientAssignation</servlet-name>
 		<url-pattern>/PatientAssignation</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DischargedPatient</servlet-name>
+		<url-pattern>/DischargedPatient</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AssignPredicament</servlet-name>
+		<url-pattern>/AssignPredicament</url-pattern>
 	</servlet-mapping>
 	<session-config>
 		<session-timeout>60</session-timeout>

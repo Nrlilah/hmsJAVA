@@ -12,7 +12,16 @@ public class User {
 	private String phonenumber;
 	private String nationality;
 	private String address;
+	private String dateofbirth;
 	
+	public String getDateofbirth() {
+		return dateofbirth;
+	}
+
+	public void setDateofbirth(String dateofbirth) {
+		this.dateofbirth = dateofbirth;
+	}
+
 	public int getId() {
 		return id;
 	}
