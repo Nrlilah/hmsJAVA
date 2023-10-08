@@ -230,7 +230,7 @@ public class Login extends HttpServlet {
 				session.setAttribute("PatientData", patientlist);
 				session.setAttribute("UserData", userlist);
 				session.setAttribute("MedicationListListData", medicationlistlist);
-				session.setAttribute("PredicamentListlListData", predicamentlistlist);
+				session.setAttribute("PredicamentListListData", predicamentlistlist);
 				session.setAttribute("patientQueue", patientQueue);
 				session.setAttribute("patientTime", patientTime);
 				session.setAttribute("patientAssignedlist", patientAssignedlist);

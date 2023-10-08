@@ -16,7 +16,7 @@
 		</a></li>
 		<li class="nav-item"><a class="nav-link collapsed"
 			id="medication-link" href="Medication.jsp"> <i
-				class="bi bi-card-list"></i> <span>Patient Medication</span>
+				class="bi bi-card-list"></i> <span>Patient Diagnosis</span>
 		</a></li>
 		<li class="nav-item"><a class="nav-link collapsed"
 			id="scheduling-link" href="Scheduling.jsp"> <i
@@ -35,7 +35,7 @@
 		</a></li>
 		<li class="nav-item"><a class="nav-link collapsed"
 			id="medication-link" href="Medication.jsp"> <i
-				class="bi bi-card-list"></i> <span>Patient Medication</span>
+				class="bi bi-card-list"></i> <span>Patient Diagnosis</span>
 		</a></li>
 		<li class="nav-item"><a class="nav-link collapsed"
 			id="scheduling-link" href="Scheduling.jsp"> <i
