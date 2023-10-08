@@ -336,129 +336,118 @@
 													<div class="modal" id="viewAccountModal<%=u.getId()%>">
 														<div class="modal-dialog modal-dialog-centered modal-lg">
 															<div class="modal-content">
-																<form action="/hms/AddAccount" method="post"
-																	class="mx-3">
-																	<!-- Modal header -->
-																	<div class="modal-header">
-																		<h5 class="modal-title">Add Account Form</h5>
-																		<button type="button" class="btn-close"
-																			data-bs-dismiss="modal" aria-label="Close"></button>
+																<!-- Modal header -->
+																<div class="modal-header">
+																	<h5 class="modal-title">View Account</h5>
+																	<button type="button" class="btn-close"
+																		data-bs-dismiss="modal" aria-label="Close"></button>
+																</div>
+
+																<!-- Modal body -->
+																<div class="modal-body">
+																	<div class="form-group row">
+																		<label for="inputName3"
+																			class="col-sm-3 col-form-label">Name</label>
+																		<div class="col-sm-9">
+																			<input type="text" class="form-control" id="name"
+																				name="name" value="<%=u.getName()%>"
+																				placeholder="Name" disabled>
+																		</div>
+																	</div>
+																	<div class="form-group row">
+																		<label for="inputEmail3"
+																			class="col-sm-3 col-form-label">Email</label>
+																		<div class="col-sm-9">
+																			<input type="email" class="form-control" id="email"
+																				name="email" value="<%=u.getEmail()%>"
+																				placeholder="Email" disabled>
+																		</div>
+																	</div>
+																	<div class="form-group row">
+																		<label for="inputPassword3"
+																			class="col-sm-3 col-form-label">Password</label>
+																		<div class="col-sm-9">
+																			<input type="text" class="form-control" id="password"
+																				name="password" value="<%=u.getPassword()%>" disabled>
+																		</div>
+
 																	</div>
 
-																	<!-- Modal body -->
-																	<div class="modal-body">
-																		<div class="form-group row">
-																			<label for="inputName3"
-																				class="col-sm-3 col-form-label">Name</label>
-																			<div class="col-sm-9">
-																				<input type="text" class="form-control"
-																					id="inputName3" name="name" value="<%=u.getName()%>" placeholder="Name">
-																			</div>
+																	<div class="form-group row">
+																		<label for="inputIC3" class="col-sm-3 col-form-label">Identification
+																			Card No.</label>
+																		<div class="col-sm-9">
+																			<input type="text" class="form-control" id="ic"
+																				name="ic" value="<%=u.getIc()%>"
+																				placeholder="IC Number" disabled>
 																		</div>
-																		<div class="form-group row">
-																			<label for="inputEmail3"
-																				class="col-sm-3 col-form-label">Email</label>
-																			<div class="col-sm-9">
-																				<input type="email" class="form-control"
-																					id="inputEmail3" name="email" value="<%=u.getEmail()%>" placeholder="Email">
-																			</div>
-																		</div>
-																		<div class="form-group row">
-																			<label for="inputPassword3"
-																				class="col-sm-3 col-form-label">Password</label>
-																			<div class="col-sm-9">
-																				<input type="text" class="form-control"
-																					id="inputPassword3" name="password" value="<%=u.getPassword()%>">
-																			</div>
-
-																		</div>
-
-																		<div class="form-group row">
-																			<label for="inputIC3" class="col-sm-3 col-form-label">Identification
-																				Card No.</label>
-																			<div class="col-sm-9">
-																				<input type="text" class="form-control"
-																					id="inputIC3" name="ic" value="<%=u.getIc()%>" placeholder="IC Number">
-																			</div>
-																		</div>
-																		<div class="form-group row">
-																			<label for="gender" class="col-sm-3 col-form-label">Gender</label>
-																			<div class="col-sm-9">
-																				<select class="form-select" id="gender"
-																					name="gender" aria-label="Gender">
-																					<option value="Male">Male</option>
-																					<option value="Female">Female</option>
-																				</select>
-																			</div>
-																		</div>
-
-																		<div class="form-group row">
-																			<label for="inputdob3"
-																				class="col-sm-3 col-form-label">Date of
-																				Birth</label>
-																			<div class="col-sm-9">
-																				<input type="date" class="form-control" id="date"
-																					name="dateofbirth">
-																			</div>
-																		</div>
-
-
-																		<div class="form-group row">
-																			<label for="inputphonenum"
-																				class="col-sm-3 col-form-label">Phone Number</label>
-																			<div class="col-sm-9">
-																				<input type="text" class="form-control"
-																					id="inputphonenum" name="phonenumber"
-																					placeholder="Phone Number">
-																			</div>
-																		</div>
-																		<div class="form-group row">
-																			<label for="inputnationality"
-																				class="col-sm-3 col-form-label">Nationality</label>
-																			<div class="col-sm-9">
-																				<input type="text" class="form-control"
-																					id="inputnationality" name="nationality"
-																					placeholder="Nationality">
-																			</div>
-																		</div>
-																		<div class="form-group row">
-																			<label for="inputAddress3"
-																				class="col-sm-3 col-form-label">Address</label>
-																			<div class="col-sm-9">
-																				<input type="text" class="form-control"
-																					id="streetAddress" name="streetAddress"
-																					placeholder="Street Address" required> <input
-																					type="text" class="form-control" id="city"
-																					name="city" placeholder="City" required> <input
-																					type="text" class="form-control" id="state"
-																					name="state" placeholder="State" required>
-																				<input type="text" class="form-control"
-																					id="postcode" name="postcode"
-																					placeholder="Postcode" required>
-																			</div>
-																		</div>
-																		<div class="form-group row">
-																			<label for="accesslevel"
-																				class="col-sm-3 col-form-label">Access Level</label>
-																			<div class="col-sm-9">
-																				<select class="form-select" id="accesslevel"
-																					name="accesslevel" aria-label="accesslevel">
-																					<option value="0">Administrator</option>
-																					<option value="2">Doctor</option>
-																					<option value="1">Nurse</option>
-																				</select>
-																			</div>
+																	</div>
+																	<div class="form-group row">
+																		<label for="gender" class="col-sm-3 col-form-label">Gender</label>
+																		<div class="col-sm-9">
+																			<input type="text" class="form-control" id="gender"
+																				name="gender" value="<%=u.getGender()%>"
+																				placeholder="IC Number" disabled>
 																		</div>
 																	</div>
 
-																	<!-- Modal Footer -->
-																	<div class="modal-footer">
-																		<button type="button" class="btn btn-secondary"
-																			data-bs-dismiss="modal">Close</button>
-																		<button type="submit" class="btn btn-primary">Save
-																			changes</button>
+																	<div class="form-group row">
+																		<label for="inputdob3" class="col-sm-3 col-form-label">Date
+																			of Birth</label>
+																		<div class="col-sm-9">
+																			<input type="date" class="form-control"
+																				id="dateofbirth" name="dateofbirth"
+																				value="<%=u.getDateofbirth()%>" disabled>
+																		</div>
 																	</div>
-																</form>
+
+																	<div class="form-group row">
+																		<label for="inputphonenum"
+																			class="col-sm-3 col-form-label">Phone Number</label>
+																		<div class="col-sm-9">
+																			<input type="text" class="form-control"
+																				id="phonenumber" name="phonenumber"
+																				placeholder="Phone Number"
+																				value="<%=u.getDateofbirth()%>" disabled>
+																		</div>
+																	</div>
+																	<div class="form-group row">
+																		<label for="inputnationality"
+																			class="col-sm-3 col-form-label">Nationality</label>
+																		<div class="col-sm-9">
+																			<input type="text" class="form-control"
+																				id="nationality" name="nationality"
+																				placeholder="Nationality"
+																				value="<%=u.getNationality()%>" disabled>
+																		</div>
+																	</div>
+																	<div class="form-group row">
+																		<label for="inputAddress3"
+																			class="col-sm-3 col-form-label">Address</label>
+																		<div class="col-sm-9">
+																			<input type="text" class="form-control"
+																				id="streetAddress" name="streetAddress"
+																				placeholder="Street Address" required
+																				value="<%=u.getAddress()%>" disabled>
+																		</div>
+																	</div>
+																	<div class="form-group row">
+																		<label for="accesslevel"
+																			class="col-sm-3 col-form-label">Role</label>
+																		<div class="col-sm-9">
+																			<input type="text" class="form-control"
+																				id="accesslevel" name="accesslevel"
+																				placeholder="Access level" required
+																				value="<%=u.getRole()%>" disabled>
+																		</div>
+																	</div>
+																</div>
+
+																<!-- Modal Footer -->
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-secondary"
+																		data-bs-dismiss="modal">Close</button>
+																</div>
 															</div>
 														</div>
 													</div></td>

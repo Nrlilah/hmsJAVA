@@ -177,7 +177,7 @@ public class Login extends HttpServlet {
 					user.setPhonenumber(rs6.getString("phonenumber"));
 					user.setNationality(rs6.getString("nationality"));
 					user.setAddress(rs6.getString("address"));
-					// user.setStatus(Integer.parseInt(rs2.getString("status")));
+					user.setDateofbirth(rs6.getString("dateofbirth"));
 					userlist.add(user);
 				}
 				while (rs7.next()) {
