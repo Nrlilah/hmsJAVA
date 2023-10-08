@@ -24,7 +24,7 @@
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="Medication.jsp">Back</a></li>
-					<li class="breadcrumb-item active">Patient Medication</li>
+					<li class="breadcrumb-item active">Patient Diagnosis</li>
 				</ol>
 			</nav>
 		</div>
@@ -192,7 +192,7 @@
 											aria-label="predicament_name">
 
 											<%
-											ArrayList<PredicamentList> pll = (ArrayList<PredicamentList>) session.getAttribute("PredicamentListlListData");
+											ArrayList<PredicamentList> pll = (ArrayList<PredicamentList>) session.getAttribute("PredicamentListListData");
 											for (PredicamentList p : pll) {
 											%>
 											<option><%=p.getPredicament_name()%></option>

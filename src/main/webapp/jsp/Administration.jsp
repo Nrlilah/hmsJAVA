@@ -153,8 +153,8 @@
 																<input type="text" class="form-control"
 																	id="inputphonenum" name="phonenumber"
 																	placeholder="Phone Number" required
-																	pattern = "[0-9]{1,15}"
-																	title= "Please enter a maximum of 15-digit number without ' - ' or any non-numeric characters.">
+																	pattern="[0-9]{1,15}"
+																	title="Please enter a maximum of 15-digit number without ' - ' or any non-numeric characters.">
 															</div>
 														</div>
 														<div class="form-group row">
@@ -163,8 +163,7 @@
 															<div class="col-sm-9">
 																<input type="text" class="form-control"
 																	id="inputnationality" name="nationality"
-																	placeholder="Nationality" required
-																	pattern = "[A-Za-z\s]"
+																	placeholder="Nationality" required pattern="[A-Za-z\s]"
 																	title="Please enter only letters and spaces. Numbers are not allowed.">
 															</div>
 														</div>
@@ -227,8 +226,8 @@
 
 									<button type="button" class="btn btn-primary"
 										data-bs-toggle="modal" data-bs-target="#addMedicationModal">
-										<i class="bi bi-capsule-pill">Add
-										Medication</i></button>
+										<i class="bi bi-capsule-pill">Add Medication</i>
+									</button>
 
 									<div class="modal" id="addMedicationModal">
 										<div class="modal-dialog modal-dialog-centered modal-lg">
@@ -247,8 +246,9 @@
 															<label for="inputNameMedication"
 																class="col-sm-3 col-form-label">Medication Name</label>
 															<div class="col-sm-9">
-																<input type="text" class="form-control" id="medicationItem"
-																	name="medicationItem" placeholder="Medication Name" required>
+																<input type="text" class="form-control"
+																	id="medicationItem" name="medicationItem"
+																	placeholder="Medication Name" required>
 															</div>
 														</div>
 													</div>
@@ -282,8 +282,8 @@
 
 									<button type="button" class="btn btn-primary"
 										data-bs-toggle="modal" data-bs-target="#addPredicamentModal">
-										<i class="bi bi-bandaid">Add
-										Predicament</i></button>
+										<i class="bi bi-bandaid">Add Predicament</i>
+									</button>
 
 									<div class="modal" id="addPredicamentModal">
 										<div class="modal-dialog modal-dialog-centered modal-lg">
@@ -338,11 +338,95 @@
 										<li class="dropdown-header text-start">
 											<h6>Sort</h6>
 										</li>
-
-										<li><a class="dropdown-item" href="#">Ascending</a></li>
-										<li><a class="dropdown-item" href="#">Descending</a></li>
+										<li><a class="dropdown-item zone" href="#">All</a></li>
+										<li><a class="dropdown-item zone" href="#">Administrator</a></li>
+										<li><a class="dropdown-item zone" href="#">Doctor</a></li>
+										<li><a class="dropdown-item zone" href="#">Nurse</a></li>
 									</ul>
 								</div>
+
+								<script>
+									$(document)
+											.ready(
+													function() {
+														// Function to handle filter select change
+														$("#filterSelect")
+																.change(
+																		function() {
+																			var filterOption = $(
+																					this)
+																					.val();// Get the selected filter option
+
+																			// Loop through table rows and show/hide based on the selected option
+																			$(
+																					"#userListTable tbody tr")
+																					.each(
+																							function() {
+																								var status = $(
+																										this)
+																										.find(
+																												"td:eq(3)")
+																										.text()
+																										.trim(); // Assuming the status is in the 4th column (index 3)
+
+																								if (filterOption === "all"
+																										|| filterOption === status
+																												.toLowerCase()
+																												.replace(
+																														" ",
+																														"")) {
+																									$(
+																											this)
+																											.show(); // Show the row
+																								} else {
+																									$(
+																											this)
+																											.hide(); // Hide the row
+																								}
+																							});
+																		});
+
+														// Function to handle dropdown item click for sorting
+														$(".zone")
+																.click(
+																		function(
+																				e) {
+																			e
+																					.preventDefault();
+
+																			// Get the selected filter option text
+																			var filterOption = $(
+																					this)
+																					.text()
+																					.toLowerCase();
+
+																			// Loop through table rows and show/hide based on the selected option
+																			$(
+																					"#userListTable tbody tr")
+																					.each(
+																							function() {
+																								var status = $(
+																										this)
+																										.find(
+																												"td:eq(3)")
+																										.text()
+																										.trim()
+																										.toLowerCase(); // Assuming the status is in the 4th column (index 3)
+
+																								if (filterOption === "all"
+																										|| filterOption === status) {
+																									$(
+																											this)
+																											.show(); // Show the row
+																								} else {
+																									$(
+																											this)
+																											.hide(); // Hide the row
+																								}
+																							});
+																		});
+													});
+								</script>
 
 								<div class="card-body">
 									<h5 class="card-title">
@@ -543,6 +627,7 @@
 										<tr>
 											<th scope="col">ID</th>
 											<th scope="col">Medication</th>
+											<th scope="col"></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -553,6 +638,50 @@
 										<tr>
 											<td><%=m.getMedicationList_id()%></td>
 											<td><%=m.getMedicationItem()%></td>
+											<td><a href="#" data-bs-toggle="modal"
+												data-bs-target="#editMedicationModal<%=m.getMedicationList_id()%>">Edit</a>
+												<div class="modal"
+													id="editMedicationModal<%=m.getMedicationList_id()%>">
+													<div class="modal-dialog modal-dialog-centered modal-lg">
+														<div class="modal-content">
+															<form method="post" action="/hms/EditMedication">
+																<!-- Modal header -->
+																<div class="modal-header">
+																	<h5 class="modal-title">Medication List Form</h5>
+																	<button type="button" class="btn-close"
+																		data-bs-dismiss="modal" aria-label="Close"></button>
+																</div>
+
+																<!-- Modal body -->
+																<div class="modal-body">
+																	<div class="form-group row">
+																		<label for="inputNameMedication"
+																			class="col-sm-3 col-form-label">Medication
+																			Name</label>
+																		<div class="col-sm-9">
+																			<input type="text" class="form-control"
+																				id="medicationItemEDIT" 
+																				name="medicationItemEDIT"
+																				placeholder="Medication Name"
+																				value="<%=m.getMedicationItem()%>" required>
+																			<input type="hidden" class="form-control"
+																				id="medicationList_id" name="medicationList_id"
+																				value="<%=m.getMedicationList_id()%>">
+																		</div>
+																	</div>
+																</div>
+
+																<!-- Modal Footer -->
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-secondary"
+																		data-bs-dismiss="modal">Close</button>
+																	<button type="submit" class="btn btn-primary">Save
+																		changes</button>
+																</div>
+															</form>
+														</div>
+													</div>
+												</div></td>
 										</tr>
 										<%
 										}
@@ -581,16 +710,61 @@
 										<tr>
 											<th scope="col">ID</th>
 											<th scope="col">Predicament</th>
+											<th scope="col"></th>
 										</tr>
 									</thead>
 									<tbody>
 										<%
-										ArrayList<PredicamentList> pl = (ArrayList<PredicamentList>) session.getAttribute("PredicamentListlListData");
+										ArrayList<PredicamentList> pl = (ArrayList<PredicamentList>) session.getAttribute("PredicamentListListData");
 										for (PredicamentList p : pl) {
 										%>
 										<tr>
 											<td><%=p.getPredicamentList_id()%></td>
 											<td><%=p.getPredicament_name()%></td>
+											<td><a href="#" data-bs-toggle="modal"
+												data-bs-target="#editPredicamentModal<%=p.getPredicamentList_id()%>">Edit</a>
+												<div class="modal"
+													id="editPredicamentModal<%=p.getPredicamentList_id()%>">
+													<div class="modal-dialog modal-dialog-centered modal-lg">
+														<div class="modal-content">
+															<form method="post" action="/hms/EditPredicament">
+																<!-- Modal header -->
+																<div class="modal-header">
+																	<h5 class="modal-title">Predicament List Form</h5>
+																	<button type="button" class="btn-close"
+																		data-bs-dismiss="modal" aria-label="Close"></button>
+																</div>
+
+																<!-- Modal body -->
+																<div class="modal-body">
+																	<div class="form-group row">
+																		<label for="inputNameMedication"
+																			class="col-sm-3 col-form-label">Predicament
+																			Name</label>
+																		<div class="col-sm-9">
+																			<input type="text" class="form-control"
+																				id="predicament_nameEDIT"
+																				name="predicament_nameEDIT"
+																				placeholder="Predicament Name"
+																				value="<%=p.getPredicament_name()%>" required>
+																			<input type="hidden" class="form-control"
+																				id="predicamentList_id" name="predicamentList_id"
+																				value="<%=p.getPredicamentList_id()%>">
+																		</div>
+																	</div>
+																</div>
+
+																<!-- Modal Footer -->
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-secondary"
+																		data-bs-dismiss="modal">Close</button>
+																	<button type="submit" class="btn btn-primary">Save
+																		changes</button>
+																</div>
+															</form>
+														</div>
+													</div>
+												</div></td>
 										</tr>
 										<%
 										}

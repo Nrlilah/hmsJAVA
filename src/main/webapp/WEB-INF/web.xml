@@ -80,6 +80,18 @@
 		<description></description>
 		<servlet-class>com.hms.controller.AssignPredicament</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>EditPredicament</servlet-name>
+		<display-name>EditPredicament</display-name>
+		<description></description>
+		<servlet-class>com.hms.controller.EditPredicament</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>EditMedication</servlet-name>
+		<display-name>EditMedication</display-name>
+		<description></description>
+		<servlet-class>com.hms.controller.EditMedication</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Register</servlet-name>
 		<url-pattern>/Register</url-pattern>
@@ -131,6 +143,14 @@
 	<servlet-mapping>
 		<servlet-name>AssignPredicament</servlet-name>
 		<url-pattern>/AssignPredicament</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EditPredicament</servlet-name>
+		<url-pattern>/EditPredicament</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EditMedication</servlet-name>
+		<url-pattern>/EditMedication</url-pattern>
 	</servlet-mapping>
 	<session-config>
 		<session-timeout>60</session-timeout>
