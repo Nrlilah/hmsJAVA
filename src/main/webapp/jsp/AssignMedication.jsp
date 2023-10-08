@@ -147,6 +147,7 @@
 											<th scope="col">End Date & Time</th>
 											<th scope="col">Duration (Day)</th>
 											<th scope="col">Notes</th>
+											<th scope="col"></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -163,7 +164,40 @@
 											<td><%=m.getEnddatetime()%></td>
 											<td><%=m.getDuration()%></td>
 											<td><%=m.getNotes()%></td>
+											<td><a href="#" data-bs-toggle="modal"
+												data-bs-target="#deleteMedicationModal<%=m.getMedicationid()%>">Delete</a>
+												<!-- Delete Predicament Modal -->
+												<div class="modal"
+													id="deleteMedicationModal<%=m.getMedicationid()%>">
+													<div class="modal-dialog modal-dialog-centered modal-lg">
+														<div class="modal-content">
+															<!-- Modal header -->
+															<div class="modal-header">
+																<h5 class="modal-title ">Confirmation Dialog</h5>
+																<button type="button" class="btn-close"
+																	data-bs-dismiss="modal" aria-label="Close"></button>
+															</div>
 
+															<!-- Modal body -->
+															<div class="modal-body">
+																<div class="form-group row">
+																	<p class="modal-title ">Do you want to delete this
+																		medication?</p>
+																</div>
+															</div>
+
+															<!-- Modal Footer -->
+															<div class="modal-footer">
+																<button type="button" class="btn btn-secondary"
+																	data-bs-dismiss="modal">No</button>
+																<a
+																	href="/hms/DeleteMedication?medicationID=<%=m.getMedicationid()%>&patientID=<%=session.getAttribute("patientID")%>">
+																	<button type="submit" class="btn btn-primary">Yes</button>
+																</a>
+															</div>
+														</div>
+													</div>
+												</div> <!-- End Delete Predicament Modal --></td>
 										</tr>
 										<%
 										}
@@ -244,6 +278,7 @@
 									<thead>
 										<tr>
 											<th scope="col">Predicament Name</th>
+											<th scope="col"></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -254,6 +289,40 @@
 										%>
 										<tr>
 											<td><%=p.getPredicament_name()%></td>
+											<td><a href="#" data-bs-toggle="modal"
+												data-bs-target="#deletePredicamentModal<%=p.getPredicament_id()%>">Delete</a>
+												<!-- Delete Predicament Modal -->
+												<div class="modal"
+													id="deletePredicamentModal<%=p.getPredicament_id()%>">
+													<div class="modal-dialog modal-dialog-centered modal-lg">
+														<div class="modal-content">
+															<!-- Modal header -->
+															<div class="modal-header">
+																<h5 class="modal-title ">Confirmation Dialog</h5>
+																<button type="button" class="btn-close"
+																	data-bs-dismiss="modal" aria-label="Close"></button>
+															</div>
+
+															<!-- Modal body -->
+															<div class="modal-body">
+																<div class="form-group row">
+																	<p class="modal-title ">Do you want to delete this
+																		predicament?</p>
+																</div>
+															</div>
+
+															<!-- Modal Footer -->
+															<div class="modal-footer">
+																<button type="button" class="btn btn-secondary"
+																	data-bs-dismiss="modal">No</button>
+																<a
+																	href="/hms/DeletePredicament?predicamentID=<%=p.getPredicament_id()%>&patientID=<%=session.getAttribute("patientID")%>">
+																	<button type="submit" class="btn btn-primary">Yes</button>
+																</a>
+															</div>
+														</div>
+													</div>
+												</div> <!-- End Delete Predicament Modal --></td>
 										</tr>
 										<%
 										}
