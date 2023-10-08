@@ -104,6 +104,12 @@
 		<description></description>
 		<servlet-class>com.hms.controller.DeleteMedication</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>LoadAllData</servlet-name>
+		<display-name>LoadAllData</display-name>
+		<description></description>
+		<servlet-class>com.hms.controller.LoadAllData</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Register</servlet-name>
 		<url-pattern>/Register</url-pattern>
@@ -171,6 +177,10 @@
 	<servlet-mapping>
 		<servlet-name>DeleteMedication</servlet-name>
 		<url-pattern>/DeleteMedication</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>LoadAllData</servlet-name>
+		<url-pattern>/LoadAllData</url-pattern>
 	</servlet-mapping>
 	<session-config>
 		<session-timeout>60</session-timeout>

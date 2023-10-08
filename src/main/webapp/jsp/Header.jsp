@@ -30,7 +30,11 @@
 					class="bi bi-search"></i>
 			</a></li>
 			<!-- End Search Icon-->
-
+			<li class="nav-item dropdown"><a class="nav-link nav-icon"
+				href="/hms/LoadAllData?email=<%=session.getAttribute("USERemail")%>&password=<%=session.getAttribute("USERpassword")%>"> <i title="Click to reload masterdata."
+					class="bi bi-arrow-repeat"></i>
+			</a></li>
+			<!-- End Messages Icon -->
 
 			<li class="nav-item dropdown pe-3"><a
 				class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
@@ -61,7 +65,7 @@
 					</li>
 
 					<li><a href="Login.jsp"
-						class="dropdown-item d-flex align-items-center" > <i
+						class="dropdown-item d-flex align-items-center"> <i
 							class="bi bi-box-arrow-right"></i> <span>Sign Out</span>
 					</a></li>
 
