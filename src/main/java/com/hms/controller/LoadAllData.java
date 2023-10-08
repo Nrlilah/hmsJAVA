@@ -2,7 +2,6 @@ package com.hms.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
@@ -10,7 +9,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,39 +21,29 @@ import com.hms.beans.PredicamentList;
 import com.hms.beans.User;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class LoadAllData
  */
-public class Login extends HttpServlet {
+public class LoadAllData extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public LoadAllData() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public Login() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String email = request.getParameter("email").trim();
 		String password = request.getParameter("password").trim();
 		HttpSession session = request.getSession();
+		String referer = request.getHeader("referer");
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -253,17 +241,29 @@ public class Login extends HttpServlet {
 				pst6.close();
 				pst7.close();
 				pst8.close();
-				response.sendRedirect("jsp/Welcome.jsp");
 			} else {
 				session.setAttribute("status", "failed");
 				System.out.println("Wrong email or password");
 
 				response.sendRedirect("jsp/Login.jsp");
 			}
-			// dispatcher.forward(request, response);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+		if (referer != null && !referer.isEmpty()) {
+			response.sendRedirect(referer);
+		}
+		else {
+			response.sendRedirect("jsp/Login.jsp");
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }
