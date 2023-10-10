@@ -38,3 +38,4 @@ The objectives of this project are:
 ## Contributors
 * Arif Amiruddin   [@psakurai](https://www.linkedin.com/in/arif-a-a269b4142/)
 * Nur Hafizatul Izzah [@izzaharsyd](http://www.linkedin.com/in/izzah-arsyad-6923b8123)
+* Nurul Nabilah [@nrilah](https://www.linkedin.com/in/nurul-nabilah-salahudin-487a11229)
