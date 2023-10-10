@@ -143,7 +143,7 @@
 										class="table table-borderless datatable">
 										<thead>
 											<tr>
-												<th scope="col">Identification No.</th>
+												<th scope="col">ID.</th>
 												<th scope="col">Name</th>
 												<th scope="col">Gender</th>
 												<th scope="col">Health Status</th>

@@ -62,35 +62,35 @@
 									<label for="inputText" class="col-sm-2 col-form-label">Dosage</label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control" name="Dosage"
-											placeholder="Dosage per consumption">
+											placeholder="Dosage per consumption" required>
 									</div>
 								</div>
 								<div class="row mb-3">
 									<label for="inputText" class="col-sm-2 col-form-label">Frequency</label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control" name="Frequency"
-											placeholder="Consumption per day(s)">
+											placeholder="Consumption per day(s)" required>
 									</div>
 								</div>
 								<div class="row mb-3">
 									<label for="inputDate" class="col-sm-2 col-form-label">Start
 										Date & Time</label>
 									<div class="col-sm-10">
-										<input type="date" class="form-control" name="startDateTime">
+										<input type="date" class="form-control" name="startDateTime" required>
 									</div>
 								</div>
 								<div class="row mb-3">
 									<label for="inputDate" class="col-sm-2 col-form-label">End
 										Date & Time</label>
 									<div class="col-sm-10">
-										<input type="date" class="form-control" name="endDateTime">
+										<input type="date" class="form-control" name="endDateTime" required>
 									</div>
 								</div>
 								<div class="row mb-3">
 									<label for="inputPassword" class="col-sm-2 col-form-label">Notes</label>
 									<div class="col-sm-10">
 										<textarea class="form-control" style="height: 100px"
-											name="notes"></textarea>
+											name="notes" required></textarea>
 									</div>
 								</div>
 								<div class="row mb-3">
