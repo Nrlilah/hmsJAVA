@@ -39,3 +39,4 @@ The objectives of this project are:
 * Arif Amiruddin   [@psakurai](https://www.linkedin.com/in/arif-a-a269b4142/)
 * Nur Hafizatul Izzah [@izzaharsyd](http://www.linkedin.com/in/izzah-arsyad-6923b8123)
 * Nurul Nabilah [@Nrlilah](https://www.linkedin.com/in/nurul-nabilah-salahudin-487a11229)
+* Osman Sairi [@Twowisesana](https://www.linkedin.com/in/osman-sairi-682a42282/)
