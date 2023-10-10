@@ -1,8 +1,18 @@
+## Requirements:
 ### SQL Database
 * src/main/webapp/sql dumps/Dump20231010
+* DB Name: hmsdb 
+* User: root@localhost
+* Password: password
+* Port: 3306
 
 ### Executing program
 * Run from src/main/webapp/jsp/Login.jsp
+
+### Env
+* JDK 17
+* Server Apache Tomcat 8.5.93 (Port: 8080)
+* src/main/java/com/hms/controller/DatabaseConnection.java (For connection setup)
 
 
 ***
