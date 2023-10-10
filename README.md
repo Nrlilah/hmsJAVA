@@ -1,4 +1,3 @@
-## Getting Started
 ### SQL Database
 * src/main/webapp/sql dumps/Dump20231010
 
