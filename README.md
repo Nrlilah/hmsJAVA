@@ -1,5 +1,12 @@
-# Hospital Management System
+## Getting Started
+### SQL Database
+* src/main/webapp/sql dumps/Dump20231010
 
+### Executing program
+* Run from src/main/webapp/jsp/Login.jsp
+
+
+# Hospital Management System
 The aim of the project is to build a hospital management system that efficiently manages various aspects of hospital operations, including:
 * Patient records, appointments, medical history and predicament history.
 * Doctor scheduling.
@@ -7,7 +14,6 @@ The aim of the project is to build a hospital management system that efficiently
 
 
 ## Objective
-
 The objectives of this project are:
 * To achieve efficient management of patient records, appointments, predicament and medical history.
 * To Implement a streamlined registration process, medication prescription, predicament tracking and discharge process, enhancing efficacy and reducing manual process .
@@ -27,17 +33,5 @@ The objectives of this project are:
     * Only user administrators are able to view this page to use the function to add users, add medication and add predicament. A search feature allows a user to find any column names in each table. A view function of more detail is included to show full details of the users. An edit button can be used to edit on predicament list names and medication list names.
 
 
-## Getting Started
-
-### SQL Database
-
-* src/main/webapp/sql dumps/Dump20231010
-
-### Executing program
-
-* Run from src/main/webapp/jsp/Login.jsp
-
-
 ## Contributors
-
 * Arif Amiruddin   [@psakurai](https://github.com/psakurai)
