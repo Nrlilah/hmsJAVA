@@ -6,15 +6,7 @@ The aim of the project is to build a hospital management system that efficiently
 * User management.
 
 
-## Objectuve
-
-The objectives of this project are:
-* To achieve efficient management of patient records, appointments, predicament and medical history.
-* To Implement a streamlined registration process, medication prescription, predicament tracking and discharge process, enhancing efficacy and reducing manual process .
-* To facilitate convenient and secure access to patient information for healthcare professionals, enabling well-informed decision-making and prompt delivery of care.
-
-
-## Objectuve
+## Objective
 
 The objectives of this project are:
 * To achieve efficient management of patient records, appointments, predicament and medical history.
@@ -53,13 +45,8 @@ The objectives of this project are:
 * Step-by-step bullets
 
 
-## License
-
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
-
 ## Contributors
 
 Contributors names and contact info
 
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+ex. Dominique Pizzie   [@DomPizzie](https://twitter.com/dompizzie)
