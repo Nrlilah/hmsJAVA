@@ -37,3 +37,4 @@ The objectives of this project are:
 
 ## Contributors
 * Arif Amiruddin   [@psakurai](https://github.com/psakurai)
+* Nur Hafizatul Izzah (http://www.linkedin.com/in/nur-hafizatul-izzah-mohd-arsyad-6923b8123)
