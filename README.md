@@ -5,6 +5,9 @@
 * Run from src/main/webapp/jsp/Login.jsp
 
 
+
+
+
 # Hospital Management System
 The aim of the project is to build a hospital management system that efficiently manages various aspects of hospital operations, including:
 * Patient records, appointments, medical history and predicament history.
