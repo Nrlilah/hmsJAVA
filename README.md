@@ -29,24 +29,15 @@ The objectives of this project are:
 
 ## Getting Started
 
-### Dependencies
+### SQL Database
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
-
-### Installing
-
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+* src/main/webapp/sql dumps/Dump20231010
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
+* Run from src/main/webapp/jsp/Login.jsp
 
 
 ## Contributors
 
-Contributors names and contact info
-
-ex. Dominique Pizzie   [@DomPizzie](https://twitter.com/dompizzie)
+* Arif Amiruddin   [@psakurai](https://github.com/psakurai)
