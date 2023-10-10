@@ -163,7 +163,7 @@
 															<div class="col-sm-9">
 																<input type="text" class="form-control"
 																	id="inputnationality" name="nationality"
-																	placeholder="Nationality" required pattern="[A-Za-z\s]"
+																	placeholder="Nationality" required pattern="[A-Za-z/s]"
 																	title="Please enter only letters and spaces. Numbers are not allowed.">
 															</div>
 														</div>
@@ -625,7 +625,7 @@
 									class="table table-borderless datatable">
 									<thead>
 										<tr>
-											<th scope="col">ID</th>
+											<th scope="col">ID.</th>
 											<th scope="col">Medication</th>
 											<th scope="col"></th>
 										</tr>
@@ -708,7 +708,7 @@
 									class="table table-borderless datatable">
 									<thead>
 										<tr>
-											<th scope="col">ID</th>
+											<th scope="col">ID.</th>
 											<th scope="col">Predicament</th>
 											<th scope="col"></th>
 										</tr>

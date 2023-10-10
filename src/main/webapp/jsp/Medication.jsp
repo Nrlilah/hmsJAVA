@@ -155,7 +155,7 @@
 									class="table table-borderless datatable">
 									<thead>
 										<tr>
-											<th scope="col">Identification No.</th>
+											<th scope="col">ID.</th>
 											<th scope="col">Name</th>
 											<th scope="col">Gender</th>
 											<th scope="col">Health Status</th>
@@ -339,6 +339,26 @@
 		class="back-to-top d-flex align-items-center justify-content-center"><i
 		class="bi bi-arrow-up-short"></i></a>
 	<%@ include file="ScriptResources.jsp"%>
+	<script>
+	function search() {
+		var input, filter, table, tr, td, i, txtValue;
+		input = document.getElementById("search-input");
+		filter = input.value.toUpperCase();
+		table = document.getElementById("patientListTable");
+		tr = table.getElementsByTagName("tr");
+		for (i = 0; i < tr.length; i++) {
+			td = tr[i].getElementsByTagName("td")[1];
+			if (td) {
+				txtValue = td.textContent || td.innerText;
+				if (txtValue.toUpperCase().indexOf(filter) > -1) {
+					tr[i].style.display = "";
+				} else {
+					tr[i].style.display = "none";
+				}
+			}
+		}
+	}
+	</script>
 	<!-- <script>
 		// Get the modal element
 		const modal = document.getElementById('addPatientModal');
